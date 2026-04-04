@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-eslint --no-turbopack)",
+      "Bash(docker compose:*)",
+      "Bash(ls:*)",
+      "Bash(docker exec:*)",
+      "Bash(curl -s http://localhost:3000)"
+    ]
+  }
+}
