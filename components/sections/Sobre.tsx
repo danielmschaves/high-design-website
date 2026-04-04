@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function Sobre() {
   const pillars = [
-    { label: "Funcional", desc: "Ambientes pensados para o dia a dia real" },
-    { label: "Elegante", desc: "Estética refinada e atemporal" },
-    { label: "Executável", desc: "Projetado para ser construído" },
-    { label: "Organizado", desc: "Método claro em cada etapa" },
+    { label: "Funcional", desc: "Espaços inteligentes que servem à vida real" },
+    { label: "Elegante", desc: "Estética refinada, coerente e sofisticada" },
+    { label: "Atemporal", desc: "Soluções que permanecem relevantes ao longo dos anos" },
+    { label: "Executável", desc: "Projetos viáveis, alinhados à obra que será construída" },
   ];
 
   return (

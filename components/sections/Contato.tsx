@@ -5,11 +5,37 @@ import { useState } from "react";
 export default function Contato() {
   const [form, setForm] = useState({ nome: "", email: "", telefone: "", mensagem: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder — wire up to email service later
-    setSent(true);
+    if (!formspreeId) { setSent(true); return; } // dev fallback
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          telefone: form.telefone,
+          mensagem: form.mensagem,
+        }),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -271,25 +297,32 @@ export default function Contato() {
                 />
               </div>
 
+              {error && (
+                <p style={{ fontFamily: "var(--font-display)", fontSize: "0.75rem", color: "#e07070" }}>
+                  Erro ao enviar. Tente novamente ou escreva para contato@highdesign.arq.br
+                </p>
+              )}
               <button
                 type="submit"
+                disabled={loading}
                 style={{
                   fontFamily: "var(--font-display)",
                   fontSize: "0.7rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   color: "var(--color-brand-white)",
-                  background: "var(--color-brand-accent)",
+                  background: loading ? "var(--color-brand-primary)" : "var(--color-brand-accent)",
                   border: "none",
                   padding: "1rem 2rem",
-                  cursor: "pointer",
+                  cursor: loading ? "not-allowed" : "pointer",
                   alignSelf: "flex-start",
                   transition: "background var(--duration-base)",
+                  opacity: loading ? 0.7 : 1,
                 }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-primary)")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-accent)")}
+                onMouseEnter={(e) => { if (!loading) (e.target as HTMLElement).style.background = "var(--color-brand-primary)"; }}
+                onMouseLeave={(e) => { if (!loading) (e.target as HTMLElement).style.background = "var(--color-brand-accent)"; }}
               >
-                Enviar mensagem
+                {loading ? "Enviando..." : "Enviar mensagem"}
               </button>
             </form>
           )}

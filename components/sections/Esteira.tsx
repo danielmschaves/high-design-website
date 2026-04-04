@@ -21,7 +21,7 @@ const steps = [
   {
     sigla: "EVF",
     nome: "Estudo de Viabilidade Financeira",
-    desc: "Levantamento de quantidades e valores de insumos, equipamentos e mão de obra. Garante compatibilidade entre o projeto, acabamentos escolhidos e o aporte financeiro disponível.",
+    desc: "Diferencial da High Design: levantamento de quantidades e valores de insumos, equipamentos e mão de obra antes de avançar no detalhamento — garantindo que projeto e acabamentos sejam compatíveis com o aporte financeiro disponível.",
   },
   {
     sigla: "PL",

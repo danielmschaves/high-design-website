@@ -8,6 +8,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import Depoimentos from "@/components/sections/Depoimentos";
 import Contato from "@/components/sections/Contato";
 import Footer from "@/components/sections/Footer";
+import WhatsApp from "@/components/ui/WhatsApp";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Contato />
       </main>
       <Footer />
+      <WhatsApp />
     </>
   );
 }

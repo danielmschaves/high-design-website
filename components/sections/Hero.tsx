@@ -186,19 +186,20 @@ export default function Hero() {
             }}
           >
             {[
-              { num: "10+", label: "Anos de prática" },
-              { num: "200+", label: "Projetos entregues" },
-              { num: "100%", label: "Exequibilidade" },
+              { num: "Método", label: "Processo claro em cada etapa" },
+              { num: "Técnica", label: "Rigor e responsabilidade projetual" },
+              { num: "Obra", label: "Todo projeto nasce para ser construído" },
             ].map((s) => (
               <div key={s.num}>
                 <p
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "1.5rem",
+                    fontSize: "0.85rem",
                     fontWeight: 700,
                     color: "var(--color-brand-accent)",
                     lineHeight: 1,
                     marginBottom: "0.25rem",
+                    letterSpacing: "0.05em",
                   }}
                 >
                   {s.num}
