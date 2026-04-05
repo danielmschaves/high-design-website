@@ -79,7 +79,7 @@ export default function Esteira() {
         className="esteira-grid"
       >
         {/* Left: sticky header */}
-        <div style={{ position: "sticky", top: "6rem" }}>
+        <div style={{ position: "sticky", top: "6rem" }} className="esteira-sticky">
           <p
             style={{
               fontFamily: "var(--font-display)",
