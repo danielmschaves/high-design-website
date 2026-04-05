@@ -6,14 +6,14 @@ const services = [
   {
     sigla: "TERRENO",
     nome: "Consultoria de Aquisição de Terreno",
-    tagline: "Avalie os riscos antes de assinar",
+    tagline: "Avalie os riscos antes de adquirir",
     dores: [
-      "Custos ocultos de terraplenagem e contenções que surgem após a compra",
+      "Identificação de riscos ocultos: enchentes, deslizamentos, terraplanagem e contenções",
       "Incerteza sobre o que é legalmente permitido construir no lote",
       "Dificuldade em comparar opções e escolher com segurança",
     ],
     entrega:
-      "Dossiê de Viabilidade com análise topográfica, estudo solar, raio-x legal e veredito da arquiteta — incluindo reunião de briefing e apresentação dos resultados.",
+      "Dossiê de Viabilidade com análise topográfica, estudo solar, raio-x legal e veredito do terreno — incluindo reunião de briefing e apresentação dos resultados.",
   },
   {
     sigla: "CONSTRUÇÃO",
@@ -33,23 +33,23 @@ const services = [
     tagline: "Do esboço ao manual completo de execução",
     dores: [
       "Insegurança sobre estética, funcionalidade e conforto dos ambientes",
-      "Risco de retrabalho e desperdício por falta de detalhamento técnico",
+      "Risco de retrabalho e desperdício por falta de detalhamento técnico e compatibilização",
       "Complexidade na aprovação junto à prefeitura ou ao condomínio",
     ],
     entrega:
-      "Estudo preliminar com plantas humanizadas e renders 3D, projeto legal para aprovação, projeto executivo detalhado (o manual da obra) e memorial descritivo completo de materiais.",
+      "Estudo preliminar com plantas humanizadas e renders 3D, projeto legal para aprovação, compatibilização com projetos de engenharia, projeto executivo detalhado (o manual da obra) e memorial descritivo completo de materiais.",
   },
   {
     sigla: "ORÇAMENTO",
     nome: "Orçamento de Obra",
-    tagline: "Saiba exatamente quanto vai custar antes de contratar",
+    tagline: "Saiba exatamente quanto vai custar antes de construir",
     dores: [
       "Receio de o dinheiro acabar no meio da execução",
       "Orçamentos de empreiteiros que variam drasticamente sem explicação",
       "Ausência de planejamento de fluxo de caixa ao longo da obra",
     ],
     entrega:
-      "Levantamento completo de quantitativos, cotação real de mercado (materiais e mão de obra), planilha por etapa construtiva com Curva ABC e cronograma físico-financeiro mensal.",
+      "Levantamento completo de quantitativos, cotação real de mercado (materiais e mão de obra), lista de etapas construtivas com Curva ABC e cronograma físico-financeiro mensal.",
   },
 ];
 

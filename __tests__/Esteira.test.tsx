@@ -44,7 +44,7 @@ describe("Esteira", () => {
 
   it("first service is expanded by default and shows tagline", () => {
     render(<Esteira />);
-    expect(screen.getByText(/avalie os riscos antes de assinar/i)).toBeInTheDocument();
+    expect(screen.getByText(/avalie os riscos antes de adquirir/i)).toBeInTheDocument();
   });
 
   it("first service expanded content shows 'O que resolvemos' and 'O que entregamos'", () => {
