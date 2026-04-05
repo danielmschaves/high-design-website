@@ -2,61 +2,77 @@
 
 import { useState } from "react";
 
-const steps = [
+const services = [
   {
-    sigla: "LV",
-    nome: "Levantamento",
-    desc: "Fase inicial: medição do espaço, análise de normas urbanísticas, laudos e documentos do imóvel. Briefing para entender necessidades, expectativas, estilo e orçamento.",
+    sigla: "TERRENO",
+    nome: "Consultoria de Aquisição de Terreno",
+    tagline: "Avalie os riscos antes de assinar",
+    dores: [
+      "Custos ocultos de terraplenagem e contenções que surgem após a compra",
+      "Incerteza sobre o que é legalmente permitido construir no lote",
+      "Dificuldade em comparar opções e escolher com segurança",
+    ],
+    entrega:
+      "Dossiê de Viabilidade com análise topográfica, estudo solar, raio-x legal e veredito da arquiteta — incluindo reunião de briefing e apresentação dos resultados.",
   },
   {
-    sigla: "EM",
-    nome: "Estudo de Massa",
-    desc: "Análise das diretrizes municipais e condicionantes ambientais do terreno. Define parâmetros construtivos iniciais e apresenta números globais de custo.",
+    sigla: "CONSTRUÇÃO",
+    nome: "Consultoria de Construção",
+    tagline: "Descubra o que é possível construir no seu lote",
+    dores: [
+      "Dúvida se o orçamento disponível cobre o projeto idealizado",
+      "Falta de visão espacial da construção no terreno",
+      "Risco de iniciar a obra sem direcionamento técnico e financeiro",
+    ],
+    entrega:
+      "Dossiê de Viabilidade Arquitetônica e Financeira com raio-x legal, estudo de massa 3D e orçamento paramétrico real — mais reunião de diagnóstico e direcionamento estratégico.",
   },
   {
-    sigla: "EP",
-    nome: "Estudo Preliminar",
-    desc: "Esboço das ideias gerais do projeto conforme o programa de necessidades. Visualização dos espaços através de plantas de layout e imagens 3D realísticas.",
+    sigla: "PROJETO",
+    nome: "Projeto de Arquitetura",
+    tagline: "Do esboço ao manual completo de execução",
+    dores: [
+      "Insegurança sobre estética, funcionalidade e conforto dos ambientes",
+      "Risco de retrabalho e desperdício por falta de detalhamento técnico",
+      "Complexidade na aprovação junto à prefeitura ou ao condomínio",
+    ],
+    entrega:
+      "Estudo preliminar com plantas humanizadas e renders 3D, projeto legal para aprovação, projeto executivo detalhado (o manual da obra) e memorial descritivo completo de materiais.",
   },
   {
-    sigla: "EVF",
-    nome: "Estudo de Viabilidade Financeira",
-    desc: "Diferencial da High Design: levantamento de quantidades e valores de insumos, equipamentos e mão de obra antes de avançar no detalhamento — garantindo que projeto e acabamentos sejam compatíveis com o aporte financeiro disponível.",
-  },
-  {
-    sigla: "PL",
-    nome: "Projeto Legal para Aprovação",
-    desc: "Desenvolvimento de todos os cadernos técnicos exigidos pela prefeitura e órgãos competentes para obter o alvará de construção.",
-  },
-  {
-    sigla: "COMP",
-    nome: "Compatibilização de Projetos Complementares",
-    desc: "Integração do projeto arquitetônico com os projetos estruturais, elétricos e hidrossanitários — garantindo concordância entre todas as disciplinas.",
-  },
-  {
-    sigla: "PE",
-    nome: "Projeto Executivo",
-    desc: "Etapa final de detalhamento para execução da obra. Inclui cadernos de ambientes, marcenaria, marmoraria, paginação de piso, mapas de instalações e luminotécnica.",
-  },
-  {
-    sigla: "PO",
-    nome: "Planejamento de Obra",
-    desc: "Estruturação e listagem das atividades em sequência lógica de execução, com EAP e PERT/CPM para controle preciso do cronograma.",
-  },
-  {
-    sigla: "OE",
-    nome: "Orçamento Executivo de Obra",
-    desc: "Orçamento detalhado com custos reais do mercado, apresentando a composição de materiais e mão de obra para cada fase da construção.",
-  },
-  {
-    sigla: "EO",
-    nome: "Execução de Obra",
-    desc: "Gerenciamento, acompanhamento e fiscalização completa da obra. Inclui gestão do cronograma, compra de materiais, contratação de mão de obra, emissão de relatórios e verificação de segurança.",
+    sigla: "ORÇAMENTO",
+    nome: "Orçamento de Obra",
+    tagline: "Saiba exatamente quanto vai custar antes de contratar",
+    dores: [
+      "Receio de o dinheiro acabar no meio da execução",
+      "Orçamentos de empreiteiros que variam drasticamente sem explicação",
+      "Ausência de planejamento de fluxo de caixa ao longo da obra",
+    ],
+    entrega:
+      "Levantamento completo de quantitativos, cotação real de mercado (materiais e mão de obra), planilha por etapa construtiva com Curva ABC e cronograma físico-financeiro mensal.",
   },
 ];
 
 export default function Esteira() {
   const [open, setOpen] = useState<number | null>(0);
+
+  const labelStyle: React.CSSProperties = {
+    fontFamily: "var(--font-display)",
+    fontSize: "0.58rem",
+    letterSpacing: "0.25em",
+    textTransform: "uppercase",
+    color: "var(--color-brand-accent)",
+    opacity: 0.7,
+    marginBottom: "0.6rem",
+  };
+
+  const bodyStyle: React.CSSProperties = {
+    fontFamily: "var(--font-display)",
+    fontSize: "0.82rem",
+    lineHeight: 1.75,
+    color: "var(--color-brand-primary)",
+    opacity: 0.85,
+  };
 
   return (
     <section
@@ -106,7 +122,7 @@ export default function Esteira() {
             Da concepção
             <br />
             <em style={{ fontStyle: "italic", color: "var(--color-brand-primary)" }}>
-              à obra entregue
+              à entrega das chaves
             </em>
           </h2>
 
@@ -120,7 +136,7 @@ export default function Esteira() {
               marginBottom: "2rem",
             }}
           >
-            Nossa esteira de serviços cobre cada etapa da jornada arquitetônica. Você pode contratar individualmente ou em pacotes, conforme sua necessidade.
+            Quatro serviços pensados para cada momento da sua jornada. Contrate individualmente ou em sequência — cada etapa prepara o terreno para a próxima.
           </p>
 
           <p
@@ -133,15 +149,15 @@ export default function Esteira() {
               opacity: 0.6,
             }}
           >
-            10 etapas · LV → EO
+            4 serviços · Terreno → Chaves
           </p>
         </div>
 
         {/* Right: accordion */}
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {steps.map((step, i) => (
+          {services.map((service, i) => (
             <div
-              key={step.sigla}
+              key={service.sigla}
               style={{
                 borderTop: i === 0 ? "1px solid var(--color-neutral-200)" : "none",
               }}
@@ -156,28 +172,28 @@ export default function Esteira() {
                   padding: "1.5rem 0",
                   display: "flex",
                   alignItems: "center",
-                  gap: "1.5rem",
+                  gap: "1.25rem",
                   cursor: "pointer",
                   textAlign: "left",
                 }}
               >
-                {/* Sigla */}
+                {/* Sigla badge */}
                 <span
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.2em",
+                    fontSize: "0.55rem",
+                    letterSpacing: "0.18em",
                     color: open === i ? "var(--color-brand-white)" : "var(--color-brand-accent)",
                     background: open === i ? "var(--color-brand-dark)" : "transparent",
                     border: "1px solid var(--color-brand-accent)",
-                    padding: "0.4rem 0.6rem",
-                    minWidth: "52px",
+                    padding: "0.4rem 0.65rem",
                     textAlign: "center",
                     transition: "all var(--duration-base)",
                     flexShrink: 0,
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  {step.sigla}
+                  {service.sigla}
                 </span>
 
                 {/* Step number */}
@@ -189,6 +205,7 @@ export default function Esteira() {
                     color: "var(--color-brand-accent)",
                     opacity: 0.5,
                     minWidth: "24px",
+                    flexShrink: 0,
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -206,7 +223,7 @@ export default function Esteira() {
                     letterSpacing: "0.01em",
                   }}
                 >
-                  {step.nome}
+                  {service.nome}
                 </span>
 
                 {/* Toggle icon */}
@@ -233,22 +250,44 @@ export default function Esteira() {
               <div
                 style={{
                   overflow: "hidden",
-                  maxHeight: open === i ? "200px" : "0",
-                  transition: "max-height 0.4s var(--ease-brand)",
+                  maxHeight: open === i ? "600px" : "0",
+                  transition: "max-height 0.45s var(--ease-brand)",
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.83rem",
-                    lineHeight: 1.8,
-                    color: "var(--color-brand-primary)",
-                    padding: "1rem 0 1.5rem 4.5rem",
-                    opacity: 0.85,
-                  }}
-                >
-                  {step.desc}
-                </p>
+                <div style={{ padding: "1.25rem 0 2rem 4.25rem" }}>
+                  {/* Tagline */}
+                  <p
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.83rem",
+                      fontStyle: "italic",
+                      color: "var(--color-brand-primary)",
+                      marginBottom: "1.5rem",
+                      opacity: 0.9,
+                    }}
+                  >
+                    {service.tagline}
+                  </p>
+
+                  {/* Dores */}
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <p style={labelStyle}>O que resolvemos</p>
+                    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      {service.dores.map((dor, j) => (
+                        <li key={j} style={{ display: "flex", gap: "0.75rem", ...bodyStyle }}>
+                          <span style={{ color: "var(--color-brand-accent)", flexShrink: 0 }}>—</span>
+                          <span>{dor}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Entrega */}
+                  <div>
+                    <p style={labelStyle}>O que entregamos</p>
+                    <p style={bodyStyle}>{service.entrega}</p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

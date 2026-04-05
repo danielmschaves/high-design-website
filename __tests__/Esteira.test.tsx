@@ -8,45 +8,71 @@ describe("Esteira", () => {
     expect(document.getElementById("servicos")).toBeInTheDocument();
   });
 
-  it("renders all 10 service steps", () => {
+  it("renders the updated heading", () => {
     render(<Esteira />);
-    const siglas = ["LV", "EM", "EP", "EVF", "PL", "COMP", "PE", "PO", "OE", "EO"];
-    siglas.forEach((s) => expect(screen.getByText(s)).toBeInTheDocument());
+    expect(screen.getByRole("heading", { name: /da concepção/i })).toBeInTheDocument();
+    expect(screen.getByText(/à entrega das chaves/i)).toBeInTheDocument();
   });
 
-  it("renders step numbers 01–10", () => {
+  it("renders all 4 service badges", () => {
     render(<Esteira />);
-    for (let i = 1; i <= 10; i++) {
+    expect(screen.getByText("TERRENO")).toBeInTheDocument();
+    expect(screen.getByText("CONSTRUÇÃO")).toBeInTheDocument();
+    expect(screen.getByText("PROJETO")).toBeInTheDocument();
+    expect(screen.getByText("ORÇAMENTO")).toBeInTheDocument();
+  });
+
+  it("renders all 4 service names", () => {
+    render(<Esteira />);
+    expect(screen.getByText(/consultoria de aquisição de terreno/i)).toBeInTheDocument();
+    expect(screen.getByText(/consultoria de construção/i)).toBeInTheDocument();
+    expect(screen.getByText(/projeto de arquitetura/i)).toBeInTheDocument();
+    expect(screen.getByText(/orçamento de obra/i)).toBeInTheDocument();
+  });
+
+  it("renders step numbers 01–04", () => {
+    render(<Esteira />);
+    for (let i = 1; i <= 4; i++) {
       expect(screen.getByText(String(i).padStart(2, "0"))).toBeInTheDocument();
     }
   });
 
-  it("first step is expanded by default", () => {
+  it("counter shows '4 serviços · Terreno → Chaves'", () => {
     render(<Esteira />);
-    // LV description should be visible (first step open by default)
-    expect(screen.getByText(/fase inicial/i)).toBeInTheDocument();
+    expect(screen.getByText(/4 serviços/i)).toBeInTheDocument();
   });
 
-  it("clicking a closed step expands it", () => {
+  it("first service is expanded by default and shows tagline", () => {
     render(<Esteira />);
-    const emButton = screen.getByRole("button", { name: /estudo de massa/i });
-    fireEvent.click(emButton);
-    expect(screen.getByText(/análise das diretrizes municipais/i)).toBeInTheDocument();
+    expect(screen.getByText(/avalie os riscos antes de assinar/i)).toBeInTheDocument();
   });
 
-  it("clicking the open step collapses it", () => {
+  it("first service expanded content shows 'O que resolvemos' and 'O que entregamos'", () => {
     render(<Esteira />);
-    // First step is open; click it to close
-    const lvButton = screen.getByRole("button", { name: /levantamento/i });
-    fireEvent.click(lvButton);
-    // After close the max-height should be 0 (style check)
-    const content = lvButton.nextElementSibling as HTMLElement;
+    // Both section labels should be visible (first item is open)
+    const resolemos = screen.getAllByText(/o que resolvemos/i);
+    const entregamos = screen.getAllByText(/o que entregamos/i);
+    expect(resolemos.length).toBeGreaterThanOrEqual(1);
+    expect(entregamos.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("clicking a closed service expands it", () => {
+    render(<Esteira />);
+    const consultButton = screen.getByRole("button", { name: /consultoria de construção/i });
+    fireEvent.click(consultButton);
+    expect(screen.getByText(/descubra o que é possível construir/i)).toBeInTheDocument();
+  });
+
+  it("clicking the open service collapses it", () => {
+    render(<Esteira />);
+    const terrenoButton = screen.getByRole("button", { name: /consultoria de aquisição/i });
+    fireEvent.click(terrenoButton);
+    const content = terrenoButton.nextElementSibling as HTMLElement;
     expect(content.style.maxHeight).toBe("0");
   });
 
-  it("sticky header has the 'esteira-sticky' class for mobile override", () => {
+  it("sticky header has 'esteira-sticky' class for mobile override", () => {
     render(<Esteira />);
-    // The sticky header is the first child of the grid
     const grid = document.querySelector(".esteira-grid");
     const stickyHeader = grid?.firstElementChild as HTMLElement;
     expect(stickyHeader).toHaveClass("esteira-sticky");
