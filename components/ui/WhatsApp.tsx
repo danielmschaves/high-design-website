@@ -19,7 +19,7 @@ export default function WhatsApp() {
         position: "fixed",
         bottom: "2rem",
         right: "2rem",
-        zIndex: 200,
+        zIndex: 310,
         width: "52px",
         height: "52px",
         background: "#25D366",

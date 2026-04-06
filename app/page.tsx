@@ -10,6 +10,7 @@ import Contato from "@/components/sections/Contato";
 import Footer from "@/components/sections/Footer";
 import WhatsApp from "@/components/ui/WhatsApp";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       <Footer />
       <WhatsApp />
       <ScrollToTop />
+      <CookieBanner />
     </>
   );
 }
