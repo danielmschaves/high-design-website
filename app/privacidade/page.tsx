@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade — High Design ARQ.",
@@ -35,7 +36,7 @@ export default function Privacidade() {
     >
       <div style={{ maxWidth: "720px", margin: "0 auto" }}>
         {/* Back link */}
-        <a
+        <Link
           href="/"
           style={{
             fontFamily: "var(--font-display)",
@@ -50,7 +51,7 @@ export default function Privacidade() {
           }}
         >
           ← Voltar ao site
-        </a>
+        </Link>
 
         <p
           style={{
