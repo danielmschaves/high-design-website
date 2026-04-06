@@ -100,7 +100,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — visibility controlled by .show-mobile CSS class */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="show-mobile"
@@ -109,7 +109,6 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "0.5rem",
-            display: "flex",
             flexDirection: "column",
             gap: "5px",
           }}
@@ -138,7 +137,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — conditionally rendered, no class needed */}
       {menuOpen && (
         <div
           style={{
@@ -149,7 +148,6 @@ export default function Navbar() {
             flexDirection: "column",
             gap: "1.5rem",
           }}
-          className="show-mobile"
         >
           {links.map((l) => (
             <a
