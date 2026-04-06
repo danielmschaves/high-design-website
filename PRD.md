@@ -175,8 +175,47 @@ A ordem abaixo é uma proposta inicial. **Aguarda aprovação antes da implement
 
 ## 12. Próximos Passos
 
-- [ ] Revisar seções propostas (seção 10) e confirmar escopo
+- [x] Revisar seções propostas (seção 10) e confirmar escopo
 - [ ] Confirmar quais mockups usar na landing
 - [ ] Exportar logo SVG a partir do `.ai` para uso web
-- [ ] Receber conteúdo real: textos de serviços, depoimentos, projetos do portfólio
-- [ ] Implementar seções após aprovação deste PRD
+- [ ] Receber conteúdo real: depoimentos, projetos do portfólio
+- [x] Implementar seções após aprovação deste PRD
+
+---
+
+## 13. Feature Backlog — Pós-MVP
+
+> Aprovado em sessão de planejamento — 2026-04-06.
+> Estratégia: cada item em branch e PR independente. Deploy confirmado antes de avançar ao próximo.
+> Sequência de execução: L1 → L2 → L3 → L4 → L5, depois M1 → M2 → M3 → M4 → M5.
+
+### Low Effort (MVP+)
+
+| ID | Feature | Descrição | Branch | Esforço |
+|---|---|---|---|---|
+| **L1** | **Social links no Footer** | Adicionar ícones de Instagram e LinkedIn ao Footer. URLs via env vars (`NEXT_PUBLIC_INSTAGRAM_URL`, `NEXT_PUBLIC_LINKEDIN_URL`) — ícones ocultados até as vars serem configuradas, padrão igual ao WhatsApp. | `feature/l1-social-links` | ~1h |
+| **L2** | **Scroll-to-top button** | Botão flutuante (↑) aparece após o usuário rolar além da seção Hero. Clique retorna suavemente ao topo. Posicionado acima do botão WhatsApp. | `feature/l2-scroll-to-top` | ~1h |
+| **L3** | **Melhoria nos labels do Portfólio** | Enriquecer o overlay de hover com tipologia e metragem dos projetos. Dados em array estruturado — placeholders até o cliente fornecer o conteúdo real. | `feature/l3-portfolio-labels` | ~1h |
+| **L4** | **Banner LGPD** | Barra inferior de consentimento exibida na primeira visita. Aceite salvo em `localStorage`. Inclui link para página `/privacidade` com Política de Privacidade básica. Baixa urgência — implementar antes de ativar analytics ou tráfego pago. | `feature/l4-cookie-banner` | ~2h |
+| **L5** | **LocalBusiness JSON-LD** | Structured data em `app/layout.tsx` para SEO: nome, e-mail, URL, segmento, área de atuação. Habilita rich results no Google e Knowledge Panel. Esforço mínimo, alto retorno. | `feature/l5-json-ld` | ~30min |
+
+### Medium Effort (Engajamento)
+
+> A ser planejado e estimado individualmente após conclusão dos itens Low Effort.
+
+| ID | Feature | Descrição | Impacto esperado no tempo de sessão |
+|---|---|---|---|
+| **M1** | **Lightbox do Portfólio** | Modal full-screen ao clicar em imagem: imagem ampliada + metadados do projeto + navegação prev/next entre os 15 projetos. Animação via Framer Motion (já dependência). | +2–4 min por visita |
+| **M2** | **Seção FAQ** | Accordion com 8–10 perguntas frequentes sobre processo, prazo, orçamento e contratação. Aborda objeções comuns antes do contato. | +1–2 min |
+| **M3** | **Quiz "Qual serviço é para mim?"** | Fluxo de 3 perguntas → recomenda um dos 4 serviços → CTA para contato. Qualifica o lead e cria engajamento interativo. | +2–3 min + qualificação de lead |
+| **M4** | **Timeline visual do processo** | Linha do tempo animada (scroll-driven) mostrando a jornada Terreno → Chaves com marcos e descrições. Comunica profundidade e método. | +1–2 min |
+| **M5** | **Filtro no Portfólio** | Botões de filtro por categoria (Residencial / Comercial / Alto Padrão). Permite ao visitante ver apenas projetos relevantes para o seu perfil. | +1 min + relevância percebida |
+
+### Variáveis de ambiente pendentes
+
+| Variável | Propósito | Quando configurar |
+|---|---|---|
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Botão WhatsApp flutuante | Assim que o número estiver definido |
+| `NEXT_PUBLIC_FORMSPREE_ID` | Envio do formulário de contato | Assim que a conta Formspree estiver ativa |
+| `NEXT_PUBLIC_INSTAGRAM_URL` | Link Instagram no Footer (L1) | Após L1 ser deployado |
+| `NEXT_PUBLIC_LINKEDIN_URL` | Link LinkedIn no Footer (L1) | Após L1 ser deployado |
