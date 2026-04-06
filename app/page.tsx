@@ -9,6 +9,7 @@ import Depoimentos from "@/components/sections/Depoimentos";
 import Contato from "@/components/sections/Contato";
 import Footer from "@/components/sections/Footer";
 import WhatsApp from "@/components/ui/WhatsApp";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsApp />
+      <ScrollToTop />
     </>
   );
 }
