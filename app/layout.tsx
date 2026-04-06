@@ -4,6 +4,33 @@ import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "High Design Arquitetura e Urbanismo",
+  alternateName: "High Design ARQ.®",
+  description:
+    "Escritório especializado em projetos residenciais e comerciais de médio a alto padrão. Arquitetura funcional, elegante, atemporal e executável — com método, clareza e acolhimento.",
+  url: siteUrl,
+  email: "contato@highdesign.arq.br",
+  priceRange: "$$-$$$",
+  areaServed: {
+    "@type": "Country",
+    name: "Brasil",
+  },
+  knowsLanguage: "pt-BR",
+  serviceType: [
+    "Consultoria de Aquisição de Terreno",
+    "Consultoria de Construção",
+    "Projeto de Arquitetura",
+    "Orçamento de Obra",
+  ],
+  sameAs: [
+    ...(process.env.NEXT_PUBLIC_INSTAGRAM_URL ? [process.env.NEXT_PUBLIC_INSTAGRAM_URL] : []),
+    ...(process.env.NEXT_PUBLIC_LINKEDIN_URL  ? [process.env.NEXT_PUBLIC_LINKEDIN_URL]  : []),
+  ],
+};
+
 export const metadata: Metadata = {
   title: "High Design Arquitetura | Do primeiro traço à obra",
   description:
@@ -46,6 +73,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={centuryGothicPro.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
