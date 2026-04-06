@@ -2,7 +2,30 @@
 
 import Image from "next/image";
 
+function InstagramIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
 export default function Footer() {
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
+  const linkedinUrl  = process.env.NEXT_PUBLIC_LINKEDIN_URL;
+
   const nav = [
     { label: "Sobre", href: "#sobre" },
     { label: "Serviços", href: "#servicos" },
@@ -94,6 +117,75 @@ export default function Footer() {
               </a>
             ))}
           </nav>
+
+          {/* Social links — shown only when env vars are set */}
+          {(instagramUrl || linkedinUrl) && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  color: "var(--color-brand-accent)",
+                  opacity: 0.6,
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Redes Sociais
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {instagramUrl && (
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.6rem",
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.75rem",
+                      color: "var(--color-brand-white)",
+                      textDecoration: "none",
+                      opacity: 0.55,
+                      transition: "opacity var(--duration-base)",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.55")}
+                  >
+                    <InstagramIcon />
+                    Instagram
+                  </a>
+                )}
+                {linkedinUrl && (
+                  <a
+                    href={linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.6rem",
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.75rem",
+                      color: "var(--color-brand-white)",
+                      textDecoration: "none",
+                      opacity: 0.55,
+                      transition: "opacity var(--duration-base)",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.55")}
+                  >
+                    <LinkedInIcon />
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Contact info */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
