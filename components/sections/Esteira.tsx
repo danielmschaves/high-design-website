@@ -164,6 +164,7 @@ export default function Esteira() {
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
                 style={{
                   width: "100%",
                   background: "none",
