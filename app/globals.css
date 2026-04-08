@@ -108,6 +108,18 @@
   }
 }
 
+/* ── Keyboard focus styles ── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-accent);
+  outline-offset: 2px;
+}
+
+/* Inputs use border-bottom focus indicator instead */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
 @media (max-width: 480px) {
   .portfolio-grid {
     grid-template-columns: 1fr !important;

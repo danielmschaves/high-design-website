@@ -113,6 +113,7 @@ export default function Navbar() {
             gap: "5px",
           }}
           aria-label="Menu"
+          aria-expanded={menuOpen}
         >
           {[0, 1, 2].map((i) => (
             <span
