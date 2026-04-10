@@ -35,125 +35,54 @@ export default function Footer() {
   ];
 
   return (
-    <footer
-      style={{
-        background: "var(--color-brand-dark)",
-        padding: "4rem 0 2rem",
-        borderTop: "1px solid rgba(186,158,132,0.15)",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 2rem",
-        }}
-      >
+    <footer className="bg-brand-dark pt-16 pb-8 border-t border-[rgba(186,158,132,0.15)]">
+      <div className="max-w-[1280px] mx-auto px-8">
         {/* Top row */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            marginBottom: "3rem",
-            flexWrap: "wrap",
-            gap: "2rem",
-          }}
-        >
+        <div className="flex items-start justify-between mb-12 flex-wrap gap-8">
           {/* Logo + tagline */}
-          <div style={{ maxWidth: "320px" }}>
+          <div className="max-w-[320px]">
             <Image
               src="/assets/logos/Ativo 1.png"
               alt="High Design ARQ."
               width={280}
               height={50}
-              style={{ width: "220px", height: "auto", marginBottom: "1.25rem" }}
+              className="w-[220px] h-auto mb-5"
             />
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.75rem",
-                lineHeight: 1.7,
-                color: "var(--color-brand-white)",
-                opacity: 0.45,
-              }}
-            >
+            <p className="font-display text-[0.75rem] leading-[1.7] text-brand-white opacity-45">
               Arquitetura que guia, do primeiro traço à obra.
             </p>
           </div>
 
           {/* Nav */}
-          <nav style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.55rem",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-accent)",
-                opacity: 0.6,
-                marginBottom: "0.5rem",
-              }}
-            >
+          <nav className="flex flex-col gap-3">
+            <p className="font-display text-[0.55rem] tracking-[0.3em] uppercase text-brand-accent opacity-60 mb-2">
               Navegação
             </p>
             {nav.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.75rem",
-                  color: "var(--color-brand-white)",
-                  textDecoration: "none",
-                  opacity: 0.55,
-                  letterSpacing: "0.05em",
-                  transition: "opacity var(--duration-base)",
-                }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "1")}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = "0.55")}
+                className="font-display text-[0.75rem] text-brand-white no-underline opacity-[0.55] hover:opacity-100 tracking-[0.05em] transition-opacity duration-300"
               >
                 {l.label}
               </a>
             ))}
           </nav>
 
-          {/* Social links — shown only when env vars are set */}
+          {/* Social links */}
           {(instagramUrl || linkedinUrl) && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  color: "var(--color-brand-accent)",
-                  opacity: 0.6,
-                  marginBottom: "0.5rem",
-                }}
-              >
+            <div className="flex flex-col gap-3">
+              <p className="font-display text-[0.55rem] tracking-[0.3em] uppercase text-brand-accent opacity-60 mb-2">
                 Redes Sociais
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <div className="flex flex-col gap-3">
                 {instagramUrl && (
                   <a
                     href={instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.6rem",
-                      fontFamily: "var(--font-display)",
-                      fontSize: "0.75rem",
-                      color: "var(--color-brand-white)",
-                      textDecoration: "none",
-                      opacity: 0.55,
-                      transition: "opacity var(--duration-base)",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.55")}
+                    className="flex items-center gap-[0.6rem] font-display text-[0.75rem] text-brand-white no-underline opacity-[0.55] hover:opacity-100 transition-opacity duration-300"
                   >
                     <InstagramIcon />
                     Instagram
@@ -165,19 +94,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.6rem",
-                      fontFamily: "var(--font-display)",
-                      fontSize: "0.75rem",
-                      color: "var(--color-brand-white)",
-                      textDecoration: "none",
-                      opacity: 0.55,
-                      transition: "opacity var(--duration-base)",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.55")}
+                    className="flex items-center gap-[0.6rem] font-display text-[0.75rem] text-brand-white no-underline opacity-[0.55] hover:opacity-100 transition-opacity duration-300"
                   >
                     <LinkedInIcon />
                     LinkedIn
@@ -188,79 +105,30 @@ export default function Footer() {
           )}
 
           {/* Contact info */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.55rem",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-accent)",
-                opacity: 0.6,
-                marginBottom: "0.5rem",
-              }}
-            >
+          <div className="flex flex-col gap-3">
+            <p className="font-display text-[0.55rem] tracking-[0.3em] uppercase text-brand-accent opacity-60 mb-2">
               Contato
             </p>
             <a
               href="mailto:contato@highdesign.arq.br"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.75rem",
-                color: "var(--color-brand-white)",
-                textDecoration: "none",
-                opacity: 0.55,
-              }}
+              className="font-display text-[0.75rem] text-brand-white no-underline opacity-[0.55]"
             >
               contato@highdesign.arq.br
             </a>
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.75rem",
-                color: "var(--color-brand-white)",
-                opacity: 0.55,
-              }}
-            >
+            <p className="font-display text-[0.75rem] text-brand-white opacity-[0.55]">
               Emanoella Goulart
             </p>
           </div>
         </div>
 
-        {/* Divider */}
-        <div style={{ borderTop: "1px solid rgba(186,158,132,0.12)", paddingTop: "1.5rem" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "0.5rem",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.1em",
-                color: "var(--color-brand-white)",
-                opacity: 0.25,
-              }}
-            >
-              © {new Date().getFullYear()} High Design Arquitetura e Urbanismo. Todos os direitos reservados.
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.1em",
-                color: "var(--color-brand-white)",
-                opacity: 0.25,
-              }}
-            >
-              High Design ARQ.®
-            </p>
-          </div>
+        {/* Divider + copyright */}
+        <div className="border-t border-[rgba(186,158,132,0.12)] pt-6 flex items-center justify-between flex-wrap gap-2">
+          <p className="font-display text-[0.6rem] tracking-[0.1em] text-brand-white opacity-25">
+            © {new Date().getFullYear()} High Design Arquitetura e Urbanismo. Todos os direitos reservados.
+          </p>
+          <p className="font-display text-[0.6rem] tracking-[0.1em] text-brand-white opacity-25">
+            High Design ARQ.®
+          </p>
         </div>
       </div>
     </footer>

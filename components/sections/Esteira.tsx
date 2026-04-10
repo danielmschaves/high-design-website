@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const services = [
   {
@@ -56,266 +57,146 @@ const services = [
 export default function Esteira() {
   const [open, setOpen] = useState<number | null>(0);
 
-  const labelStyle: React.CSSProperties = {
-    fontFamily: "var(--font-display)",
-    fontSize: "0.58rem",
-    letterSpacing: "0.25em",
-    textTransform: "uppercase",
-    color: "var(--color-brand-accent)",
-    opacity: 0.7,
-    marginBottom: "0.6rem",
-  };
-
-  const bodyStyle: React.CSSProperties = {
-    fontFamily: "var(--font-display)",
-    fontSize: "0.82rem",
-    lineHeight: 1.75,
-    color: "var(--color-brand-primary)",
-    opacity: 0.85,
-  };
-
   return (
-    <section
-      id="servicos"
-      style={{
-        background: "var(--color-brand-secondary)",
-        padding: "var(--space-section) 0",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 2rem",
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr",
-          gap: "5rem",
-          alignItems: "start",
-        }}
-        className="esteira-grid"
-      >
+    <section id="servicos" className="bg-brand-secondary py-24">
+      <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-20 items-start">
+
         {/* Left: sticky header */}
-        <div style={{ position: "sticky", top: "6rem" }} className="esteira-sticky">
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              marginBottom: "1.5rem",
-            }}
-          >
+        <motion.div
+          className="md:sticky md:top-24"
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-6">
             Serviços
           </p>
 
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-              fontWeight: 300,
-              lineHeight: 1.15,
-              color: "var(--color-brand-dark)",
-              marginBottom: "1.5rem",
-            }}
-          >
+          <h2 className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light leading-[1.15] text-brand-dark mb-6">
             Da concepção
             <br />
-            <em style={{ fontStyle: "italic", color: "var(--color-brand-primary)" }}>
-              à entrega das chaves
-            </em>
+            <em className="italic text-brand-primary">à entrega das chaves</em>
           </h2>
 
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.83rem",
-              lineHeight: 1.8,
-              color: "var(--color-brand-primary)",
-              opacity: 0.8,
-              marginBottom: "2rem",
-            }}
-          >
+          <p className="font-display text-[0.83rem] leading-[1.8] text-brand-primary opacity-80 mb-8">
             Quatro serviços pensados para cada momento da sua jornada. Contrate individualmente ou em sequência — cada etapa prepara o terreno para a próxima.
           </p>
 
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              opacity: 0.6,
-            }}
-          >
+          <p className="font-display text-[0.65rem] tracking-[0.2em] uppercase text-brand-accent opacity-60">
             4 serviços · Terreno → Chaves
           </p>
-        </div>
+        </motion.div>
 
         {/* Right: accordion */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <motion.div
+          className="flex flex-col"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        >
           {services.map((service, i) => (
             <div
               key={service.sigla}
-              style={{
-                borderTop: i === 0 ? "1px solid var(--color-neutral-200)" : "none",
-              }}
+              className={i === 0 ? "border-t border-neutral-200" : ""}
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
-                style={{
-                  width: "100%",
-                  background: "none",
-                  border: "none",
-                  borderBottom: "1px solid var(--color-neutral-200)",
-                  padding: "1.5rem 0",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1.25rem",
-                  cursor: "pointer",
-                  textAlign: "left",
-                }}
+                className="w-full bg-transparent border-0 border-b border-neutral-200 py-6 flex items-center gap-5 cursor-pointer text-left"
               >
                 {/* Sigla badge */}
                 <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.55rem",
-                    letterSpacing: "0.18em",
-                    color: open === i ? "var(--color-brand-white)" : "var(--color-brand-accent)",
-                    background: open === i ? "var(--color-brand-dark)" : "transparent",
-                    border: "1px solid var(--color-brand-accent)",
-                    padding: "0.4rem 0.65rem",
-                    textAlign: "center",
-                    transition: "all var(--duration-base)",
-                    flexShrink: 0,
-                    whiteSpace: "nowrap",
-                  }}
+                  className={`font-display text-[0.55rem] tracking-[0.18em] border border-brand-accent px-[0.65rem] py-[0.4rem] text-center flex-shrink-0 whitespace-nowrap transition-all duration-300 ${
+                    open === i ? "text-brand-white bg-brand-dark" : "text-brand-accent bg-transparent"
+                  }`}
                 >
                   {service.sigla}
                 </span>
 
                 {/* Step number */}
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.15em",
-                    color: "var(--color-brand-accent)",
-                    opacity: 0.5,
-                    minWidth: "24px",
-                    flexShrink: 0,
-                  }}
-                >
+                <span className="font-display text-[0.6rem] tracking-[0.15em] text-brand-accent opacity-50 min-w-[24px] flex-shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
                 {/* Name */}
                 <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.9rem",
-                    fontWeight: open === i ? 700 : 400,
-                    color: "var(--color-brand-dark)",
-                    flex: 1,
-                    transition: "font-weight var(--duration-base)",
-                    letterSpacing: "0.01em",
-                  }}
+                  className={`font-display text-[0.9rem] text-brand-dark flex-1 tracking-[0.01em] transition-all duration-300 ${
+                    open === i ? "font-bold" : "font-normal"
+                  }`}
                 >
                   {service.nome}
                 </span>
 
                 {/* Toggle icon */}
-                <span
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    transition: "transform var(--duration-base)",
-                    transform: open === i ? "rotate(45deg)" : "none",
-                  }}
+                <motion.span
+                  animate={{ rotate: open === i ? 45 : 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-5 h-5 flex items-center justify-center flex-shrink-0"
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <line x1="6" y1="0" x2="6" y2="12" stroke="#786169" strokeWidth="1" />
                     <line x1="0" y1="6" x2="12" y2="6" stroke="#786169" strokeWidth="1" />
                   </svg>
-                </span>
+                </motion.span>
               </button>
 
               {/* Expanded content */}
-              <div
-                style={{
-                  overflow: "hidden",
-                  maxHeight: open === i ? "600px" : "0",
-                  transition: "max-height 0.45s var(--ease-brand)",
-                }}
-              >
-                <div style={{ padding: "1.25rem 0 2rem 4.25rem" }}>
-                  {/* Tagline */}
-                  <p
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "0.83rem",
-                      fontStyle: "italic",
-                      color: "var(--color-brand-primary)",
-                      marginBottom: "1.5rem",
-                      opacity: 0.9,
-                    }}
+              <AnimatePresence initial={false}>
+                {open === i && (
+                  <motion.div
+                    key={`content-${i}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ overflow: "hidden" }}
                   >
-                    {service.tagline}
-                  </p>
+                    <div className="pt-5 pb-8 pl-[4.25rem]">
+                      <p className="font-display text-[0.83rem] italic text-brand-primary opacity-90 mb-6">
+                        {service.tagline}
+                      </p>
 
-                  {/* Dores */}
-                  <div style={{ marginBottom: "1.5rem" }}>
-                    <p style={labelStyle}>O que resolvemos</p>
-                    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      {service.dores.map((dor, j) => (
-                        <li key={j} style={{ display: "flex", gap: "0.75rem", ...bodyStyle }}>
-                          <span style={{ color: "var(--color-brand-accent)", flexShrink: 0 }}>—</span>
-                          <span>{dor}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                      <div className="mb-6">
+                        <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-70 mb-[0.6rem]">
+                          O que resolvemos
+                        </p>
+                        <ul className="list-none p-0 m-0 flex flex-col gap-2">
+                          {service.dores.map((dor, j) => (
+                            <li key={j} className="flex gap-3 font-display text-[0.82rem] leading-[1.75] text-brand-primary opacity-[0.85]">
+                              <span className="text-brand-accent flex-shrink-0">—</span>
+                              <span>{dor}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                  {/* Entrega */}
-                  <div>
-                    <p style={labelStyle}>O que entregamos</p>
-                    <p style={bodyStyle}>{service.entrega}</p>
-                  </div>
-                </div>
-              </div>
+                      <div>
+                        <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-70 mb-[0.6rem]">
+                          O que entregamos
+                        </p>
+                        <p className="font-display text-[0.82rem] leading-[1.75] text-brand-primary opacity-[0.85]">
+                          {service.entrega}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
 
-          {/* CTA below accordion */}
-          <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid var(--color-neutral-200)" }}>
+          {/* CTA */}
+          <div className="mt-10 pt-8 border-t border-neutral-200">
             <a
               href="#contato"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.7rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-white)",
-                background: "var(--color-brand-dark)",
-                padding: "0.9rem 2rem",
-                textDecoration: "none",
-                display: "inline-block",
-                transition: "background var(--duration-base)",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-primary)")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-dark)")}
+              className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-8 py-[0.9rem] no-underline inline-block transition-colors duration-300 hover:bg-brand-primary"
             >
               Solicitar orçamento
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

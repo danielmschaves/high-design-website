@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const testimonials = [
   {
     quote:
@@ -21,92 +23,62 @@ const testimonials = [
   },
 ];
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+const cardFadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export default function Depoimentos() {
   return (
-    <section
-      id="depoimentos"
-      style={{
-        background: "var(--color-brand-primary)",
-        padding: "var(--space-section) 0",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
+    <section id="depoimentos" className="bg-brand-primary py-24 overflow-hidden relative">
       {/* Decorative oversized quote mark */}
       <div
         aria-hidden
-        style={{
-          position: "absolute",
-          top: "-1rem",
-          left: "2rem",
-          fontFamily: "Georgia, serif",
-          fontSize: "20rem",
-          lineHeight: 1,
-          color: "rgba(245,242,238,0.04)",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
+        className="absolute -top-4 left-8 font-serif text-[20rem] leading-none pointer-events-none select-none"
+        style={{ color: "rgba(245,242,238,0.04)", fontFamily: "Georgia, serif" }}
       >
-        "
+        &ldquo;
       </div>
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 2rem",
-        }}
-      >
+      <div className="max-w-[1280px] mx-auto px-8">
         {/* Header */}
-        <div style={{ marginBottom: "4rem", textAlign: "center" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              marginBottom: "1rem",
-            }}
-          >
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-4">
             Depoimentos
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-              fontWeight: 300,
-              color: "var(--color-brand-white)",
-              lineHeight: 1.15,
-            }}
-          >
+          <h2 className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light text-brand-white leading-[1.15]">
             O que nossos clientes
             <br />
-            <em style={{ fontStyle: "italic", color: "var(--color-brand-accent)" }}>
-              dizem sobre a jornada
-            </em>
+            <em className="italic text-brand-accent">dizem sobre a jornada</em>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Testimonials grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "2rem",
-          }}
-          className="depoimentos-grid"
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
         >
           {testimonials.map((t, i) => (
-            <div
+            <motion.div
               key={i}
-              style={{
-                borderTop: "1px solid rgba(245,242,238,0.2)",
-                paddingTop: "2rem",
-              }}
+              variants={cardFadeUp}
+              className="border-t border-brand-white/20 pt-8"
             >
-              {/* Stars placeholder */}
-              <div style={{ display: "flex", gap: "3px", marginBottom: "1.25rem" }}>
+              {/* Stars */}
+              <div className="flex gap-[3px] mb-5">
                 {[0, 1, 2, 3, 4].map((s) => (
                   <svg key={s} width="10" height="10" viewBox="0 0 10 10" fill="#ba9e84">
                     <polygon points="5,1 6.18,3.82 9.27,4.18 7,6.27 7.63,9.27 5,7.73 2.37,9.27 3,6.27 0.73,4.18 3.82,3.82" />
@@ -114,62 +86,24 @@ export default function Depoimentos() {
                 ))}
               </div>
 
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.85rem",
-                  lineHeight: 1.8,
-                  color: "var(--color-brand-white)",
-                  fontStyle: "italic",
-                  opacity: 0.9,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <p className="font-display text-[0.85rem] leading-[1.8] text-brand-white italic opacity-90 mb-6">
                 &ldquo;{t.quote}&rdquo;
               </p>
 
               <div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "var(--color-brand-accent)",
-                    letterSpacing: "0.05em",
-                  }}
-                >
+                <p className="font-display text-[0.75rem] font-bold text-brand-accent tracking-[0.05em]">
                   {t.author}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--color-brand-white)",
-                    opacity: 0.5,
-                    marginTop: "0.25rem",
-                  }}
-                >
+                <p className="font-display text-[0.65rem] tracking-[0.15em] uppercase text-brand-white opacity-50 mt-1">
                   {t.location}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Disclaimer */}
-        <p
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "0.6rem",
-            letterSpacing: "0.1em",
-            color: "var(--color-brand-white)",
-            opacity: 0.3,
-            textAlign: "center",
-            marginTop: "3rem",
-          }}
-        >
+        <p className="font-display text-[0.6rem] tracking-[0.1em] text-brand-white opacity-30 text-center mt-12">
           * Conteúdo ilustrativo — depoimentos reais em breve
         </p>
       </div>

@@ -9,6 +9,8 @@
     background-color: var(--color-brand-secondary);
     color: var(--color-brand-dark);
     scroll-behavior: smooth;
+    scrollbar-color: var(--color-brand-accent) var(--color-brand-secondary);
+    scrollbar-width: thin;
   }
 
   body {
@@ -27,84 +29,6 @@
   }
 }
 
-/* ── Scroll indicator animation ── */
-@keyframes scrollLine {
-  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
-  30%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-  70%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-}
-
-/* ── Responsive helpers ── */
-.hidden-mobile { display: flex; }
-.show-mobile   { display: none; }
-
-@media (max-width: 768px) {
-  .hidden-mobile { display: none !important; }
-  .show-mobile   { display: flex !important; }
-
-  /* Hero: stack vertically on mobile */
-  section#hero {
-    grid-template-columns: 1fr !important;
-    height: auto !important;
-    min-height: 100svh;
-  }
-
-  .hero-right {
-    height: 50vw;
-    min-height: 260px;
-    clip-path: none !important;
-  }
-
-  .hero-left {
-    padding: 6rem 1.5rem 2.5rem !important;
-  }
-
-
-  /* Sobre */
-  .sobre-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
-  }
-
-  /* Diferenciais */
-  .diferenciais-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Para quem é */
-  .para-quem-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
-  }
-
-  /* Esteira */
-  .esteira-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-
-  .esteira-sticky {
-    position: static !important;
-  }
-
-  /* Portfolio */
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  /* Depoimentos */
-  .depoimentos-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Contato */
-  .contato-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2.5rem !important;
-  }
-}
-
 /* ── Keyboard focus styles ── */
 :focus-visible {
   outline: 2px solid var(--color-brand-accent);
@@ -115,10 +39,4 @@
 input:focus-visible,
 textarea:focus-visible {
   outline: none;
-}
-
-@media (max-width: 480px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr !important;
-  }
 }

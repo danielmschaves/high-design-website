@@ -1,6 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
 
 export default function ParaQuemE() {
   const profile = [
@@ -14,174 +24,79 @@ export default function ParaQuemE() {
   ];
 
   return (
-    <section
-      id="para-quem"
-      style={{
-        background: "var(--color-brand-white)",
-        padding: "var(--space-section) 0",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 2rem",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "5rem",
-          alignItems: "center",
-        }}
-        className="para-quem-grid"
-      >
-        {/* Left: copy */}
-        <div>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Para quem é
-          </p>
+    <section id="para-quem" className="bg-brand-white py-24 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
 
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-              fontWeight: 300,
-              lineHeight: 1.15,
-              color: "var(--color-brand-dark)",
-              marginBottom: "1.5rem",
-            }}
-          >
+        {/* Left: copy */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          <motion.p variants={fadeUp} className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-6">
+            Para quem é
+          </motion.p>
+
+          <motion.h2 variants={fadeUp} className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light leading-[1.15] text-brand-dark mb-6">
             Feito para famílias
             <br />
-            <em style={{ fontStyle: "italic", color: "var(--color-brand-primary)" }}>
-              que valorizam o processo
-            </em>
-          </h2>
+            <em className="italic text-brand-primary">que valorizam o processo</em>
+          </motion.h2>
 
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.85rem",
-              lineHeight: 1.8,
-              color: "var(--color-brand-primary)",
-              marginBottom: "2.5rem",
-              opacity: 0.85,
-            }}
-          >
+          <motion.p variants={fadeUp} className="font-display text-[0.85rem] leading-[1.8] text-brand-primary opacity-[0.85] mb-10">
             A High Design atende desde clientes com investimento moderado até famílias que buscam maior sofisticação e personalização — mantendo sempre postura acessível, com clareza, acolhimento e segurança.
-          </p>
+          </motion.p>
 
           {/* Checklist */}
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <motion.ul variants={container} className="list-none p-0 m-0 flex flex-col gap-4">
             {profile.map((item) => (
-              <li
+              <motion.li
                 key={item}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: "1rem",
-                  paddingBottom: "1rem",
-                  borderBottom: "1px solid var(--color-neutral-200)",
-                }}
+                variants={fadeUp}
+                className="flex items-start gap-4 pb-4 border-b border-neutral-200"
               >
-                {/* Check mark */}
-                <span
-                  style={{
-                    width: "18px",
-                    height: "18px",
-                    minWidth: "18px",
-                    border: "1px solid var(--color-brand-accent)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginTop: "2px",
-                  }}
-                >
+                <span className="w-[18px] h-[18px] min-w-[18px] border border-brand-accent flex items-center justify-center mt-0.5">
                   <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
                     <path d="M1 3.5L3.5 6L8 1" stroke="#ba9e84" strokeWidth="1.2" strokeLinecap="square" />
                   </svg>
                 </span>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.83rem",
-                    lineHeight: 1.6,
-                    color: "var(--color-brand-dark)",
-                    opacity: 0.85,
-                  }}
-                >
+                <p className="font-display text-[0.83rem] leading-[1.6] text-brand-dark opacity-[0.85]">
                   {item}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
 
         {/* Right: image stack */}
-        <div style={{ position: "relative" }}>
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Background rectangle */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-1.5rem",
-              right: "-1.5rem",
-              bottom: "1.5rem",
-              left: "1.5rem",
-              background: "var(--color-brand-secondary)",
-              zIndex: 0,
-            }}
-          />
+          <div className="absolute -top-6 -right-6 bottom-6 left-6 bg-brand-secondary z-0" />
 
           {/* Main image */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              aspectRatio: "4/5",
-              overflow: "hidden",
-            }}
-          >
+          <div className="relative z-10 aspect-[4/5] overflow-hidden">
             <Image
               src="/assets/images/5c0853e988370864c56cac0ba5b90762.jpg"
               alt="Família e projeto arquitetônico"
               fill
-              style={{ objectFit: "cover" }}
+              className="object-cover"
             />
           </div>
 
           {/* Caption tag */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-1.5rem",
-              left: "0",
-              zIndex: 2,
-              background: "var(--color-brand-accent)",
-              padding: "1rem 1.5rem",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-white)",
-                opacity: 0.9,
-              }}
-            >
+          <div className="absolute -bottom-6 left-0 z-20 bg-brand-accent px-6 py-4">
+            <p className="font-display text-[0.6rem] tracking-[0.25em] uppercase text-brand-white opacity-90">
               Médio a alto padrão
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
