@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -54,18 +53,25 @@ const services = [
   },
 ];
 
-export default function Esteira() {
-  const [open, setOpen] = useState<number | null>(0);
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 },
+  }),
+};
 
+export default function Esteira() {
   return (
     <section id="servicos" className="bg-brand-secondary py-24">
-      <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-20 items-start">
+      <div className="max-w-[1280px] mx-auto px-8">
 
-        {/* Left: sticky header */}
+        {/* Intro header */}
         <motion.div
-          className="md:sticky md:top-24"
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="max-w-[640px] mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -88,115 +94,94 @@ export default function Esteira() {
           </p>
         </motion.div>
 
-        {/* Right: accordion */}
-        <motion.div
-          className="flex flex-col"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        >
+        {/* 2×2 grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {services.map((service, i) => (
-            <div
+            <motion.div
               key={service.sigla}
-              className={i === 0 ? "border-t border-neutral-200" : ""}
+              className="relative overflow-hidden bg-brand-dark p-8 md:p-10 flex flex-col"
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={cardVariants}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-                className="w-full bg-transparent border-0 border-b border-neutral-200 py-6 flex items-center gap-5 cursor-pointer text-left"
+              {/* Decorative oversized step number */}
+              <span
+                aria-hidden="true"
+                className="absolute bottom-3 right-5 font-display font-bold leading-none text-brand-white select-none pointer-events-none"
+                style={{ fontSize: "8rem", opacity: 0.04 }}
               >
-                {/* Sigla badge */}
-                <span
-                  className={`font-display text-[0.55rem] tracking-[0.18em] border border-brand-accent px-[0.65rem] py-[0.4rem] text-center flex-shrink-0 whitespace-nowrap transition-all duration-300 ${
-                    open === i ? "text-brand-white bg-brand-dark" : "text-brand-accent bg-transparent"
-                  }`}
-                >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {/* Top row: sigla badge + step counter */}
+              <div className="flex items-center justify-between mb-7">
+                <span className="font-display text-[0.55rem] tracking-[0.18em] border border-brand-accent px-[0.65rem] py-[0.4rem] text-brand-accent">
                   {service.sigla}
                 </span>
-
-                {/* Step number */}
-                <span className="font-display text-[0.6rem] tracking-[0.15em] text-brand-accent opacity-50 min-w-[24px] flex-shrink-0">
+                <span className="font-display text-[0.6rem] tracking-[0.15em] text-brand-accent opacity-40">
                   {String(i + 1).padStart(2, "0")}
                 </span>
+              </div>
 
-                {/* Name */}
-                <span
-                  className={`font-display text-[0.9rem] text-brand-dark flex-1 tracking-[0.01em] transition-all duration-300 ${
-                    open === i ? "font-bold" : "font-normal"
-                  }`}
-                >
-                  {service.nome}
-                </span>
+              {/* Nome */}
+              <h3 className="font-display text-[1.1rem] md:text-[1.2rem] font-light leading-[1.3] text-brand-white mb-3">
+                {service.nome}
+              </h3>
 
-                {/* Toggle icon */}
-                <motion.span
-                  animate={{ rotate: open === i ? 45 : 0 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-5 h-5 flex items-center justify-center flex-shrink-0"
-                >
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <line x1="6" y1="0" x2="6" y2="12" stroke="#786169" strokeWidth="1" />
-                    <line x1="0" y1="6" x2="12" y2="6" stroke="#786169" strokeWidth="1" />
-                  </svg>
-                </motion.span>
-              </button>
+              {/* Tagline */}
+              <p className="font-display text-[0.83rem] italic text-brand-accent mb-7">
+                {service.tagline}
+              </p>
 
-              {/* Expanded content */}
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    key={`content-${i}`}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <div className="pt-5 pb-8 pl-[4.25rem]">
-                      <p className="font-display text-[0.83rem] italic text-brand-primary opacity-90 mb-6">
-                        {service.tagline}
-                      </p>
+              <div className="border-t border-brand-accent/20 mb-6" />
 
-                      <div className="mb-6">
-                        <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-70 mb-[0.6rem]">
-                          O que resolvemos
-                        </p>
-                        <ul className="list-none p-0 m-0 flex flex-col gap-2">
-                          {service.dores.map((dor, j) => (
-                            <li key={j} className="flex gap-3 font-display text-[0.82rem] leading-[1.75] text-brand-primary opacity-[0.85]">
-                              <span className="text-brand-accent flex-shrink-0">—</span>
-                              <span>{dor}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+              {/* O que resolvemos */}
+              <div className="mb-6">
+                <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-60 mb-3">
+                  O que resolvemos
+                </p>
+                <ul className="list-none p-0 m-0 flex flex-col gap-[0.6rem]">
+                  {service.dores.map((dor, j) => (
+                    <li
+                      key={j}
+                      className="flex gap-3 font-display text-[0.82rem] leading-[1.75] text-brand-white opacity-70"
+                    >
+                      <span className="text-brand-accent flex-shrink-0">—</span>
+                      <span>{dor}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                      <div>
-                        <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-70 mb-[0.6rem]">
-                          O que entregamos
-                        </p>
-                        <p className="font-display text-[0.82rem] leading-[1.75] text-brand-primary opacity-[0.85]">
-                          {service.entrega}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              <div className="border-t border-brand-accent/20 mb-6" />
+
+              {/* O que entregamos — flex-grow pushes it to fill card height */}
+              <div className="flex-grow">
+                <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-60 mb-3">
+                  O que entregamos
+                </p>
+                <p className="font-display text-[0.82rem] leading-[1.75] text-brand-white opacity-70">
+                  {service.entrega}
+                </p>
+              </div>
+            </motion.div>
           ))}
+        </div>
 
-          {/* CTA */}
-          <div className="mt-10 pt-8 border-t border-neutral-200">
-            <a
-              href="#contato"
-              className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-8 py-[0.9rem] no-underline inline-block transition-colors duration-300 hover:bg-brand-primary"
-            >
-              Solicitar orçamento
-            </a>
-          </div>
-        </motion.div>
+        {/* CTA */}
+        <div className="mt-10">
+          <a
+            href="#contato"
+            className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-8 py-[0.9rem] no-underline inline-block transition-colors duration-300 hover:bg-brand-primary"
+          >
+            Solicitar orçamento
+          </a>
+        </div>
+
       </div>
     </section>
   );
