@@ -60,7 +60,7 @@ describe("ScrollToTop", () => {
       window.dispatchEvent(new Event("scroll"));
     });
     const btn = screen.getByRole("button", { name: /voltar ao topo/i });
-    expect(btn.style.zIndex).toBe("190");
-    expect(btn.style.position).toBe("fixed");
+    expect(btn.className).toContain("z-[190]");
+    expect(btn.className).toContain("fixed");
   });
 });
