@@ -29,6 +29,7 @@ export default function Hero() {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         overflow: "hidden",
+        background: "var(--color-brand-white)",
       }}
     >
       {/* Left panel — editorial copy */}
@@ -270,43 +271,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-        className="hero-left-only"
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "0.55rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "var(--color-brand-primary)",
-            opacity: 0.5,
-          }}
-        >
-          scroll
-        </span>
-        <div
-          style={{
-            width: "1px",
-            height: "40px",
-            background: "var(--color-brand-accent)",
-            opacity: 0.4,
-            animation: "scrollLine 2s ease-in-out infinite",
-          }}
-        />
-      </div>
     </section>
   );
 }
