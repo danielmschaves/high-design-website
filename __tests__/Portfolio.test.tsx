@@ -53,6 +53,7 @@ describe("Portfolio", () => {
     render(<Portfolio />);
     fireEvent.click(screen.getByRole("button", { name: /^alto padrão$/i }));
     const images = screen.getAllByRole("img");
+    expect(images.length).toBeGreaterThan(0);
     images.forEach((img) => {
       expect(img.getAttribute("alt")).toMatch(/Alto Padrão/);
     });

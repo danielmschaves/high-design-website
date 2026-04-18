@@ -68,7 +68,7 @@ export default function Footer() {
 
         {/* Navegação */}
         <div>
-          <h5 className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Navegação
           </h5>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
@@ -88,7 +88,7 @@ export default function Footer() {
 
         {/* Serviços */}
         <div>
-          <h5 className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Serviços
           </h5>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
@@ -102,7 +102,7 @@ export default function Footer() {
 
         {/* Contato + Social */}
         <div>
-          <h5 className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Contato
           </h5>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">

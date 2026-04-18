@@ -121,7 +121,9 @@ public/assets/
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for OG metadata |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Phone number with country code, no symbols (e.g. `5511999990000`). WhatsApp button hidden until set. |
-| `NEXT_PUBLIC_FORMSPREE_ID` | Form ID from formspree.io. Without it, form fakes success in dev. |
+| `NEXT_PUBLIC_FORMSPREE_ID` | 8-character form ID from formspree.io (not the full URL). Without it, form fakes success in dev. |
+| `NEXT_PUBLIC_INSTAGRAM_URL` | Full Instagram profile URL (e.g. `https://instagram.com/highdesign.arq`). Footer Instagram link hidden until set. |
+| `NEXT_PUBLIC_LINKEDIN_URL` | Full LinkedIn company URL (e.g. `https://linkedin.com/company/highdesign`). Footer LinkedIn link hidden until set. |
 
 Set in Vercel dashboard for production. Locally, copy `.env.example` to `.env`.
 

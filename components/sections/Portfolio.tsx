@@ -91,6 +91,7 @@ export default function Portfolio() {
                   key={f}
                   type="button"
                   onClick={() => setActive(f)}
+                  aria-pressed={on}
                   className={`px-4 py-2.5 font-mono text-[10px] tracking-[0.22em] uppercase border transition-all duration-[420ms] ease-brand cursor-pointer ${
                     on
                       ? "bg-brand-dark text-brand-white border-brand-dark"
@@ -124,6 +125,7 @@ export default function Portfolio() {
                 src={img.src}
                 alt={`${img.ambiente} · ${img.tipo}`}
                 fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1440px) 33vw, 480px"
                 className="object-cover object-center transition-transform duration-[900ms] ease-brand group-hover:scale-105"
               />
 

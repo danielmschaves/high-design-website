@@ -100,7 +100,7 @@ export default function Sobre() {
             </motion.p>
 
             {/* 2x2 pillars */}
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-[2px]">
+            <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-[2px]">
               {pillars.map((p) => (
                 <div
                   key={p.label}

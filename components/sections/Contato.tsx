@@ -205,7 +205,7 @@ export default function Contato() {
               </div>
 
               {error && (
-                <p className="font-display text-[0.85rem]" style={{ color: "#e07070" }}>
+                <p className="font-display text-[0.85rem]" style={{ color: "var(--color-error)" }}>
                   Erro ao enviar. Tente novamente ou escreva para contato@highdesign.arq.br
                 </p>
               )}
