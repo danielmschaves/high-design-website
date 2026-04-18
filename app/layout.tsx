@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { centuryGothicPro } from "@/lib/fonts";
+import { centuryGothicPro, jetbrainsMono } from "@/lib/fonts";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br";
@@ -72,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={centuryGothicPro.variable}>
+    <html lang="pt-BR" className={`${centuryGothicPro.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

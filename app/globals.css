@@ -6,7 +6,7 @@
 @layer base {
   html {
     font-family: var(--font-display);
-    background-color: var(--color-brand-secondary);
+    background-color: var(--color-stone-50);
     color: var(--color-brand-dark);
     scroll-behavior: smooth;
     scrollbar-color: var(--color-brand-accent) var(--color-brand-secondary);
@@ -16,6 +16,9 @@
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: var(--text-body);
+    line-height: 1.55;
+    letter-spacing: 0.005em;
   }
 
   * {
@@ -26,6 +29,11 @@
   textarea::placeholder {
     color: rgba(186, 158, 132, 0.4);
     font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--color-brand-accent);
+    color: var(--color-brand-white);
   }
 }
 
@@ -39,4 +47,255 @@
 input:focus-visible,
 textarea:focus-visible {
   outline: none;
+}
+
+@layer components {
+  /* ─── Type utilities ─── */
+  .hd-eyebrow {
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-brand-accent);
+    font-weight: 400;
+  }
+  .hd-caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+  }
+  .hd-display {
+    font-size: var(--text-display);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .hd-h1 {
+    font-size: var(--text-h1);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+  }
+  .hd-h2 {
+    font-size: var(--text-h2);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    font-weight: 400;
+  }
+  .hd-h3 {
+    font-size: var(--text-h3);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .hd-lead {
+    font-size: var(--text-lead);
+    line-height: 1.6;
+    color: var(--color-stone-500);
+    max-width: 52ch;
+  }
+  .hd-italic {
+    font-style: italic;
+    color: var(--color-brand-primary);
+  }
+
+  /* ─── Buttons ─── */
+  .hd-btn {
+    font-family: var(--font-display);
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--duration-emphatic) var(--ease-brand-emphatic);
+    background: var(--color-brand-dark);
+    color: var(--color-brand-white);
+    text-decoration: none;
+  }
+  .hd-btn:hover { background: var(--color-brand-primary); }
+  .hd-btn--ghost {
+    background: transparent;
+    color: var(--color-brand-dark);
+    border-color: var(--color-stone-300);
+  }
+  .hd-btn--ghost:hover { border-color: var(--color-brand-dark); background: transparent; }
+  .hd-btn--link {
+    padding: 0 0 4px 0;
+    background: transparent;
+    color: var(--color-brand-dark);
+    border: 0;
+    border-bottom: 1px solid var(--color-brand-accent);
+  }
+  .hd-btn--link:hover { color: var(--color-brand-accent); background: transparent; }
+
+  .hd-btn .arrow {
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    position: relative;
+    transition: width var(--duration-emphatic) var(--ease-brand-emphatic);
+  }
+  .hd-btn .arrow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid currentColor;
+    border-top: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .hd-btn:hover .arrow { width: 26px; }
+
+  /* ─── Chips & service codes ─── */
+  .hd-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid var(--color-stone-300);
+    font-size: var(--text-caption);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+    background: transparent;
+  }
+  .hd-chip .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-brand-accent);
+  }
+  .hd-code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+    background: var(--color-brand-secondary);
+    padding: 6px 10px;
+    min-width: 42px;
+    border: 1px solid var(--color-stone-300);
+  }
+
+  /* ─── Card ─── */
+  .hd-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-stone-300);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all var(--duration-emphatic) var(--ease-brand-emphatic);
+  }
+  .hd-card:hover { border-color: var(--color-brand-accent); }
+  .hd-card--dark {
+    background: var(--color-stone-900);
+    color: var(--color-stone-100);
+    border-color: var(--color-stone-700);
+  }
+
+  /* ─── Rule ─── */
+  .hd-rule { height: 1px; background: var(--color-stone-300); border: 0; width: 100%; }
+  .hd-rule--dark { background: var(--color-stone-700); }
+
+  /* ─── Tile (portfolio image) ─── */
+  .hd-tile {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-stone-200);
+  }
+  .hd-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 900ms var(--ease-brand-emphatic);
+  }
+  .hd-tile:hover img { transform: scale(1.04); }
+  .hd-tile .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(26, 22, 20, 0.78) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity var(--duration-emphatic) var(--ease-brand-emphatic);
+  }
+  .hd-tile:hover .overlay { opacity: 1; }
+
+  /* ─── Form inputs ─── */
+  .hd-input {
+    width: 100%;
+    padding: 14px 0;
+    border: 0;
+    border-bottom: 1px solid var(--color-stone-300);
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    color: var(--color-brand-dark);
+    outline: none;
+    transition: border-color var(--duration-emphatic) var(--ease-brand-emphatic);
+  }
+  .hd-input::placeholder { color: var(--color-stone-300); letter-spacing: 0.02em; }
+  .hd-input:focus { border-color: var(--color-brand-dark); }
+  .hd-label {
+    font-size: var(--text-caption);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-brand-accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ─── Chapter header pattern ─── */
+  .hd-chapter {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+    border-bottom: var(--rule);
+  }
+  .hd-chapter .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--color-brand-accent);
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+  .hd-chapter h2 {
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    max-width: 20ch;
+  }
+  .hd-chapter h2 em {
+    font-style: italic;
+    color: var(--color-brand-primary);
+  }
+  .hd-chapter p {
+    margin: 18px 0 0;
+    color: var(--color-stone-500);
+    max-width: 52ch;
+    font-size: var(--text-lead);
+  }
+  @media (max-width: 900px) {
+    .hd-chapter { grid-template-columns: 1fr; gap: 10px; }
+  }
 }
