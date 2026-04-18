@@ -77,7 +77,7 @@ export default function Hero() {
           Arquitetura que guia,<br />
           <em className="italic font-light text-brand-primary">do primeiro traço</em>
           <br />
-          à obra.
+          à obra construída.
         </motion.h1>
 
         <motion.p

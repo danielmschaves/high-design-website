@@ -62,7 +62,7 @@ export default function Footer() {
             style={{ height: "24px", width: "auto", filter: "brightness(0) invert(1) opacity(0.85)" }}
           />
           <p className="font-display text-[13px] leading-[1.6] m-0 max-w-[30ch]">
-            Arquitetura que guia, do primeiro traço à obra.
+            Arquitetura que guia, do primeiro traço à obra construída.
           </p>
         </div>
 
