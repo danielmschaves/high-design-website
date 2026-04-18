@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const container = {
@@ -13,10 +14,10 @@ const fadeUp = {
 };
 
 const inputClass =
-  "w-full bg-transparent border-0 border-b border-b-brand-accent/40 focus:border-b-brand-accent py-3 font-display text-[0.85rem] text-brand-white outline-none transition-colors duration-300";
+  "w-full bg-transparent border-0 border-b py-3.5 font-display text-[1rem] text-brand-white outline-none transition-colors duration-[420ms] ease-brand placeholder:text-brand-white/30";
 
 const labelClass =
-  "font-display text-[0.6rem] tracking-[0.25em] uppercase text-brand-accent block mb-1 opacity-80";
+  "font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent block mb-1";
 
 export default function Contato() {
   const [form, setForm] = useState({ nome: "", email: "", telefone: "", mensagem: "" });
@@ -47,46 +48,67 @@ export default function Contato() {
   };
 
   return (
-    <section id="contato" className="bg-neutral-900 py-24 overflow-hidden relative">
-      {/* Decorative grid */}
-      <div
+    <section
+      id="contato"
+      className="bg-brand-dark text-stone-100 overflow-hidden relative"
+      style={{ padding: "var(--space-10) 0" }}
+    >
+      {/* Monogram watermark */}
+      <Image
+        src="/assets/logos/Ativo 2.png"
+        alt=""
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
+        width={420}
+        height={420}
+        className="absolute pointer-events-none select-none"
         style={{
-          backgroundImage: "linear-gradient(rgba(186,158,132,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(186,158,132,0.05) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          left: "-60px",
+          bottom: "-40px",
+          width: "420px",
+          height: "auto",
+          opacity: 0.06,
+          filter: "brightness(0) invert(1)",
         }}
       />
 
-      <div className="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-start relative">
-
-        {/* Left: info */}
+      <div
+        className="relative max-w-content mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start"
+        style={{ padding: "0 var(--gutter)" }}
+      >
+        {/* Left: chapter header + info */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.p variants={fadeUp} className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-6">
-            Contato
-          </motion.p>
+          <motion.div
+            variants={fadeUp}
+            className="hd-chapter"
+            style={{ borderColor: "var(--color-stone-700)" }}
+          >
+            <div className="num">07 · Contato</div>
+            <div>
+              <h2 className="text-brand-white">
+                Inicie sua
+                <br />
+                <em className="italic" style={{ color: "var(--color-brand-accent)" }}>
+                  jornada arquitetônica
+                </em>
+              </h2>
+              <p style={{ color: "rgba(245,242,238,0.6)" }}>
+                Conte-nos sobre seu projeto e nosso time entrará em contato para agendar uma conversa inicial sem compromisso.
+              </p>
+            </div>
+          </motion.div>
 
-          <motion.h2 variants={fadeUp} className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light text-brand-white leading-[1.15] mb-7">
-            Inicie sua
-            <br />
-            <em className="italic text-brand-accent">jornada arquitetônica</em>
-          </motion.h2>
-
-          <motion.p variants={fadeUp} className="font-display text-[0.85rem] leading-[1.8] text-brand-white opacity-60 mb-12 max-w-[380px]">
-            Conte-nos sobre seu projeto e nosso time entrará em contato para agendar uma conversa inicial sem compromisso.
-          </motion.p>
-
-          <motion.div variants={container} className="flex flex-col gap-8">
+          <motion.div variants={container} className="flex flex-col gap-10">
             <motion.div variants={fadeUp}>
               <p className={labelClass}>E-mail</p>
               <a
                 href="mailto:contato@highdesign.arq.br"
-                className="font-display text-[0.9rem] text-brand-white no-underline border-b border-brand-accent/30 pb-0.5"
+                className="font-display text-[1.1rem] text-brand-white no-underline border-b pb-0.5 hover:text-brand-accent transition-colors duration-300"
+                style={{ borderColor: "rgba(186,158,132,0.6)" }}
               >
                 contato@highdesign.arq.br
               </a>
@@ -94,12 +116,12 @@ export default function Contato() {
 
             <motion.div variants={fadeUp}>
               <p className={labelClass}>Responsável</p>
-              <p className="font-display text-[0.9rem] text-brand-white opacity-80">Emanoella Goulart</p>
+              <p className="font-display text-[1.1rem] text-brand-white">Emanoella Goulart</p>
             </motion.div>
 
             <motion.div variants={fadeUp}>
               <p className={labelClass}>Segmento</p>
-              <p className="font-display text-[0.83rem] text-brand-accent leading-[1.6] opacity-80">
+              <p className="font-display text-[1.05rem] text-brand-white leading-[1.55]">
                 Residencial · Comercial
                 <br />
                 Médio a Alto Padrão
@@ -116,16 +138,16 @@ export default function Contato() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         >
           {sent ? (
-            <div className="border border-brand-accent/30 p-12 text-center">
-              <p className="font-display text-[0.65rem] tracking-[0.3em] uppercase text-brand-accent mb-4">
+            <div className="border p-12 text-center" style={{ borderColor: "var(--color-stone-700)" }}>
+              <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent mb-4">
                 Mensagem enviada
               </p>
-              <p className="font-display text-[0.9rem] text-brand-white leading-[1.7] opacity-80">
+              <p className="font-display text-[1rem] text-brand-white leading-[1.7]">
                 Recebemos sua mensagem. Nossa equipe entrará em contato em breve.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-7">
               <div>
                 <label htmlFor="nome" className={labelClass}>Nome completo</label>
                 <input
@@ -135,11 +157,12 @@ export default function Contato() {
                   value={form.nome}
                   onChange={(e) => setForm({ ...form, nome: e.target.value })}
                   className={inputClass}
+                  style={{ borderBottomColor: "rgba(245,242,238,0.2)" }}
                   placeholder="Seu nome"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="email" className={labelClass}>E-mail</label>
                   <input
@@ -149,6 +172,7 @@ export default function Contato() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className={inputClass}
+                    style={{ borderBottomColor: "rgba(245,242,238,0.2)" }}
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -160,6 +184,7 @@ export default function Contato() {
                     value={form.telefone}
                     onChange={(e) => setForm({ ...form, telefone: e.target.value })}
                     className={inputClass}
+                    style={{ borderBottomColor: "rgba(245,242,238,0.2)" }}
                     placeholder="(11) 9 0000-0000"
                   />
                 </div>
@@ -174,12 +199,13 @@ export default function Contato() {
                   onChange={(e) => setForm({ ...form, mensagem: e.target.value })}
                   rows={4}
                   className={`${inputClass} resize-none`}
+                  style={{ borderBottomColor: "rgba(245,242,238,0.2)" }}
                   placeholder="Conte-nos sobre seu projeto, terreno, estilo e expectativas..."
                 />
               </div>
 
               {error && (
-                <p className="font-display text-[0.75rem] text-[#e07070]">
+                <p className="font-display text-[0.85rem]" style={{ color: "#e07070" }}>
                   Erro ao enviar. Tente novamente ou escreva para contato@highdesign.arq.br
                 </p>
               )}
@@ -187,10 +213,10 @@ export default function Contato() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white border-0 py-4 px-8 self-start transition-colors duration-300 ${
+                className={`font-mono text-[11px] tracking-[0.22em] uppercase border-0 py-4 px-9 self-start transition-colors duration-[420ms] ease-brand mt-3 ${
                   loading
-                    ? "bg-brand-primary cursor-not-allowed opacity-70"
-                    : "bg-brand-accent cursor-pointer hover:bg-brand-primary"
+                    ? "bg-brand-primary text-brand-white cursor-not-allowed opacity-70"
+                    : "bg-brand-accent text-brand-dark cursor-pointer hover:bg-brand-white"
                 }`}
               >
                 {loading ? "Enviando..." : "Enviar mensagem"}
