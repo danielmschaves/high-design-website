@@ -12,6 +12,7 @@ const config = {
   },
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
+    "^framer-motion$": "<rootDir>/__mocks__/framer-motion.tsx",
     "^next/image$": "<rootDir>/__mocks__/next-image.tsx",
     "^next/link$": "<rootDir>/__mocks__/next-link.tsx",
     "\\.(css|scss|sass)$": "<rootDir>/__mocks__/style.js",

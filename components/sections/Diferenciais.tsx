@@ -1,5 +1,16 @@
 "use client";
 
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+const cardFadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export default function Diferenciais() {
   const items = [
     {
@@ -50,140 +61,67 @@ export default function Diferenciais() {
   ];
 
   return (
-    <section
-      id="diferenciais"
-      style={{
-        background: "var(--color-brand-dark)",
-        padding: "var(--space-section) 0",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
-      {/* Large decorative number background */}
+    <section id="diferenciais" className="bg-brand-dark py-24 overflow-hidden relative">
+      {/* Large decorative "HD" */}
       <div
         aria-hidden
-        style={{
-          position: "absolute",
-          right: "-2rem",
-          top: "50%",
-          transform: "translateY(-50%)",
-          fontFamily: "var(--font-display)",
-          fontSize: "28rem",
-          fontWeight: 700,
-          color: "rgba(186,158,132,0.04)",
-          lineHeight: 1,
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
-      >
-        HD
-      </div>
+        className="absolute -right-8 top-1/2 -translate-y-1/2 font-display font-bold leading-none pointer-events-none select-none text-[28rem]"
+        style={{ color: "rgba(186,158,132,0.04)" }}
+      />
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 2rem",
-        }}
-      >
+      <div className="max-w-[1280px] mx-auto px-8">
         {/* Header */}
-        <div style={{ marginBottom: "4rem" }}>
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              marginBottom: "1rem",
-            }}
-          >
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-4">
             Por que a High Design
           </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.75rem, 3vw, 2.75rem)",
-              fontWeight: 300,
-              color: "var(--color-brand-white)",
-              lineHeight: 1.15,
-              maxWidth: "500px",
-            }}
-          >
+          <h2 className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light text-brand-white leading-[1.15] max-w-[500px]">
             O que nos torna
             <br />
-            <em style={{ fontStyle: "italic", color: "var(--color-brand-accent)" }}>
-              diferentes
-            </em>
+            <em className="italic text-brand-accent">diferentes</em>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "0",
-          }}
-          className="diferenciais-grid"
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
         >
           {items.map((item, i) => (
-            <div
+            <motion.div
               key={item.num}
+              variants={cardFadeUp}
+              className="transition-colors duration-300 hover:bg-[rgba(186,158,132,0.05)]"
               style={{
-                padding: "2rem 2rem 2rem 0",
+                paddingTop: "2rem",
+                paddingBottom: "2rem",
+                paddingLeft: i % 3 !== 0 ? "2rem" : "0",
+                paddingRight: (i + 1) % 3 !== 0 ? "2rem" : "0",
                 borderTop: "1px solid rgba(186,158,132,0.2)",
                 borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(186,158,132,0.1)" : "none",
-                paddingRight: (i + 1) % 3 !== 0 ? "2rem" : "0",
-                paddingLeft: i % 3 !== 0 ? "2rem" : "0",
-                transition: "background var(--duration-base)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "rgba(186,158,132,0.05)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
             >
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.6rem",
-                  letterSpacing: "0.2em",
-                  color: "var(--color-brand-accent)",
-                  marginBottom: "0.75rem",
-                  opacity: 0.6,
-                }}
-              >
+              <p className="font-display text-[0.6rem] tracking-[0.2em] text-brand-accent opacity-60 mb-3">
                 {item.num}
               </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: "var(--color-brand-white)",
-                  marginBottom: "0.5rem",
-                  lineHeight: 1.4,
-                  letterSpacing: "0.01em",
-                }}
-              >
+              <p className="font-display text-[0.85rem] font-bold text-brand-white mb-2 leading-[1.4] tracking-[0.01em]">
                 {item.title}
               </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "0.78rem",
-                  lineHeight: 1.7,
-                  color: "var(--color-brand-accent)",
-                  opacity: 0.7,
-                }}
-              >
+              <p className="font-display text-[0.78rem] leading-[1.7] text-brand-accent opacity-70">
                 {item.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

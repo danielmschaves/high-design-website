@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Esteira from "../components/sections/Esteira";
 
 describe("Esteira", () => {
@@ -33,7 +33,9 @@ describe("Esteira", () => {
   it("renders step numbers 01–04", () => {
     render(<Esteira />);
     for (let i = 1; i <= 4; i++) {
-      expect(screen.getByText(String(i).padStart(2, "0"))).toBeInTheDocument();
+      // Each step number appears twice: visible counter + decorative background
+      const els = screen.getAllByText(String(i).padStart(2, "0"));
+      expect(els.length).toBeGreaterThanOrEqual(1);
     }
   });
 
@@ -42,40 +44,20 @@ describe("Esteira", () => {
     expect(screen.getByText(/4 serviços/i)).toBeInTheDocument();
   });
 
-  it("first service is expanded by default and shows tagline", () => {
+  it("all 4 service taglines are visible simultaneously", () => {
     render(<Esteira />);
     expect(screen.getByText(/avalie os riscos antes de adquirir/i)).toBeInTheDocument();
+    expect(screen.getByText(/descubra o que é possível construir/i)).toBeInTheDocument();
+    expect(screen.getByText(/do esboço ao manual completo/i)).toBeInTheDocument();
+    expect(screen.getByText(/saiba exatamente quanto vai custar/i)).toBeInTheDocument();
   });
 
-  it("first service expanded content shows 'O que resolvemos' and 'O que entregamos'", () => {
+  it("all cards show 'O que resolvemos' and 'O que entregamos' labels", () => {
     render(<Esteira />);
-    // Both section labels should be visible (first item is open)
     const resolemos = screen.getAllByText(/o que resolvemos/i);
     const entregamos = screen.getAllByText(/o que entregamos/i);
-    expect(resolemos.length).toBeGreaterThanOrEqual(1);
-    expect(entregamos.length).toBeGreaterThanOrEqual(1);
-  });
-
-  it("clicking a closed service expands it", () => {
-    render(<Esteira />);
-    const consultButton = screen.getByRole("button", { name: /consultoria de construção/i });
-    fireEvent.click(consultButton);
-    expect(screen.getByText(/descubra o que é possível construir/i)).toBeInTheDocument();
-  });
-
-  it("clicking the open service collapses it", () => {
-    render(<Esteira />);
-    const terrenoButton = screen.getByRole("button", { name: /consultoria de aquisição/i });
-    fireEvent.click(terrenoButton);
-    const content = terrenoButton.nextElementSibling as HTMLElement;
-    expect(content.style.maxHeight).toBe("0");
-  });
-
-  it("sticky header has 'esteira-sticky' class for mobile override", () => {
-    render(<Esteira />);
-    const grid = document.querySelector(".esteira-grid");
-    const stickyHeader = grid?.firstElementChild as HTMLElement;
-    expect(stickyHeader).toHaveClass("esteira-sticky");
+    expect(resolemos).toHaveLength(4);
+    expect(entregamos).toHaveLength(4);
   });
 
   it("CTA links to #contato", () => {
