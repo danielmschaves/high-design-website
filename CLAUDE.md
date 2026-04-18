@@ -44,7 +44,9 @@ Reference documents (gitignored, local only):
 | `--color-brand-white` | `#f5f2ee` | Warm White |
 
 ### Typography
-Single typeface: **Century Gothic Pro** — local OTF files in `public/assets/fonts/`, loaded via `next/font/local` in `lib/fonts.ts`. Used for both display and body. Hierarchy is achieved through scale, weight and tracking — not font pairing.
+Primary typeface: **Century Gothic Pro** — local OTF files in `public/assets/fonts/`, loaded via `next/font/local` in `lib/fonts.ts`. Used for both display and body.
+
+Companion typeface: **JetBrains Mono** — loaded via `next/font/google` in `lib/fonts.ts`. Reserved for *technical metadata only*: chapter codes (`01 · …`), kickers, captions, code-style labels (`hd-code`), form labels, and footer attribution. Never use for body copy or headings.
 
 ### Visual rules
 - `border-radius: 0` on all brand elements — sharp, architectural
@@ -60,7 +62,7 @@ Single typeface: **Century Gothic Pro** — local OTF files in `public/assets/fo
 | Framework | Next.js 14.2.29 (App Router) + TypeScript |
 | Styles | Tailwind CSS + CSS custom properties (`styles/tokens.css`) |
 | Animations | Framer Motion |
-| Fonts | `next/font/local` |
+| Fonts | `next/font/local` (Century Gothic Pro) + `next/font/google` (JetBrains Mono) |
 | Dev | Docker (`highdesign_dev`, port 3000, node:20-alpine) |
 
 ---
@@ -76,16 +78,16 @@ app/
 
 components/
   sections/
-    Navbar.tsx      — fixed, transparent → frosted glass on scroll, mobile menu
-    Hero.tsx        — diagonal split: warm white panel left / full-bleed photo right
-    Sobre.tsx       — photo + four brand pillars
-    Diferenciais.tsx — 9 differentials on dark background, 3-col grid
-    ParaQuemE.tsx   — positive client profile checklist
-    Esteira.tsx     — sticky header + vertical accordion, 10 steps (LV → EO)
-    Portfolio.tsx   — 3-col image grid with hover reveal, dark background
-    Depoimentos.tsx — 3 placeholder testimonials (real content pending)
-    Contato.tsx     — Formspree form with loading/error states
-    Footer.tsx      — full logo, nav, contact, copyright
+    Navbar.tsx      — fixed, transparent → frosted glass on scroll, sand underline-on-hover, mobile menu
+    Hero.tsx        — centered single-column with eyebrow/h1/lead/CTAs and 4-cell marquee bar (Método · Técnica · Obra · Contato)
+    Sobre.tsx       — chapter header (01) + framed image + 2x2 brand-pillar grid
+    Diferenciais.tsx — chapter header (02) + 9-item grid on dark bg with monogram watermark
+    ParaQuemE.tsx   — chapter eyebrow (03) on cream bg + 7-item square-marker checklist
+    Esteira.tsx     — chapter header (04) + 4 horizontal expandable rows (single-open accordion)
+    Portfolio.tsx   — chapter header (05) on light bg + filter chips + 12-col masonry with hover overlay
+    Depoimentos.tsx — chapter header (06) on cream bg + 3 testimonial cards (sand stars, italic blockquote, mono attribution)
+    Contato.tsx     — chapter header (07) on dark bg + 3 info blocks + Formspree form with monogram watermark
+    Footer.tsx      — 4-column grid on ink bg (logo+tagline / Navegação / Serviços / Contato) + mono bottom bar
   ui/
     WhatsApp.tsx    — floating CTA, bottom-right, env-gated
 

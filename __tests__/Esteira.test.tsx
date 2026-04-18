@@ -39,12 +39,7 @@ describe("Esteira", () => {
     }
   });
 
-  it("counter shows '4 serviços · Terreno → Chaves'", () => {
-    render(<Esteira />);
-    expect(screen.getByText(/4 serviços/i)).toBeInTheDocument();
-  });
-
-  it("all 4 service taglines are visible simultaneously", () => {
+  it("all 4 service taglines are rendered in the row headers", () => {
     render(<Esteira />);
     expect(screen.getByText(/avalie os riscos antes de adquirir/i)).toBeInTheDocument();
     expect(screen.getByText(/descubra o que é possível construir/i)).toBeInTheDocument();
@@ -52,12 +47,10 @@ describe("Esteira", () => {
     expect(screen.getByText(/saiba exatamente quanto vai custar/i)).toBeInTheDocument();
   });
 
-  it("all cards show 'O que resolvemos' and 'O que entregamos' labels", () => {
+  it("first row is open by default and shows 'O que resolvemos' / 'O que entregamos'", () => {
     render(<Esteira />);
-    const resolemos = screen.getAllByText(/o que resolvemos/i);
-    const entregamos = screen.getAllByText(/o que entregamos/i);
-    expect(resolemos).toHaveLength(4);
-    expect(entregamos).toHaveLength(4);
+    expect(screen.getByText(/o que resolvemos/i)).toBeInTheDocument();
+    expect(screen.getByText(/o que entregamos/i)).toBeInTheDocument();
   });
 
   it("CTA links to #contato", () => {

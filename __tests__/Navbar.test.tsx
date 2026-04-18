@@ -19,7 +19,7 @@ describe("Navbar", () => {
 
   it("renders the CTA button linking to #contato", () => {
     render(<Navbar />);
-    const cta = screen.getByRole("link", { name: /fale conosco/i });
+    const cta = screen.getAllByRole("link", { name: /iniciar projeto/i })[0];
     expect(cta).toHaveAttribute("href", "#contato");
   });
 

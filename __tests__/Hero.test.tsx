@@ -37,15 +37,16 @@ describe("Hero", () => {
 
   it("renders CTA link to #servicos", () => {
     render(<Hero />);
-    const cta = screen.getByRole("link", { name: /ver serviços/i });
+    const cta = screen.getByRole("link", { name: /conheça a esteira/i });
     expect(cta).toHaveAttribute("href", "#servicos");
   });
 
-  it("renders the three method pillars", () => {
+  it("renders the four method pillars", () => {
     render(<Hero />);
-    // Match by the unique pillar label descriptions (not the num titles which appear elsewhere)
-    expect(screen.getByText(/processo claro em cada etapa/i)).toBeInTheDocument();
-    expect(screen.getByText(/rigor e responsabilidade projetual/i)).toBeInTheDocument();
-    expect(screen.getByText(/todo projeto nasce para ser construído/i)).toBeInTheDocument();
+    // Pillar values use inline <strong>; match the highlighted phrase from each.
+    expect(screen.getByText(/processo claro/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Rigor$/)).toBeInTheDocument();
+    expect(screen.getByText(/para ser construído/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /contato@highdesign\.arq\.br/i })).toBeInTheDocument();
   });
 });
