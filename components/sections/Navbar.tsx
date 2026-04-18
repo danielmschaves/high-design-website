@@ -10,27 +10,29 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const links = [
-    { label: "Sobre", href: "#sobre" },
-    { label: "Serviços", href: "#servicos" },
+    { label: "Sobre",     href: "#sobre" },
+    { label: "Método",    href: "#diferenciais" },
+    { label: "Serviços",  href: "#servicos" },
     { label: "Portfólio", href: "#portfolio" },
-    { label: "Contato", href: "#contato" },
+    { label: "Contato",   href: "#contato" },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-brand ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[420ms] ease-brand ${
         scrolled
-          ? "bg-brand-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(61,48,53,0.08)]"
-          : "bg-transparent"
+          ? "bg-stone-50/90 backdrop-blur-md border-b border-stone-300/50 py-[14px]"
+          : "bg-transparent py-[22px]"
       }`}
+      style={{ paddingLeft: "var(--gutter)", paddingRight: "var(--gutter)" }}
     >
-      <div className="max-w-[1280px] mx-auto px-8 h-[72px] flex items-center justify-between">
+      <div className="flex items-center justify-between">
         {/* Logo */}
         <Link href="#hero" className="flex items-center no-underline">
           <Image
@@ -38,27 +40,28 @@ export default function Navbar() {
             alt="High Design ARQ."
             width={200}
             height={36}
-            className="object-contain h-7 w-auto"
+            className="object-contain h-[22px] w-auto"
             priority
           />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-9">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-dark no-underline opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="relative font-display text-[11px] tracking-[0.24em] uppercase text-stone-500 no-underline pb-[3px] transition-colors duration-[420ms] hover:text-brand-dark after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-brand-accent after:transition-all after:duration-[420ms] after:ease-brand hover:after:w-full"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#contato"
-            className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-[1.4rem] py-[0.6rem] no-underline transition-colors duration-300 hover:bg-brand-primary"
+            className="font-display text-[10px] tracking-[0.22em] uppercase text-brand-white bg-brand-dark px-5 py-[11px] no-underline transition-colors duration-[420ms] hover:bg-brand-primary inline-flex items-center gap-3"
           >
-            Fale Conosco
+            Iniciar projeto
+            <span className="hd-arrow-inline relative inline-block w-[14px] h-px bg-current" />
           </a>
         </div>
 
@@ -96,7 +99,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden bg-brand-white border-t border-neutral-200 md:hidden"
+            className="overflow-hidden bg-stone-50 border-t border-stone-300 md:hidden -mx-[var(--gutter)]"
           >
             <div className="px-8 py-6 flex flex-col gap-6">
               {links.map((l) => (
@@ -104,7 +107,7 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-display text-[0.75rem] tracking-[0.2em] uppercase text-brand-dark no-underline"
+                  className="font-display text-[12px] tracking-[0.24em] uppercase text-brand-dark no-underline"
                 >
                   {l.label}
                 </a>
@@ -112,9 +115,9 @@ export default function Navbar() {
               <a
                 href="#contato"
                 onClick={() => setMenuOpen(false)}
-                className="font-display text-[0.75rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-[1.4rem] py-[0.8rem] no-underline text-center"
+                className="font-display text-[11px] tracking-[0.22em] uppercase text-brand-white bg-brand-dark px-6 py-4 no-underline text-center"
               >
-                Fale Conosco
+                Iniciar projeto
               </a>
             </div>
           </motion.div>

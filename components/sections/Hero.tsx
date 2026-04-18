@@ -1,276 +1,132 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 },
+  }),
+};
+
+const meta = [
+  { k: "Método",  v: <>Um <strong className="font-bold">processo claro</strong> em cada etapa</> },
+  { k: "Técnica", v: <><strong className="font-bold">Rigor</strong> e responsabilidade projetual</> },
+  { k: "Obra",    v: <>Todo projeto nasce <strong className="font-bold">para ser construído</strong></> },
+  {
+    k: "Contato",
+    v: (
+      <a
+        href="mailto:contato@highdesign.arq.br"
+        className="text-brand-dark no-underline border-b border-brand-accent pb-0.5 hover:text-brand-primary transition-colors duration-300"
+      >
+        contato@highdesign.arq.br
+      </a>
+    ),
+  },
+];
 
 export default function Hero() {
-  const textRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = textRef.current;
-    if (!el) return;
-    el.style.opacity = "0";
-    el.style.transform = "translateY(24px)";
-    const t = setTimeout(() => {
-      el.style.transition = "opacity 1s var(--ease-brand), transform 1s var(--ease-brand)";
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    }, 200);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
     <section
       id="hero"
-      style={{
-        position: "relative",
-        height: "100vh",
-        minHeight: "640px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        overflow: "hidden",
-        background: "var(--color-brand-white)",
-      }}
+      className="relative min-h-screen flex flex-col bg-stone-50 overflow-hidden"
     >
-      {/* Left panel — editorial copy */}
+      {/* Faint grid background, masked to fade out toward bottom */}
       <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: "var(--color-brand-white)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "6rem 5rem 4rem 5rem",
-          position: "relative",
-          zIndex: 2,
+          backgroundImage:
+            "linear-gradient(rgba(61,48,53,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(61,48,53,0.035) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage: "linear-gradient(to bottom, black 30%, transparent 90%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 30%, transparent 90%)",
         }}
-        className="hero-left"
-      >
-        {/* Decorative grid lines */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(var(--color-neutral-200) 1px, transparent 1px), linear-gradient(90deg, var(--color-neutral-200) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-            opacity: 0.25,
-            pointerEvents: "none",
-          }}
-        />
+      />
 
-        <div ref={textRef} style={{ position: "relative" }}>
-          {/* Eyebrow */}
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.65rem",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: "var(--color-brand-accent)",
-              marginBottom: "2rem",
-            }}
-          >
-            Arquitetura e Urbanismo
-          </p>
-
-          {/* HD monogram — oversized decorative */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-2rem",
-              right: "-3rem",
-              width: "220px",
-              opacity: 0.06,
-              pointerEvents: "none",
-            }}
-            aria-hidden
-          >
-            <Image
-              src="/assets/logos/Ativo 3.png"
-              alt=""
-              width={400}
-              height={400}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-
-          {/* Main tagline */}
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              letterSpacing: "0.02em",
-              color: "var(--color-brand-dark)",
-              marginBottom: "1.75rem",
-              maxWidth: "480px",
-            }}
-          >
-            Arquitetura que guia,
-            <br />
-            <em
-              style={{
-                fontStyle: "italic",
-                color: "var(--color-brand-primary)",
-              }}
-            >
-              do primeiro traço
-            </em>
-            <br />
-            à obra.
-          </h1>
-
-          {/* Sub tagline */}
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.85rem",
-              lineHeight: 1.8,
-              color: "var(--color-brand-primary)",
-              maxWidth: "380px",
-              marginBottom: "2.5rem",
-              opacity: 0.85,
-            }}
-          >
-            Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.
-          </p>
-
-          {/* CTA group */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-            <a
-              href="#contato"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.7rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-white)",
-                background: "var(--color-brand-dark)",
-                padding: "0.9rem 2rem",
-                textDecoration: "none",
-                display: "inline-block",
-                transition: "background var(--duration-base)",
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-primary)")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.background = "var(--color-brand-dark)")}
-            >
-              Inicie seu projeto
-            </a>
-            <a
-              href="#servicos"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "0.7rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--color-brand-dark)",
-                textDecoration: "none",
-                borderBottom: "1px solid var(--color-brand-accent)",
-                paddingBottom: "2px",
-                opacity: 0.7,
-              }}
-            >
-              Ver serviços
-            </a>
-          </div>
-
-          {/* Bottom meta */}
-          <div
-            style={{
-              marginTop: "4rem",
-              paddingTop: "2rem",
-              borderTop: "1px solid var(--color-neutral-200)",
-              display: "flex",
-              gap: "2.5rem",
-            }}
-          >
-            {[
-              { num: "Método", label: "Processo claro em cada etapa" },
-              { num: "Técnica", label: "Rigor e responsabilidade projetual" },
-              { num: "Obra", label: "Todo projeto nasce para ser construído" },
-            ].map((s) => (
-              <div key={s.num}>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.85rem",
-                    fontWeight: 700,
-                    color: "var(--color-brand-accent)",
-                    lineHeight: 1,
-                    marginBottom: "0.25rem",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {s.num}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--color-brand-primary)",
-                    opacity: 0.7,
-                  }}
-                >
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Right panel — full-bleed photo */}
+      {/* Centered content column */}
       <div
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          clipPath: "polygon(6% 0, 100% 0, 100% 100%, 0% 100%)",
-        }}
-        className="hero-right"
+        className="flex-1 flex flex-col items-center justify-center text-center relative z-[2]"
+        style={{ padding: "180px var(--gutter) 120px" }}
       >
-        <Image
-          src="/assets/images/2b86d6b1ba077c8f4c9bc359c197dd8b.jpg"
-          alt="Projeto residencial High Design"
-          fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          priority
-        />
-        {/* Subtle dark overlay at bottom for depth */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to bottom, transparent 60%, rgba(61,48,53,0.4) 100%)",
-          }}
-        />
+        <motion.div
+          className="flex items-center gap-4 mb-11"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+        >
+          <span className="block w-11 h-px bg-brand-accent" />
+          <span className="hd-eyebrow">Arquitetura e urbanismo · Médio a alto padrão</span>
+        </motion.div>
 
-        {/* Floating caption */}
-        <div
+        <motion.h1
+          custom={1}
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="font-display font-light text-brand-dark m-0 max-w-[20ch]"
           style={{
-            position: "absolute",
-            bottom: "2rem",
-            left: "2rem",
-            right: "2rem",
+            fontSize: "clamp(2.75rem, 6vw, 5rem)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
           }}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "0.6rem",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(245,242,238,0.7)",
-            }}
-          >
-            Projeto residencial · High Design ARQ.®
-          </p>
-        </div>
+          Arquitetura que guia,<br />
+          <em className="italic font-light text-brand-primary">do primeiro traço</em>
+          <br />
+          à obra.
+        </motion.h1>
+
+        <motion.p
+          custom={2}
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="mt-9 mb-11 max-w-[52ch] text-stone-500 leading-[1.8]"
+          style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)", opacity: 0.85 }}
+        >
+          Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.
+        </motion.p>
+
+        <motion.div
+          custom={3}
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="flex items-center justify-center gap-4 flex-wrap"
+        >
+          <a href="#contato" className="hd-btn">
+            Inicie seu projeto <span className="arrow" />
+          </a>
+          <a href="#servicos" className="hd-btn hd-btn--ghost">
+            Conheça a esteira <span className="arrow" />
+          </a>
+        </motion.div>
       </div>
 
+      {/* Marquee bar (4 cells) */}
+      <div
+        className="grid grid-cols-2 md:grid-cols-4 border-t border-stone-300/60 bg-stone-50 relative z-[2]"
+      >
+        {meta.map((m, i) => (
+          <div
+            key={m.k}
+            className={`px-8 py-7 ${
+              i === 0 ? "" : "md:border-l border-stone-300/60"
+            } ${i >= 2 ? "border-t md:border-t-0 border-stone-300/60" : ""} ${
+              i === 2 ? "border-l-0 md:border-l" : ""
+            }`}
+          >
+            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent mb-2">
+              {m.k}
+            </p>
+            <p className="text-[1rem] text-brand-dark leading-[1.3]">{m.v}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
