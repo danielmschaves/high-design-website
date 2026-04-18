@@ -32,12 +32,12 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "High Design Arquitetura | Do primeiro traço à obra",
+  title: "High Design Arquitetura | Do primeiro traço à obra construída",
   description:
     "Escritório especializado em projetos residenciais e comerciais de médio a alto padrão. Arquitetura funcional, elegante, atemporal e executável — com método, clareza e acolhimento.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "High Design Arquitetura | Do primeiro traço à obra",
+    title: "High Design Arquitetura | Do primeiro traço à obra construída",
     description:
       "Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.",
     url: siteUrl,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "High Design Arquitetura | Do primeiro traço à obra",
+    title: "High Design Arquitetura | Do primeiro traço à obra construída",
     description:
       "Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.",
     images: ["/assets/images/2b86d6b1ba077c8f4c9bc359c197dd8b.jpg"],
