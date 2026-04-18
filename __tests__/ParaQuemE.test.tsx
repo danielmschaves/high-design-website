@@ -19,9 +19,9 @@ describe("ParaQuemE", () => {
     expect(screen.getByText(/feito para famílias/i)).toBeInTheDocument();
   });
 
-  it("renders the quality tier tag", () => {
+  it("renders the chapter eyebrow", () => {
     render(<ParaQuemE />);
-    expect(screen.getByText(/médio a alto padrão/i)).toBeInTheDocument();
+    expect(screen.getByText(/03 · Para quem é/i)).toBeInTheDocument();
   });
 
   it("renders checklist items", () => {

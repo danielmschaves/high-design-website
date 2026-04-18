@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 
 export const centuryGothicPro = localFont({
   src: [
@@ -24,5 +25,12 @@ export const centuryGothicPro = localFont({
     },
   ],
   variable: "--font-century-gothic",
+  display: "swap",
+});
+
+export const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono-google",
   display: "swap",
 });

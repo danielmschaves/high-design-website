@@ -28,10 +28,25 @@ const config: Config = {
           100: "#e8e1d7",
           50:  "#f5f2ee",
         },
+        stone: {
+          50:  "var(--color-stone-50)",
+          100: "var(--color-stone-100)",
+          200: "var(--color-stone-200)",
+          300: "var(--color-stone-300)",
+          500: "var(--color-stone-500)",
+          700: "var(--color-stone-700)",
+          900: "var(--color-stone-900)",
+        },
+        ink:   "var(--color-ink)",
+        paper: "var(--color-paper)",
       },
       fontFamily: {
         display: ["Century Gothic Pro", "Century Gothic", "AppleGothic", "sans-serif"],
         body:    ["Century Gothic Pro", "Century Gothic", "AppleGothic", "sans-serif"],
+        mono:    ["var(--font-mono-google)", "ui-monospace", "SF Mono", "Consolas", "monospace"],
+      },
+      maxWidth: {
+        content: "1440px",
       },
       transitionTimingFunction: {
         brand: "cubic-bezier(0.16, 1, 0.3, 1)",

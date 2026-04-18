@@ -19,8 +19,8 @@ describe("Navbar", () => {
 
   it("renders the CTA button linking to #contato", () => {
     render(<Navbar />);
-    const cta = screen.getByRole("link", { name: /fale conosco/i });
-    expect(cta).toHaveAttribute("href", "#contato");
+    const ctas = screen.getAllByRole("link", { name: /iniciar projeto/i });
+    expect(ctas.some((link) => link.getAttribute("href") === "#contato")).toBe(true);
   });
 
   it("toggles mobile menu open and closed", () => {

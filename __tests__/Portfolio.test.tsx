@@ -41,9 +41,21 @@ describe("Portfolio", () => {
     expect(serviceTags.length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders the CTA link", () => {
+  it("renders all four filter buttons", () => {
     render(<Portfolio />);
-    const cta = screen.getByRole("link", { name: /ver todos os projetos/i });
-    expect(cta).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^todos$/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^residencial$/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^comercial$/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^alto padrão$/i })).toBeInTheDocument();
+  });
+
+  it("filters images when a category is selected", () => {
+    render(<Portfolio />);
+    fireEvent.click(screen.getByRole("button", { name: /^alto padrão$/i }));
+    const images = screen.getAllByRole("img");
+    expect(images.length).toBeGreaterThan(0);
+    images.forEach((img) => {
+      expect(img.getAttribute("alt")).toMatch(/Alto Padrão/);
+    });
   });
 });

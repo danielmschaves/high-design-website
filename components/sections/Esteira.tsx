@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const services = [
   {
@@ -53,135 +54,131 @@ const services = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 },
-  }),
-};
-
 export default function Esteira() {
-  return (
-    <section id="servicos" className="bg-brand-secondary py-24">
-      <div className="max-w-[1280px] mx-auto px-8">
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
-        {/* Intro header */}
+  return (
+    <section
+      id="servicos"
+      className="bg-stone-50 overflow-hidden"
+      style={{ padding: "var(--space-10) var(--gutter)" }}
+    >
+      <div className="max-w-content mx-auto">
+        {/* Chapter header */}
         <motion.div
-          className="max-w-[640px] mb-16"
+          className="hd-chapter"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="font-display text-[0.65rem] tracking-[0.35em] uppercase text-brand-accent mb-6">
-            Serviços
-          </p>
-
-          <h2 className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-light leading-[1.15] text-brand-dark mb-6">
-            Da concepção
-            <br />
-            <em className="italic text-brand-primary">à entrega das chaves</em>
-          </h2>
-
-          <p className="font-display text-[0.83rem] leading-[1.8] text-brand-primary opacity-80 mb-8">
-            Quatro serviços pensados para cada momento da sua jornada. Contrate individualmente ou em sequência — cada etapa prepara o terreno para a próxima.
-          </p>
-
-          <p className="font-display text-[0.65rem] tracking-[0.2em] uppercase text-brand-accent opacity-60">
-            4 serviços · Terreno → Chaves
-          </p>
+          <div className="num">04 · Serviços</div>
+          <div>
+            <h2>
+              Da concepção
+              <br />
+              <em>à entrega das chaves</em>
+            </h2>
+            <p>
+              Quatro serviços pensados para cada momento da sua jornada. Contrate individualmente ou em sequência — cada etapa prepara o terreno para a próxima.
+            </p>
+          </div>
         </motion.div>
 
-        {/* 2×2 grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.sigla}
-              className="relative overflow-hidden bg-brand-dark p-8 md:p-10 flex flex-col"
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={cardVariants}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Decorative oversized step number */}
-              <span
-                aria-hidden="true"
-                className="absolute bottom-3 right-5 font-display font-bold leading-none text-brand-white select-none pointer-events-none"
-                style={{ fontSize: "8rem", opacity: 0.04 }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+        {/* Rows */}
+        <div className="border-t border-stone-300">
+          {services.map((s, i) => {
+            const open = openIdx === i;
+            return (
+              <div key={s.sigla} className="border-b border-stone-300">
+                <button
+                  type="button"
+                  onClick={() => setOpenIdx(open ? null : i)}
+                  aria-expanded={open}
+                  aria-controls={`esteira-panel-${i}`}
+                  className={`w-full grid grid-cols-[36px_104px_1fr] md:grid-cols-[70px_120px_1.2fr_2fr_70px] gap-3 md:gap-8 items-center py-6 md:py-7 text-left bg-transparent border-0 cursor-pointer transition-all duration-[420ms] ease-brand ${
+                    open ? "bg-brand-secondary/40" : "hover:bg-brand-secondary/30"
+                  }`}
+                >
+                  <span className="font-mono text-[11px] tracking-[0.18em] text-stone-300">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="hd-code">{s.sigla}</span>
+                  <span className="font-display text-[1.05rem] md:text-[1.15rem] font-normal tracking-[-0.005em] leading-[1.25] text-brand-dark">
+                    {s.nome}
+                  </span>
+                  <span className="hidden md:block text-stone-500 text-[13px] leading-[1.55]">
+                    {s.tagline}
+                  </span>
+                  <span
+                    aria-hidden
+                    className={`hidden md:inline-block justify-self-end relative h-px bg-stone-300 transition-all duration-[420ms] ease-brand ${
+                      open ? "w-9 bg-brand-dark" : "w-5"
+                    }`}
+                    style={{ transform: open ? "rotate(90deg)" : "none" }}
+                  >
+                    <span
+                      className="absolute right-0 -top-[3px] w-2 h-2 border-r border-t"
+                      style={{
+                        borderColor: open ? "var(--color-brand-dark)" : "var(--color-stone-300)",
+                        transform: "rotate(45deg)",
+                      }}
+                    />
+                  </span>
+                </button>
 
-              {/* Top row: sigla badge + step counter */}
-              <div className="flex items-center justify-between mb-7">
-                <span className="font-display text-[0.55rem] tracking-[0.18em] border border-brand-accent px-[0.65rem] py-[0.4rem] text-brand-accent">
-                  {service.sigla}
-                </span>
-                <span className="font-display text-[0.6rem] tracking-[0.15em] text-brand-accent opacity-40">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-
-              {/* Nome */}
-              <h3 className="font-display text-[1.1rem] md:text-[1.2rem] font-light leading-[1.3] text-brand-white mb-3">
-                {service.nome}
-              </h3>
-
-              {/* Tagline */}
-              <p className="font-display text-[0.83rem] italic text-brand-accent mb-7">
-                {service.tagline}
-              </p>
-
-              <div className="border-t border-brand-accent/20 mb-6" />
-
-              {/* O que resolvemos */}
-              <div className="mb-6">
-                <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-60 mb-3">
-                  O que resolvemos
-                </p>
-                <ul className="list-none p-0 m-0 flex flex-col gap-[0.6rem]">
-                  {service.dores.map((dor, j) => (
-                    <li
-                      key={j}
-                      className="flex gap-3 font-display text-[0.82rem] leading-[1.75] text-brand-white opacity-70"
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.div
+                      key="panel"
+                      id={`esteira-panel-${i}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
                     >
-                      <span className="text-brand-accent flex-shrink-0">—</span>
-                      <span>{dor}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                      <div className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-6 md:gap-8 pb-9 pt-2 pl-0 md:pl-[70px]">
+                        <div>
+                          <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent mb-3">
+                            O que resolvemos
+                          </p>
+                        </div>
+                        <ul className="list-none p-0 m-0 flex flex-col gap-2">
+                          {s.dores.map((d) => (
+                            <li
+                              key={d}
+                              className="flex gap-3 text-[14px] leading-[1.7] text-stone-500"
+                            >
+                              <span className="text-brand-accent flex-shrink-0">—</span>
+                              <span>{d}</span>
+                            </li>
+                          ))}
+                        </ul>
 
-              <div className="border-t border-brand-accent/20 mb-6" />
-
-              {/* O que entregamos — flex-grow pushes it to fill card height */}
-              <div className="flex-grow">
-                <p className="font-display text-[0.58rem] tracking-[0.25em] uppercase text-brand-accent opacity-60 mb-3">
-                  O que entregamos
-                </p>
-                <p className="font-display text-[0.82rem] leading-[1.75] text-brand-white opacity-70">
-                  {service.entrega}
-                </p>
+                        <div className="mt-2">
+                          <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent mb-3">
+                            O que entregamos
+                          </p>
+                        </div>
+                        <p className="m-0 text-[14px] leading-[1.7] text-brand-dark mt-2">
+                          {s.entrega}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* CTA */}
-        <div className="mt-10">
-          <a
-            href="#contato"
-            className="font-display text-[0.7rem] tracking-[0.2em] uppercase text-brand-white bg-brand-dark px-8 py-[0.9rem] no-underline inline-block transition-colors duration-300 hover:bg-brand-primary"
-          >
-            Solicitar orçamento
+        <div className="mt-12">
+          <a href="#contato" className="hd-btn">
+            Solicitar orçamento <span className="arrow" />
           </a>
         </div>
-
       </div>
     </section>
   );

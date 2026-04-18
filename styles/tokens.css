@@ -1,12 +1,23 @@
 :root {
-  /* Brand Colors */
+  /* ─── Brand Colors ─── */
   --color-brand-primary:    #786169;   /* Taupe — Sobriedade e Profissionalismo */
   --color-brand-secondary:  #e8e1d7;   /* Cream — Leveza e Conforto */
   --color-brand-accent:     #ba9e84;   /* Sand — Calor e Sofisticação */
   --color-brand-dark:       #3d3035;   /* Deep taupe — text / contrast */
   --color-brand-white:      #f5f2ee;   /* Warm white — backgrounds */
 
-  /* Neutral Scale */
+  /* ─── Extended warm-neutral scale ─── */
+  --color-ink:        #1a1614;
+  --color-stone-900:  #2a2024;
+  --color-stone-700:  #3d3035;
+  --color-stone-500:  #786169;
+  --color-stone-300:  #cec6bc;
+  --color-stone-200:  #dcd4c9;
+  --color-stone-100:  #e8e1d7;
+  --color-stone-50:   #f5f2ee;
+  --color-paper:      #faf7f2;
+
+  /* ─── Legacy neutral aliases (kept for back-compat) ─── */
   --color-neutral-900:      #1a1614;
   --color-neutral-700:      #3d3035;
   --color-neutral-400:      #786169;
@@ -14,19 +25,53 @@
   --color-neutral-100:      #e8e1d7;
   --color-neutral-50:       #f5f2ee;
 
-  /* Typography */
+  /* ─── Feedback colors (warm palette) ─── */
+  --color-error: #9e4a3d;   /* Warm rust — form error text */
+
+  /* ─── Typography ─── */
   --font-display: 'Century Gothic Pro', 'Century Gothic', AppleGothic, sans-serif;
   --font-body:    'Century Gothic Pro', 'Century Gothic', AppleGothic, sans-serif;
+  --font-mono:    var(--font-mono-google), ui-monospace, 'SF Mono', Consolas, monospace;
 
-  /* Spacing */
-  --space-section:  6rem;
+  /* Type scale — modular, editorial */
+  --text-display: clamp(3.5rem, 7.5vw, 7.5rem);   /* 56 → 120 */
+  --text-h1:      clamp(2.25rem, 4.2vw, 3.75rem); /* 36 → 60  */
+  --text-h2:      clamp(1.75rem, 2.6vw, 2.5rem);  /* 28 → 40  */
+  --text-h3:      clamp(1.25rem, 1.6vw, 1.5rem);  /* 20 → 24  */
+  --text-lead:    clamp(1rem, 1.15vw, 1.1rem);    /* 16 → 18  */
+  --text-body:    0.9375rem;                      /* 15       */
+  --text-small:   0.8125rem;                      /* 13       */
+  --text-eyebrow: 0.6875rem;                      /* 11       */
+  --text-caption: 0.625rem;                       /* 10       */
+
+  /* ─── Spacing scale (4px base) ─── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 144px;
+
+  /* ─── Section helpers (legacy) ─── */
+  --space-section:    6rem;
   --space-section-sm: 3rem;
 
-  /* Border radius */
-  --radius-brand:  0px;   /* Sharp, architectural — no rounding */
-  --radius-soft:   4px;
+  /* ─── Layout ─── */
+  --max-content: 1440px;
+  --gutter:      clamp(1.5rem, 4vw, 4rem);
+  --rule:        1px solid var(--color-stone-300);
 
-  /* Transitions */
+  /* ─── Border radius ─── */
+  --radius-brand: 0px;   /* Sharp, architectural — no rounding */
+  --radius-soft:  4px;
+
+  /* ─── Motion ─── */
   --ease-brand: cubic-bezier(0.25, 0.1, 0.25, 1);
   --duration-base: 300ms;
+  --ease-brand-emphatic: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-emphatic:   420ms;
 }

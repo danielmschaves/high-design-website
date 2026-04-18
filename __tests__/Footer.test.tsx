@@ -28,7 +28,7 @@ describe("Footer", () => {
     expect(screen.getByRole("link", { name: /^sobre$/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /^serviços$/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /^portfólio$/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /^contato$/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /^depoimentos$/i })).toBeInTheDocument();
   });
 
   it("renders the contact email", () => {
@@ -38,7 +38,7 @@ describe("Footer", () => {
 
   it("renders the contact person name", () => {
     render(<Footer />);
-    expect(screen.getByText(/emanoella goulart/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/emanoella goulart/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders the copyright notice with current year", () => {
@@ -75,6 +75,5 @@ describe("Footer", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: /instagram/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /linkedin/i })).toBeInTheDocument();
-    expect(screen.getByText("Redes Sociais")).toBeInTheDocument();
   });
 });
