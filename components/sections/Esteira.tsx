@@ -55,7 +55,7 @@ const services = [
 ];
 
 export default function Esteira() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
     <section

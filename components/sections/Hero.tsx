@@ -102,7 +102,7 @@ export default function Hero() {
             Inicie seu projeto <span className="arrow" />
           </a>
           <a href="#servicos" className="hd-btn hd-btn--ghost">
-            Conheça a esteira <span className="arrow" />
+            Conheça os serviços <span className="arrow" />
           </a>
         </motion.div>
       </div>
