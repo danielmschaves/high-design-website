@@ -42,6 +42,12 @@ describe("Contato", () => {
     expect(screen.getByText(/contato@highdesign.arq.br/i)).toBeInTheDocument();
   });
 
+  it("renders the WhatsApp number and CAU-BR responsible", () => {
+    render(<Contato />);
+    expect(screen.getByText(/\(48\) 98446-4663/)).toBeInTheDocument();
+    expect(screen.getByText(/emanoella goulart — cau-br/i)).toBeInTheDocument();
+  });
+
   it("updates form fields on user input", () => {
     render(<Contato />);
     const nomeInput = screen.getByPlaceholderText("Seu nome") as HTMLInputElement;

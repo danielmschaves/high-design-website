@@ -36,6 +36,9 @@ const servicos = [
   "Consultoria de Construção",
   "Projeto de Arquitetura",
   "Orçamento de Obra",
+  "Gestão de Obra",
+  "Aquisição de Imóvel Pronto",
+  "Reforma e Transformação",
 ];
 
 export default function Footer() {
@@ -64,6 +67,9 @@ export default function Footer() {
           />
           <p className="font-display text-[13px] leading-[1.6] m-0 max-w-[30ch]">
             Arquitetura que guia, do primeiro traço à obra construída.
+          </p>
+          <p className="font-mono text-[10px] tracking-[0.18em] uppercase mt-4 m-0" style={{ color: "var(--color-brand-accent)" }}>
+            Projeto tem que virar obra construída.
           </p>
         </div>
 

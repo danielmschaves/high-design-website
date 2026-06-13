@@ -16,9 +16,9 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Sobre",     href: "#sobre" },
-    { label: "Método",    href: "#diferenciais" },
-    { label: "Serviços",  href: "#servicos" },
+    { label: "Sobre",        href: "#sobre" },
+    { label: "Por que a HD", href: "#diferenciais" },
+    { label: "Serviços",     href: "#servicos" },
     { label: "Portfólio", href: "#portfolio" },
     { label: "Contato",   href: "#contato" },
   ];

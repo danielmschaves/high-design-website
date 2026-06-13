@@ -21,10 +21,16 @@ describe("Sobre", () => {
 
   it("renders all four brand pillars", () => {
     render(<Sobre />);
-    expect(screen.getByText(/funcional/i)).toBeInTheDocument();
-    expect(screen.getByText(/elegante/i)).toBeInTheDocument();
-    expect(screen.getByText(/atemporal/i)).toBeInTheDocument();
-    expect(screen.getByText(/executável/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Funcional" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Elegante" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Atemporal" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Executável" })).toBeInTheDocument();
+  });
+
+  it("renders the 'Por que nascemos' origin block", () => {
+    render(<Sobre />);
+    expect(screen.getByText(/por que nascemos/i)).toBeInTheDocument();
+    expect(screen.getByText(/informalidade/i)).toBeInTheDocument();
   });
 
   it("renders the central principle quote", () => {
