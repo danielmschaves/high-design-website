@@ -4,6 +4,7 @@ import Sobre from "@/components/sections/Sobre";
 import Diferenciais from "@/components/sections/Diferenciais";
 import ParaQuemE from "@/components/sections/ParaQuemE";
 import Esteira from "@/components/sections/Esteira";
+import Processo from "@/components/sections/Processo";
 import Portfolio from "@/components/sections/Portfolio";
 import Depoimentos from "@/components/sections/Depoimentos";
 import Contato from "@/components/sections/Contato";
@@ -22,6 +23,7 @@ export default function Home() {
         <Diferenciais />
         <ParaQuemE />
         <Esteira />
+        <Processo />
         <Portfolio />
         <Depoimentos />
         <Contato />

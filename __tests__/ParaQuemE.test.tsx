@@ -16,17 +16,18 @@ describe("ParaQuemE", () => {
 
   it("renders the heading", () => {
     render(<ParaQuemE />);
-    expect(screen.getByText(/feito para famílias/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /feito para quem/i })).toBeInTheDocument();
   });
 
   it("renders the chapter eyebrow", () => {
     render(<ParaQuemE />);
-    expect(screen.getByText(/03 · Para quem é/i)).toBeInTheDocument();
+    expect(screen.getByText(/03 · Para quem existimos/i)).toBeInTheDocument();
   });
 
-  it("renders checklist items", () => {
+  it("renders the three client profiles", () => {
     render(<ParaQuemE />);
-    expect(screen.getByText(/valoriza orientação técnica/i)).toBeInTheDocument();
-    expect(screen.getByText(/busca um projeto funcional/i)).toBeInTheDocument();
+    expect(screen.getByText("Cliente residencial")).toBeInTheDocument();
+    expect(screen.getByText("Cliente comercial")).toBeInTheDocument();
+    expect(screen.getByText("Investidor imobiliário")).toBeInTheDocument();
   });
 });

@@ -37,7 +37,7 @@ describe("Hero", () => {
 
   it("renders CTA link to #servicos", () => {
     render(<Hero />);
-    const cta = screen.getByRole("link", { name: /conheça a esteira/i });
+    const cta = screen.getByRole("link", { name: /conheça os serviços/i });
     expect(cta).toHaveAttribute("href", "#servicos");
   });
 

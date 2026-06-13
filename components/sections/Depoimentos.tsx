@@ -48,7 +48,7 @@ export default function Depoimentos() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="num">06 · Depoimentos</div>
+          <div className="num">07 · Depoimentos</div>
           <div>
             <h2>
               O que nossos clientes
@@ -56,7 +56,7 @@ export default function Depoimentos() {
               <em>dizem sobre a jornada</em>
             </h2>
             <p>
-              Famílias que confiaram à High Design a transformação dos seus espaços e o cuidado em cada etapa do processo.
+              Clientes que confiaram à High Design a transformação dos seus espaços e o cuidado em cada etapa do processo.
             </p>
           </div>
         </motion.div>

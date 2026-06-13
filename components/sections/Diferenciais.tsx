@@ -13,15 +13,14 @@ const cardFadeUp = {
 };
 
 const items = [
-  { num: "01", title: "Projetos concebidos para serem construídos",   desc: "Soluções que respeitam orçamento, terreno, normas e realidade da família — tecnicamente viáveis e construtivamente seguras." },
-  { num: "02", title: "Método claro, organizado e didático",          desc: "O cliente nunca caminha no escuro. Cada fase é explicada, cada decisão contextualizada com clareza e profissionalismo." },
-  { num: "03", title: "Arquitetura funcional, elegante e atemporal",  desc: "Os quatro pilares fundamentais de cada entrega: funcionalidade, elegância, atemporalidade e exequibilidade." },
-  { num: "04", title: "Acompanhamento próximo e orientação firme",    desc: "Orientação estratégica, explicações claras, direcionamento sobre prioridades e suporte integral às dúvidas do cliente." },
-  { num: "05", title: "Comunicação humana, empática e madura",        desc: "Transparência sem distanciamento. Linguagem acessível, relação profissional e ambiente emocional estável." },
-  { num: "06", title: "Curadoria estética e técnica",                 desc: "Filtramos ideias, referências, soluções, materiais e possibilidades reais para cada projeto com critério e sensibilidade." },
-  { num: "07", title: "Relacionamentos saudáveis e profissionais",    desc: "Processo respeitado com clientes, equipe, fornecedores e parceiros — em um ambiente organizado e maduro." },
-  { num: "08", title: "Conhecimento técnico e sensibilidade humana",  desc: "Ambientes com alma, que acolhem e funcionam — onde técnica e humanidade coexistem em equilíbrio." },
-  { num: "09", title: "Experiência premium acessível",                desc: "Sofisticação sem perder humanidade, acolhimento e sensibilidade emocional no segmento médio-alto." },
+  { num: "01", title: "Projetos concebidos para serem construídos",            desc: "Soluções que respeitam orçamento, terreno, normas e realidade do cliente — reduzindo erros, retrabalhos e desperdícios, com fidelidade ao conceito ao longo da obra." },
+  { num: "02", title: "Método claro, organizado e didático",                   desc: "O cliente nunca caminha no escuro. Cada fase é explicada, cada decisão contextualizada e cada impacto antecipado com clareza." },
+  { num: "03", title: "Funcional, elegante, atemporal e executável",           desc: "Os quatro pilares fundamentais de cada entrega, presentes do primeiro traço à última visita de obra." },
+  { num: "04", title: "Acompanhamento próximo e orientação firme",             desc: "Agimos como uma bússola profissional: orientação estratégica, prioridades claras e suporte integral nas decisões mais sensíveis." },
+  { num: "05", title: "Comunicação humana, empática e madura",                 desc: "Transparência sem distanciamento. Linguagem acessível, relação profissional e escuta genuína em cada interação." },
+  { num: "06", title: "Curadoria estética e técnica",                          desc: "Filtramos ideias, referências, soluções, materiais e orçamentos reais para cada projeto — com critério e sensibilidade." },
+  { num: "07", title: "Relacionamentos saudáveis e profissionais",            desc: "Processo respeitado com clientes, equipe, fornecedores e parceiros, em um ambiente organizado, colaborativo e maduro." },
+  { num: "08", title: "Conhecimento técnico e sensibilidade humana",          desc: "Não entregamos só plantas e pranchas: entregamos ambientes com alma, onde técnica e humanidade coexistem em equilíbrio." },
 ];
 
 export default function Diferenciais() {
@@ -61,14 +60,14 @@ export default function Diferenciais() {
               </em>
             </h2>
             <p style={{ color: "rgba(245,242,238,0.55)" }}>
-              O escritório entrega decisões assertivas, entendimento profundo do processo e uma experiência arquitetônica que une precisão, beleza e inteligência espacial.
+              Entregamos decisões assertivas, entendimento profundo do processo e uma experiência arquitetônica que une precisão, beleza e inteligência espacial.
             </p>
           </div>
         </motion.div>
 
         {/* 9-item grid (1px hairline dividers via stone-700 bg) */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 bg-stone-700"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-stone-700"
           style={{ gap: "1px" }}
           variants={container}
           initial="hidden"
@@ -79,7 +78,7 @@ export default function Diferenciais() {
             <motion.div
               key={item.num}
               variants={cardFadeUp}
-              className="bg-stone-900 p-9 min-h-[220px] flex flex-col gap-3 transition-colors duration-[420ms] ease-brand hover:bg-stone-700"
+              className="bg-stone-900 p-7 lg:p-8 min-h-[200px] lg:min-h-[240px] flex flex-col gap-3 transition-colors duration-[420ms] ease-brand hover:bg-stone-700"
             >
               <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent">
                 {item.num}

@@ -38,7 +38,7 @@ function createMotionComponent(tag: string) {
 }
 
 const TAGS = [
-  "a", "article", "aside", "button", "div", "footer", "form", "header",
+  "a", "article", "aside", "blockquote", "button", "div", "footer", "form", "header",
   "h1", "h2", "h3", "h4", "h5", "h6", "img", "input", "li", "main",
   "nav", "ol", "p", "section", "span", "ul",
 ];
