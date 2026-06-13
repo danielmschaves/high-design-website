@@ -6,6 +6,7 @@ import ParaQuemE from "@/components/sections/ParaQuemE";
 import Esteira from "@/components/sections/Esteira";
 import Processo from "@/components/sections/Processo";
 import Portfolio from "@/components/sections/Portfolio";
+import Blog from "@/components/sections/Blog";
 import Depoimentos from "@/components/sections/Depoimentos";
 import Contato from "@/components/sections/Contato";
 import Footer from "@/components/sections/Footer";
@@ -25,6 +26,7 @@ export default function Home() {
         <Esteira />
         <Processo />
         <Portfolio />
+        <Blog />
         <Depoimentos />
         <Contato />
       </main>

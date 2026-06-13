@@ -23,11 +23,12 @@ function LinkedInIcon() {
 }
 
 const nav = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Por que a HD", href: "#diferenciais" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Portfólio", href: "#portfolio" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Sobre", href: "/#sobre" },
+  { label: "Por que a HD", href: "/#diferenciais" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Portfólio", href: "/#portfolio" },
+  { label: "Depoimentos", href: "/#depoimentos" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const servicos = [
