@@ -87,7 +87,7 @@ export default function Contato() {
             className="hd-chapter"
             style={{ borderColor: "var(--color-stone-700)" }}
           >
-            <div className="num">07 · Contato</div>
+            <div className="num">08 · Contato</div>
             <div>
               <h2 className="text-brand-white">
                 Inicie sua
@@ -115,8 +115,21 @@ export default function Contato() {
             </motion.div>
 
             <motion.div variants={fadeUp}>
-              <p className={labelClass}>Responsável</p>
-              <p className="font-display text-[1.1rem] text-brand-white">Emanoella Goulart</p>
+              <p className={labelClass}>WhatsApp</p>
+              <a
+                href="https://wa.me/5548984464663"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display text-[1.1rem] text-brand-white no-underline border-b pb-0.5 hover:text-brand-accent transition-colors duration-300"
+                style={{ borderColor: "rgba(186,158,132,0.6)" }}
+              >
+                (48) 98446-4663
+              </a>
+            </motion.div>
+
+            <motion.div variants={fadeUp}>
+              <p className={labelClass}>Responsável técnica</p>
+              <p className="font-display text-[1.1rem] text-brand-white">Emanoella Goulart — CAU-BR</p>
             </motion.div>
 
             <motion.div variants={fadeUp}>

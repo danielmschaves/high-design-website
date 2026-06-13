@@ -15,17 +15,20 @@ const jsonLd = {
   name: "High Design Arquitetura e Urbanismo",
   alternateName: "High Design ARQ.®",
   description:
-    "Escritório especializado em projetos residenciais e comerciais de médio a alto padrão. Arquitetura funcional, elegante, atemporal e executável — com método, clareza e acolhimento.",
+    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento — para que cada projeto vire obra construída.",
   url: siteUrl,
   email: "contato@highdesign.arq.br",
   priceRange: "$$-$$$",
-  areaServed: { "@type": "Country", name: "Brasil" },
+  areaServed: { "@type": "State", name: "Santa Catarina" },
   knowsLanguage: "pt-BR",
   serviceType: [
     "Consultoria de Aquisição de Terreno",
     "Consultoria de Construção",
-    "Projeto de Arquitetura",
-    "Orçamento de Obra",
+    "Projeto Arquitetônico e Engenharia",
+    "Orçamento Detalhado de Obra",
+    "Gestão de Obra",
+    "Consultoria de Aquisição ou Venda de Imóvel Pronto",
+    "Projeto de Reforma e Transformação",
   ],
   sameAs: [],
 };
@@ -48,14 +51,15 @@ describe("LocalBusiness JSON-LD", () => {
     expect(jsonLd.url).toBe(siteUrl);
   });
 
-  it("lists all 4 service types", () => {
-    expect(jsonLd.serviceType).toHaveLength(4);
-    expect(jsonLd.serviceType).toContain("Projeto de Arquitetura");
-    expect(jsonLd.serviceType).toContain("Orçamento de Obra");
+  it("lists all 7 service types", () => {
+    expect(jsonLd.serviceType).toHaveLength(7);
+    expect(jsonLd.serviceType).toContain("Projeto Arquitetônico e Engenharia");
+    expect(jsonLd.serviceType).toContain("Gestão de Obra");
+    expect(jsonLd.serviceType).toContain("Projeto de Reforma e Transformação");
   });
 
-  it("sets areaServed to Brasil", () => {
-    expect(jsonLd.areaServed).toEqual({ "@type": "Country", name: "Brasil" });
+  it("sets areaServed to Santa Catarina", () => {
+    expect(jsonLd.areaServed).toEqual({ "@type": "State", name: "Santa Catarina" });
   });
 
   it("serialises to valid JSON without throwing", () => {

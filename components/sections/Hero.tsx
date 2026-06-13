@@ -77,7 +77,7 @@ export default function Hero() {
           Arquitetura que guia,<br />
           <em className="italic font-light text-brand-primary">do primeiro traço</em>
           <br />
-          à obra.
+          à obra construída.
         </motion.h1>
 
         <motion.p
@@ -85,10 +85,10 @@ export default function Hero() {
           initial="hidden"
           animate="show"
           variants={fadeUp}
-          className="mt-9 mb-11 max-w-[52ch] text-stone-500 leading-[1.8]"
+          className="mt-9 mb-11 max-w-[58ch] text-stone-500 leading-[1.8]"
           style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)", opacity: 0.85 }}
         >
-          Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.
+          Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento. Guiamos você desde a escolha do terreno até a entrega das chaves.
         </motion.p>
 
         <motion.div
@@ -102,7 +102,7 @@ export default function Hero() {
             Inicie seu projeto <span className="arrow" />
           </a>
           <a href="#servicos" className="hd-btn hd-btn--ghost">
-            Conheça a esteira <span className="arrow" />
+            Conheça os serviços <span className="arrow" />
           </a>
         </motion.div>
       </div>

@@ -19,12 +19,13 @@ describe("Diferenciais", () => {
     expect(screen.getByText(/o que nos torna/i)).toBeInTheDocument();
   });
 
-  it("renders all 9 differential items numbered 01–09", () => {
+  it("renders all 8 differential items numbered 01–08", () => {
     render(<Diferenciais />);
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= 8; i++) {
       expect(
         screen.getByText(String(i).padStart(2, "0"))
       ).toBeInTheDocument();
     }
+    expect(screen.queryByText("09")).not.toBeInTheDocument();
   });
 });

@@ -71,7 +71,7 @@ export default function Portfolio() {
         >
           <div>
             <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-brand-accent">
-              05 · Portfólio
+              06 · Portfólio
             </span>
             <h2
               className="font-display font-normal mt-3 mb-0 text-brand-dark"
