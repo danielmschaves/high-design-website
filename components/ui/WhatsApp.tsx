@@ -21,8 +21,11 @@ export default function WhatsApp() {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.08 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed bottom-8 right-8 z-[310] w-[52px] h-[52px] flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.28)] transition-shadow duration-300"
-      style={{ background: "#25D366" }}
+      className="fixed right-8 z-[310] w-[52px] h-[52px] flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_6px_28px_rgba(0,0,0,0.28)] transition-[bottom,box-shadow] duration-[400ms] ease-brand"
+      style={{
+        background: "#25D366",
+        bottom: "calc(2rem + var(--cookie-banner-offset, 0px))",
+      }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
