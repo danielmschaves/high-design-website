@@ -21,7 +21,6 @@ export default function Navbar() {
     { label: "Serviços",     href: "#servicos" },
     { label: "Portfólio", href: "#portfolio" },
     { label: "Blog",      href: "/blog" },
-    { label: "Contato",   href: "#contato" },
   ];
 
   return (

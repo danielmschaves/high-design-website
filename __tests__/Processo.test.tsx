@@ -27,12 +27,10 @@ describe("Processo", () => {
     expect(screen.getByText(/decisões mais seguras/i)).toBeInTheDocument();
   });
 
-  it("renders all 12 pipeline steps", () => {
+  it("no longer renders the 12-step technical pipeline", () => {
     render(<Processo />);
-    const steps = screen.getAllByRole("listitem");
-    expect(steps).toHaveLength(12);
-    expect(screen.getByText("Levantamento")).toBeInTheDocument();
-    expect(screen.getByText("Compatibilização")).toBeInTheDocument();
-    expect(screen.getByText("Gestão da Obra")).toBeInTheDocument();
+    expect(screen.queryByText("Levantamento")).not.toBeInTheDocument();
+    expect(screen.queryByText("Gestão da Obra")).not.toBeInTheDocument();
+    expect(screen.queryAllByRole("listitem")).toHaveLength(0);
   });
 });

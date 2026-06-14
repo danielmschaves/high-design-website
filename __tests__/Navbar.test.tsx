@@ -14,7 +14,13 @@ describe("Navbar", () => {
     expect(screen.getByRole("link", { name: /sobre/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /serviços/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /portfólio/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /contato/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /blog/i })).toBeInTheDocument();
+  });
+
+  it("does not render a standalone 'Contato' nav link", () => {
+    render(<Navbar />);
+    // The contact section is reached via the "Iniciar projeto" CTA, not a nav link.
+    expect(screen.queryByRole("link", { name: /^contato$/i })).not.toBeInTheDocument();
   });
 
   it("renders the CTA button linking to #contato", () => {
