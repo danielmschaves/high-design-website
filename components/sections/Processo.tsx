@@ -26,21 +26,6 @@ const vantagens = [
   },
 ];
 
-const etapas = [
-  "Levantamento",
-  "Briefing",
-  "Estudo de Massa",
-  "Estudo Preliminar",
-  "Viabilidade Financeira",
-  "Projeto Legal",
-  "Compatibilização",
-  "Anteprojeto",
-  "Projeto Executivo",
-  "Planejamento de Obra",
-  "Orçamento Executivo",
-  "Gestão da Obra",
-];
-
 export default function Processo() {
   return (
     <section
@@ -73,7 +58,7 @@ export default function Processo() {
 
         {/* Three advantages */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-primary/20 mb-16 md:mb-24"
+          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-primary/20"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -95,69 +80,6 @@ export default function Processo() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Technical pipeline — scale-bar / dimension line */}
-        <div>
-          <div className="flex items-baseline justify-between mb-7">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent">
-              A esteira técnica, em resumo
-            </p>
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-stone-500">
-              01 — 12
-            </p>
-          </div>
-          <motion.ol
-            className="list-none p-0 m-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-brand-primary/15 border-t-2 border-brand-dark"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {etapas.map((etapa, i) => {
-              const isDestination = i === etapas.length - 1;
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <motion.li
-                  key={etapa}
-                  variants={fadeUp}
-                  className={`relative overflow-hidden min-h-[132px] p-5 lg:p-6 flex flex-col justify-end ${
-                    isDestination ? "bg-brand-dark" : "bg-brand-secondary"
-                  }`}
-                >
-                  {/* tick descending from the baseline */}
-                  <span
-                    aria-hidden
-                    className={`absolute top-0 left-0 w-px h-3 ${
-                      isDestination ? "bg-brand-white" : "bg-brand-accent"
-                    }`}
-                  />
-                  {/* oversized ghost ordinal */}
-                  <span
-                    aria-hidden
-                    className={`absolute -top-3 right-1 font-mono font-bold leading-none select-none ${
-                      isDestination ? "text-brand-white/10" : "text-brand-primary/[0.07]"
-                    }`}
-                    style={{ fontSize: "4rem" }}
-                  >
-                    {num}
-                  </span>
-                  <span className="relative font-mono text-[10px] tracking-[0.22em] text-brand-accent mb-1.5">
-                    {num}
-                  </span>
-                  <span
-                    className={`relative font-display leading-[1.25] ${
-                      isDestination
-                        ? "text-brand-white text-[15px] font-bold"
-                        : "text-brand-dark text-[14px]"
-                    }`}
-                  >
-                    {etapa}
-                  </span>
-                </motion.li>
-              );
-            })}
-          </motion.ol>
-        </div>
       </div>
     </section>
   );

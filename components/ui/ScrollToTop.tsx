@@ -23,7 +23,8 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, scale: 0.8 }}
           whileHover={{ scale: 1.1, opacity: 1 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-24 right-8 z-[190] w-11 h-11 bg-brand-dark border border-brand-accent/30 cursor-pointer flex items-center justify-center opacity-[0.85]"
+          className="fixed right-8 z-[190] w-11 h-11 bg-brand-dark border border-brand-accent/30 cursor-pointer flex items-center justify-center opacity-[0.85] transition-[bottom] duration-[400ms] ease-brand"
+          style={{ bottom: "calc(6rem + var(--cookie-banner-offset, 0px))" }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <line x1="7" y1="12" x2="7" y2="2" stroke="#f5f2ee" strokeWidth="1.2" strokeLinecap="square" />

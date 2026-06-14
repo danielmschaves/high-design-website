@@ -1,18 +1,44 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const STORAGE_KEY = "hd_cookie_consent";
+// Floating buttons (WhatsApp, ScrollToTop) read this offset so they rise above
+// the banner while it's visible and settle back once it's dismissed.
+const OFFSET_VAR = "--cookie-banner-offset";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!localStorage.getItem(STORAGE_KEY)) {
       setVisible(true);
     }
   }, []);
+
+  // Publish the banner's measured height (plus a gap) as a CSS variable while
+  // it's visible; reset to 0 when hidden so the buttons return to their resting
+  // position. A ResizeObserver keeps it accurate when the banner wraps on mobile.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (!visible) {
+      root.style.setProperty(OFFSET_VAR, "0px");
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const apply = () =>
+      root.style.setProperty(OFFSET_VAR, `${el.offsetHeight + 16}px`);
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      root.style.setProperty(OFFSET_VAR, "0px");
+    };
+  }, [visible]);
 
   const accept = () => {
     localStorage.setItem(STORAGE_KEY, "accepted");
@@ -23,6 +49,7 @@ export default function CookieBanner() {
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={ref}
           role="region"
           aria-label="Aviso de privacidade"
           initial={{ y: "100%" }}
