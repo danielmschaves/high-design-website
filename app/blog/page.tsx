@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import BlogHeader from "@/components/blog/BlogHeader";
-import PostCard from "@/components/blog/PostCard";
+import BlogIndexList from "@/components/blog/BlogIndexList";
 import Footer from "@/components/sections/Footer";
 import { getAllPosts } from "@/lib/blog";
 
@@ -25,7 +25,6 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   const posts = getAllPosts();
-  const [featured, ...rest] = posts;
 
   return (
     <>
@@ -35,7 +34,7 @@ export default function BlogIndex() {
         {/* Hero / chapter header */}
         <section
           className="relative overflow-hidden"
-          style={{ padding: "var(--space-9) var(--gutter) var(--space-8)" }}
+          style={{ padding: "var(--space-9) var(--gutter) var(--space-7)" }}
         >
           {/* Monogram watermark */}
           <div
@@ -52,48 +51,49 @@ export default function BlogIndex() {
             />
           </div>
 
-          <div className="max-w-content mx-auto">
-            <div className="hd-chapter">
-              <div className="num">Blog · Artigos</div>
-              <div>
-                <h1
-                  className="font-display font-normal text-brand-dark m-0"
-                  style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.75rem)", lineHeight: 1.05, letterSpacing: "-0.01em", maxWidth: "20ch" }}
-                >
-                  Conteúdo que guia,
-                  <br />
-                  <em className="italic text-brand-primary">do primeiro traço à obra</em>
-                </h1>
-                <p className="hd-lead mt-4 mb-0">
-                  Textos técnicos e didáticos sobre arquitetura, orçamento, terrenos e como construir com segurança.
-                </p>
+          <div className="max-w-content mx-auto grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-end">
+            <div>
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3.5 mb-7">
+                <span className="inline-block h-px bg-brand-accent" style={{ width: "44px" }} aria-hidden />
+                <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-brand-accent">
+                  Blog · Artigos
+                </span>
               </div>
+
+              <h1
+                className="font-display font-normal text-brand-dark m-0"
+                style={{
+                  fontSize: "clamp(2.25rem, 5vw, 4rem)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.02em",
+                  maxWidth: "16ch",
+                }}
+              >
+                Conteúdo que guia,{" "}
+                <em className="italic text-brand-primary">do primeiro traço à obra</em>
+              </h1>
+              <p className="hd-lead mt-6 mb-0">
+                Textos técnicos e didáticos sobre arquitetura, orçamento, terrenos e como construir com
+                segurança.
+              </p>
+            </div>
+
+            {/* Post count */}
+            <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-stone-500 md:text-right leading-[1.9]">
+              <strong
+                className="block font-display font-normal text-brand-dark"
+                style={{ fontSize: "3rem", letterSpacing: "-0.02em" }}
+              >
+                {String(posts.length).padStart(2, "0")}
+              </strong>
+              {posts.length === 1 ? "artigo publicado" : "artigos publicados"}
             </div>
           </div>
         </section>
 
-        {/* Artigo em destaque */}
-        <section style={{ padding: "0 var(--gutter) var(--space-8)" }}>
-          <div className="max-w-content mx-auto">
-            <PostCard post={featured} variant="feature" />
-          </div>
-        </section>
-
-        {/* Demais artigos */}
-        {rest.length > 0 && (
-          <section
-            style={{ padding: "var(--space-7) var(--gutter) var(--space-10)" }}
-          >
-            <div className="max-w-content mx-auto">
-              <hr className="hd-rule mb-10" />
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {rest.map((post, i) => (
-                  <PostCard key={post.slug} post={post} variant="default" />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        {/* Lista filtrável */}
+        <BlogIndexList posts={posts} />
       </main>
 
       <Footer />
