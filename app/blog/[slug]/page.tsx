@@ -6,6 +6,8 @@ import BlogHeader from "@/components/blog/BlogHeader";
 import PostBody from "@/components/blog/PostBody";
 import PostCard from "@/components/blog/PostCard";
 import ReadingProgress from "@/components/blog/ReadingProgress";
+import AuthorCard from "@/components/blog/AuthorCard";
+import ArticleCTA from "@/components/blog/ArticleCTA";
 import Footer from "@/components/sections/Footer";
 import {
   getAllPosts,
@@ -65,7 +67,6 @@ export default async function BlogPost({
   const prevPost = idx > 0 ? allPosts[idx - 1] : null;
   const nextPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
   const related = getRelatedPosts(slug, 2);
-  const postNumber = String(idx + 1).padStart(2, "0");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,87 +99,108 @@ export default async function BlogPost({
       <ReadingProgress />
 
       <main style={{ paddingTop: "96px" }}>
-        {/* Hero do artigo */}
-        <section
-          className="relative overflow-hidden"
-          style={{ padding: "var(--space-9) var(--gutter) var(--space-7)" }}
+        {/* Hero do artigo — editorial centrado */}
+        <header
+          className="mx-auto text-center"
+          style={{ maxWidth: "880px", padding: "var(--space-9) var(--gutter) var(--space-7)" }}
         >
-          {/* Monogram watermark */}
-          <div
-            className="absolute right-[-60px] top-[-40px] pointer-events-none select-none"
-            aria-hidden
-            style={{ width: "400px", opacity: 0.04 }}
-          >
-            <Image
-              src="/assets/logos/Ativo 2.png"
-              alt=""
-              width={400}
-              height={400}
-              className="w-full h-auto"
-            />
-          </div>
-
-          <div className="max-w-content mx-auto">
-            {/* Breadcrumb */}
-            <Link
-              href="/blog"
-              className="font-mono text-[10px] tracking-[0.22em] uppercase text-stone-500 no-underline hover:text-brand-dark transition-colors duration-[420ms] inline-flex items-center gap-3 mb-10"
-            >
-              <span
-                className="inline-block h-px bg-current"
-                style={{ width: "14px" }}
-              />
-              Todos os artigos
+          {/* Breadcrumb */}
+          <nav className="flex items-center justify-center flex-wrap gap-3 font-mono text-[10px] tracking-[0.18em] uppercase text-stone-500 mb-8">
+            <Link href="/" className="no-underline text-stone-500 hover:text-brand-accent transition-colors duration-[420ms]">
+              High Design
             </Link>
+            <span className="inline-block h-px bg-stone-300" style={{ width: "16px" }} aria-hidden />
+            <Link href="/blog" className="no-underline text-stone-500 hover:text-brand-accent transition-colors duration-[420ms]">
+              Blog
+            </Link>
+            <span className="inline-block h-px bg-stone-300" style={{ width: "16px" }} aria-hidden />
+            <span>{post.category}</span>
+          </nav>
 
-            {/* Kicker */}
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent mb-5">
-              Nº {postNumber} · {post.category} · {post.readingTime}
-            </p>
+          {/* Category chip */}
+          <span className="hd-article-cat mb-7">{post.category}</span>
 
-            {/* Título */}
-            <h1
-              className="font-display font-normal text-brand-dark m-0 mb-6"
-              style={{
-                fontSize: "clamp(1.75rem, 3.8vw, 3.25rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.015em",
-                maxWidth: "22ch",
-              }}
-            >
-              {post.title}
-            </h1>
+          {/* Título */}
+          <h1
+            className="font-display font-normal text-brand-dark mx-auto m-0 mb-7"
+            style={{
+              fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.02em",
+              maxWidth: "22ch",
+            }}
+          >
+            {post.title}
+          </h1>
 
-            {/* Byline */}
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-stone-500 m-0">
-              Emanoella Goulart · High Design Arquitetura
-            </p>
+          {/* Standfirst */}
+          <p
+            className="font-display font-normal text-stone-500 mx-auto m-0"
+            style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.3rem)", lineHeight: 1.6, maxWidth: "58ch" }}
+          >
+            {post.description}
+          </p>
+        </header>
+
+        {/* Meta bar */}
+        <div style={{ padding: "0 var(--gutter)" }}>
+          <div
+            className="mx-auto flex items-center justify-center flex-wrap gap-x-7 gap-y-4 border-y border-stone-300"
+            style={{ maxWidth: "880px", padding: "var(--space-5) 0" }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="hd-avatar" style={{ width: "44px", height: "44px", fontSize: "14px" }} aria-hidden>
+                EG
+              </span>
+              <span className="flex flex-col text-left">
+                <span className="text-[13px] text-brand-dark font-medium">Emanoella Goulart</span>
+                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-stone-500 mt-[2px]">
+                  Arquiteta · High Design
+                </span>
+              </span>
+            </div>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-stone-300" aria-hidden />
+            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">{post.date}</span>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-stone-300" aria-hidden />
+            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">
+              {post.readingTime} de leitura
+            </span>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-stone-300" aria-hidden />
+            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">{post.kicker}</span>
           </div>
-        </section>
+        </div>
 
         {/* Capa */}
-        <div style={{ padding: "0 var(--gutter)", marginBottom: "var(--space-8)" }}>
+        <div style={{ padding: "var(--space-7) var(--gutter) 0", marginBottom: "var(--space-8)" }}>
           <div className="max-w-content mx-auto">
-            <div
-              className="hd-tile w-full"
-              style={{ aspectRatio: "21/9", maxHeight: "520px" }}
-            >
+            <div className="hd-tile w-full" style={{ aspectRatio: "16/8", maxHeight: "560px" }}>
               <Image
                 src={post.cover}
                 alt={post.title}
                 fill
-                sizes="(max-width: 768px) 100vw, 1440px"
+                sizes="(max-width: 768px) 100vw, 1180px"
                 className="object-cover object-center"
                 priority
               />
+            </div>
+            <div className="flex justify-between gap-5 mt-4 font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">
+              <span>{post.kicker}</span>
+              <span>Fig. 01</span>
             </div>
           </div>
         </div>
 
         {/* Corpo do artigo */}
-        <section style={{ padding: "0 var(--gutter) var(--space-9)" }}>
+        <section style={{ padding: "0 var(--gutter) var(--space-8)" }}>
           <div className="max-w-content mx-auto">
             <PostBody body={post.body} />
+          </div>
+        </section>
+
+        {/* Sobre a autora */}
+        <section style={{ padding: "0 var(--gutter) var(--space-9)" }}>
+          <div className="mx-auto" style={{ maxWidth: "720px" }}>
+            <AuthorCard />
           </div>
         </section>
 
@@ -251,6 +273,13 @@ export default async function BlogPost({
             </div>
           </section>
         )}
+
+        {/* CTA band */}
+        <section style={{ padding: "var(--space-9) var(--gutter) var(--space-10)" }}>
+          <div className="max-w-content mx-auto">
+            <ArticleCTA />
+          </div>
+        </section>
       </main>
 
       <Footer />

@@ -20,6 +20,7 @@ export default function Navbar() {
     { label: "Por que a HD", href: "#diferenciais" },
     { label: "Serviços",     href: "#servicos" },
     { label: "Portfólio", href: "#portfolio" },
+    { label: "Blog",      href: "/blog" },
     { label: "Contato",   href: "#contato" },
   ];
 

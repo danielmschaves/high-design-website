@@ -299,6 +299,63 @@ textarea:focus-visible {
     .hd-chapter { grid-template-columns: 1fr; gap: 10px; }
   }
 
+  /* ─── Blog: dropcap initial ─── */
+  .hd-dropcap-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 3.8rem;
+    line-height: 0.78;
+    color: var(--color-brand-primary);
+    padding: 6px 14px 0 0;
+  }
+
+  /* ─── Blog: article category chip ─── */
+  .hd-article-cat {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-brand-accent);
+    border: 1px solid var(--color-stone-300);
+    padding: 7px 14px;
+  }
+
+  /* ─── Blog: author avatar ─── */
+  .hd-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-brand-primary);
+    color: var(--color-brand-white);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── Blog: category filter chips ─── */
+  .hd-cat-chip {
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-stone-500);
+    border: 1px solid var(--color-stone-300);
+    background: transparent;
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: all var(--duration-emphatic) var(--ease-brand-emphatic);
+  }
+  .hd-cat-chip:hover,
+  .hd-cat-chip.is-active {
+    background: var(--color-brand-dark);
+    color: var(--color-brand-white);
+    border-color: var(--color-brand-dark);
+  }
+
   /* ─── Inline arrow (navbar CTA) ─── */
   .hd-arrow-inline {
     display: inline-block;
