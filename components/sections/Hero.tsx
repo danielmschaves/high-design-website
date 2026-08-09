@@ -12,8 +12,8 @@ const fadeUp = {
 };
 
 const meta = [
-  { k: "Método",  v: <>Um <strong className="font-bold">processo claro</strong> em cada etapa</> },
-  { k: "Técnica", v: <><strong className="font-bold">Rigor</strong> e responsabilidade projetual</> },
+  { k: "Método",  v: <>Você sabe <strong className="font-bold">o que vem</strong> em cada etapa</> },
+  { k: "Técnica", v: <>Cada decisão tem <strong className="font-bold">uma razão técnica</strong></> },
   { k: "Obra",    v: <>Todo projeto nasce <strong className="font-bold">para ser construído</strong></> },
   {
     k: "Contato",
@@ -88,7 +88,7 @@ export default function Hero() {
           className="mt-9 mb-11 max-w-[58ch] text-stone-500 leading-[1.8]"
           style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.05rem)", opacity: 0.85 }}
         >
-          Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento. Guiamos você desde a escolha do terreno até a entrega das chaves.
+          Transformamos histórias em espaços bem planejados, com método, técnica e acolhimento. Da escolha do terreno até a entrega das chaves, você tem alguém ao seu lado em cada decisão.
         </motion.p>
 
         <motion.div
@@ -99,10 +99,10 @@ export default function Hero() {
           className="flex items-center justify-center gap-4 flex-wrap"
         >
           <a href="#contato" className="hd-btn">
-            Inicie seu projeto <span className="arrow" />
+            Quero começar meu projeto <span className="arrow" />
           </a>
           <a href="#servicos" className="hd-btn hd-btn--ghost">
-            Conheça os serviços <span className="arrow" />
+            Ver como trabalhamos <span className="arrow" />
           </a>
         </motion.div>
       </div>

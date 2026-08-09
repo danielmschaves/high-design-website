@@ -30,24 +30,24 @@ export const posts: BlogPost[] = [
     slug: "projeto-que-nunca-vira-obra",
     title: "Por que tantos projetos lindos nunca viram obra (e como evitar isso)",
     description:
-      "O erro mais caro da construção não acontece na obra — acontece no projeto. Entenda por que projetos bonitos param no papel e o que torna um projeto realmente executável.",
+      "O erro mais caro da construção não acontece na obra. Ele acontece no projeto. Entenda por que projetos bonitos param no papel e o que torna um projeto realmente executável.",
     category: "Antes de começar",
     readingTime: "~6 min",
     date: "10 Jun 2026",
     kicker: "Projeto · Exequibilidade",
     cover: "/assets/images/04c863415f33702f810a01f9cf1549a8.jpg",
     excerpt:
-      "Existe uma cena que se repete em escritórios de arquitetura por todo o Brasil. O cliente recebe um projeto encantador — renders impecáveis, uma casa dos sonhos. Ele aprova, pede orçamento de obra. O custo real é o dobro do que tem para investir. O projeto vai para a gaveta.",
+      "Existe uma cena que se repete em escritórios de arquitetura por todo o Brasil. O cliente recebe um projeto encantador, com renders impecáveis e uma casa dos sonhos. Ele aprova, pede orçamento de obra. O custo real é o dobro do que tem para investir. O projeto vai para a gaveta.",
     body: [
       {
         type: "paragraph",
         dropcap: true,
         leadIn: "A cena ·",
-        text: "Existe uma cena que se repete em escritórios de arquitetura por todo o Brasil. O cliente recebe um projeto encantador — plantas humanizadas, renders impecáveis, uma casa dos sonhos em três dimensões. Ele aprova, paga, comemora. E então pede um orçamento de obra. É aí que o sonho trava: o custo real é o dobro do que ele tem para investir. O projeto, lindo como é, não cabe na realidade. Ele vai para a gaveta.",
+        text: "Existe uma cena que se repete em escritórios de arquitetura por todo o Brasil. O cliente recebe um projeto encantador: plantas humanizadas, renders impecáveis, uma casa dos sonhos em três dimensões. Ele aprova, paga, comemora. E então pede um orçamento de obra. É aí que o sonho trava: o custo real é o dobro do que ele tem para investir. O projeto, lindo como é, não cabe na realidade. Ele vai para a gaveta.",
       },
       {
         type: "paragraph",
-        text: "Esse não é um caso isolado. É talvez a falha mais comum — e mais cara — do mercado de arquitetura. E quase sempre tem a mesma origem: o projeto foi concebido sem considerar o **orçamento real da obra** desde o primeiro traço.",
+        text: "Esse não é um caso isolado. É talvez a falha mais comum e mais cara do mercado de arquitetura. E quase sempre tem a mesma origem: o projeto foi concebido sem considerar o **orçamento real da obra** desde o primeiro traço.",
       },
       {
         type: "heading",
@@ -85,7 +85,7 @@ export const posts: BlogPost[] = [
           },
           {
             title: "Estudo de Viabilidade Financeira antes do detalhamento",
-            text: "Um pré-orçamento que separa a \"parte cinza\" (estrutura) do raio-x dos acabamentos permite decidir com base em números reais — e ajustar o projeto enquanto ajustar ainda é barato.",
+            text: "Um pré-orçamento que separa a \"parte cinza\" (estrutura) do raio-x dos acabamentos permite decidir com base em números reais e ajustar o projeto enquanto ajustar ainda é barato.",
           },
           {
             title: "Compatibilização entre arquitetura e engenharia",
@@ -104,7 +104,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "A pergunta certa não é \"quanto vai ficar bonito?\", mas \"isto cabe na minha realidade — e como eu tenho certeza disso antes de investir na minha construção?\".",
+        text: "A pergunta certa não é \"quanto vai ficar bonito?\", mas \"isto cabe na minha realidade, e como eu tenho certeza disso antes de investir na minha construção?\".",
       },
       {
         type: "nextStep",
@@ -119,20 +119,20 @@ export const posts: BlogPost[] = [
     slug: "viabilidade-de-terreno-antes-de-comprar",
     title: "Antes de comprar o terreno: o que a viabilidade revela (e que ninguém te conta)",
     description:
-      "Nem todo terreno permite construir o que você imagina. Entenda o que uma análise de viabilidade revela sobre zoneamento, recuos e potencial construtivo — antes de assinar a compra.",
+      "Nem todo terreno permite construir o que você imagina. Entenda o que uma análise de viabilidade revela sobre zoneamento, recuos e potencial construtivo, antes de assinar a compra.",
     category: "Antes de começar",
     readingTime: "~7 min",
     date: "02 Jun 2026",
     kicker: "Terreno · Viabilidade",
     cover: "/assets/images/2f1b802614bd75a610e756275d26d87e.jpg",
     excerpt:
-      "Comprar um terreno parece simples: você gosta da localização, o preço cabe no bolso, fecha negócio. Mas o terreno guarda informações que não estão à vista — e que determinam, antes de qualquer projeto, o que você pode (ou não pode) construir ali.",
+      "Comprar um terreno parece simples: você gosta da localização, o preço cabe no bolso, fecha negócio. Mas o terreno guarda informações que não estão à vista e que determinam, antes de qualquer projeto, o que você pode (ou não pode) construir ali.",
     body: [
       {
         type: "paragraph",
         dropcap: true,
         leadIn: "A compra ·",
-        text: "Comprar um terreno parece simples: você gosta da localização, o preço cabe no bolso, fecha negócio. Mas o terreno guarda informações que não estão à vista — e que determinam, antes de qualquer projeto, o que você pode (ou não pode) construir ali. Descobrir isso depois da compra é uma das formas mais frustrantes de perder dinheiro.",
+        text: "Comprar um terreno parece simples: você gosta da localização, o preço cabe no bolso, fecha negócio. Mas o terreno guarda informações que não estão à vista e que determinam, antes de qualquer projeto, o que você pode (ou não pode) construir ali. Descobrir isso depois da compra é uma das formas mais frustrantes de perder dinheiro.",
       },
       {
         type: "heading",
@@ -161,11 +161,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Muitos compradores solicitam a consulta de viabilidade municipal e acham que está resolvido. O documento é essencial — mas é técnico, e interpretá-lo corretamente exige conhecimento de código de obras e uso e ocupação do solo.",
+        text: "Muitos compradores solicitam a consulta de viabilidade municipal e acham que está resolvido. O documento é essencial, mas é técnico, e interpretá-lo corretamente exige conhecimento de código de obras e uso e ocupação do solo.",
       },
       {
         type: "pullquote",
-        text: "Uma leitura equivocada pode dar falsa segurança a uma compra inviável — ou _descartar um terreno que era perfeitamente bom._",
+        text: "Uma leitura equivocada pode dar falsa segurança a uma compra inviável, ou então _descartar um terreno que era perfeitamente bom._",
         cite: "Leitura técnica · High Design",
       },
       {
@@ -175,7 +175,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Antes de comprar, é possível ter em mãos um diagnóstico completo — e um veredito objetivo, baseado em dados, não em intuição.",
+        text: "Antes de comprar, é possível ter em mãos um diagnóstico completo e um veredito objetivo, baseado em dados e não em intuição.",
       },
       {
         type: "steps",
@@ -194,7 +194,7 @@ export const posts: BlogPost[] = [
           },
           {
             title: "Veredito com indicadores de custo",
-            text: "Recomendado, Recomendado com Ressalvas ou Não Recomendado — com uma primeira ordem de grandeza de custo.",
+            text: "Recomendado, Recomendado com Ressalvas ou Não Recomendado, já com uma primeira ordem de grandeza de custo.",
           },
         ],
       },
@@ -205,12 +205,12 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Avaliar um terreno antes de comprá-lo é, proporcionalmente, uma das decisões **mais baratas** de toda a jornada construtiva — e uma das que mais protege o seu capital. Um terreno comprado às cegas pode custar caro em duas frentes: o valor pago por algo que não serve ao seu projeto, e o custo de adaptar o sonho ao que o lote realmente permite.",
+        text: "Avaliar um terreno antes de comprá-lo é, proporcionalmente, uma das decisões **mais baratas** de toda a jornada construtiva e uma das que mais protegem o seu capital. Um terreno comprado às cegas pode custar caro em duas frentes: o valor pago por algo que não serve ao seu projeto, e o custo de adaptar o sonho ao que o lote realmente permite.",
       },
       {
         type: "nextStep",
         label: "Próximo passo",
-        text: "A Consultoria de Aquisição de Terreno investiga o que não é visível ao olho leigo e entrega um parecer claro sobre a viabilidade do lote — antes da assinatura.",
+        text: "A Consultoria de Aquisição de Terreno investiga o que não é visível ao olho leigo e entrega um parecer claro sobre a viabilidade do lote, antes da assinatura.",
         cta: { href: "/#servicos", label: "Conheça os serviços" },
       },
     ],
@@ -220,20 +220,20 @@ export const posts: BlogPost[] = [
     slug: "quanto-custa-construir",
     title: "Quanto custa construir? Por que ninguém sério responde isso na primeira reunião",
     description:
-      "\"Quanto custa o m²?\" é a pergunta mais comum — e a mais perigosa quando respondida cedo demais. Entenda como o custo de uma obra é estimado de verdade, etapa por etapa.",
+      "\"Quanto custa o m²?\" é a pergunta mais comum e também a mais perigosa quando respondida cedo demais. Entenda como o custo de uma obra é estimado de verdade, etapa por etapa.",
     category: "Orçamento e planejamento",
     readingTime: "~7 min",
     date: "26 Mai 2026",
     kicker: "Custo · CUB",
     cover: "/assets/images/3be025d3627c2467c8a208c9fa75d44d.jpg",
     excerpt:
-      "\"Quanto custa o metro quadrado?\" é provavelmente a primeira pergunta que todo cliente faz. É uma pergunta legítima — afinal, ninguém quer começar uma obra sem saber onde está se metendo. Mas é também a que mais leva a frustração quando respondida rápido demais.",
+      "\"Quanto custa o metro quadrado?\" é provavelmente a primeira pergunta que todo cliente faz. É uma pergunta legítima, afinal ninguém quer começar uma obra sem saber onde está se metendo. Mas é também a que mais leva a frustração quando respondida rápido demais.",
     body: [
       {
         type: "paragraph",
         dropcap: true,
         leadIn: "A pergunta ·",
-        text: "\"Quanto custa o metro quadrado?\" é provavelmente a primeira pergunta que todo cliente faz. É uma pergunta legítima — afinal, ninguém quer começar uma obra sem saber onde está se metendo. Mas é também a pergunta que mais leva a frustração quando respondida rápido demais, com um número fechado dado de improviso. Um profissional sério evita o chute. E há boas razões para isso.",
+        text: "\"Quanto custa o metro quadrado?\" é provavelmente a primeira pergunta que todo cliente faz. É uma pergunta legítima, afinal ninguém quer começar uma obra sem saber onde está se metendo. Mas é também a pergunta que mais leva a frustração quando respondida rápido demais, com um número fechado dado de improviso. Um profissional sério evita o chute. E há boas razões para isso.",
       },
       {
         type: "heading",
@@ -246,13 +246,13 @@ export const posts: BlogPost[] = [
       },
       {
         type: "pullquote",
-        text: "Um número dado cedo demais é, no melhor caso, um chute. No pior, _uma promessa que vai ser quebrada_ — com o cliente pagando a diferença.",
+        text: "Um número dado cedo demais é, no melhor caso, um chute. No pior, _uma promessa que vai ser quebrada_, com o cliente pagando a diferença.",
         cite: "Responsabilidade orçamentária · High Design",
       },
       {
         type: "heading",
         num: "02",
-        text: "Como o custo é estimado de verdade — em camadas",
+        text: "Como o custo é estimado de verdade, em camadas",
       },
       {
         type: "paragraph",
@@ -267,7 +267,7 @@ export const posts: BlogPost[] = [
           },
           {
             title: "Estudo de Viabilidade Financeira",
-            text: "Um pré-orçamento que separa estrutura (\"parte cinza\") de acabamentos, suficiente para saber se o projeto cabe no seu limite — e onde estão os maiores pesos.",
+            text: "Um pré-orçamento que separa estrutura (\"parte cinza\") de acabamentos, suficiente para saber se o projeto cabe no seu limite e onde estão os maiores pesos.",
           },
           {
             title: "Orçamento Executivo",
@@ -291,7 +291,7 @@ export const posts: BlogPost[] = [
       {
         type: "nextStep",
         label: "Próximo passo",
-        text: "O Orçamento Detalhado de Obra levanta os custos reais a partir do seu projeto executivo e de cotações de mercado — uma base sólida para negociar com construtores e controlar gastos sem surpresas.",
+        text: "O Orçamento Detalhado de Obra levanta os custos reais a partir do seu projeto executivo e de cotações de mercado. É uma base sólida para negociar com construtores e controlar gastos sem surpresas.",
         cta: { href: "/#servicos", label: "Conheça os serviços" },
       },
     ],
@@ -308,13 +308,13 @@ export const posts: BlogPost[] = [
     kicker: "Projeto · Engenharia",
     cover: "/assets/images/69a3d43734db3451996709d7ff87e6b7.jpg",
     excerpt:
-      "Há uma etapa do projeto que o cliente raramente vê, raramente entende — e que frequentemente é ignorada por escritórios para baratear a proposta. É também uma das que mais protege o bolso de quem constrói.",
+      "Há uma etapa do projeto que o cliente raramente vê, raramente entende e que frequentemente é ignorada por escritórios para baratear a proposta. É também uma das que mais protege o bolso de quem constrói.",
     body: [
       {
         type: "paragraph",
         dropcap: true,
         leadIn: "O bastidor ·",
-        text: "Há uma etapa do projeto que o cliente raramente vê, raramente entende — e que frequentemente é ignorada por escritórios para baratear a proposta. É também uma das que mais protege o bolso de quem constrói. Chama-se compatibilização, e a sua ausência é a origem da maioria dos retrabalhos caros de uma obra.",
+        text: "Há uma etapa do projeto que o cliente raramente vê, raramente entende e que frequentemente é ignorada por escritórios para baratear a proposta. É também uma das que mais protege o bolso de quem constrói. Chama-se compatibilização, e a sua ausência é a origem da maioria dos retrabalhos caros de uma obra.",
       },
       {
         type: "heading",
@@ -323,11 +323,11 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Uma casa não tem apenas um projeto. Tem o arquitetônico, o estrutural, o elétrico, o hidrossanitário — e cada um costuma ser desenhado por uma disciplina diferente. Compatibilizar é coordenar todos esses projetos entre si, garantindo que eles não se contradigam quando saírem do papel e virarem obra.",
+        text: "Uma casa não tem apenas um projeto. Tem o arquitetônico, o estrutural, o elétrico, o hidrossanitário, e cada um costuma ser desenhado por uma disciplina diferente. Compatibilizar é coordenar todos esses projetos entre si, garantindo que eles não se contradigam quando saírem do papel e virarem obra.",
       },
       {
         type: "pullquote",
-        text: "Sem compatibilização, cada projeto está \"certo\" isoladamente — _e errado em conjunto._",
+        text: "Sem compatibilização, cada projeto está \"certo\" isoladamente, _e errado em conjunto._",
         cite: "Coordenação de disciplinas · High Design",
       },
       {
@@ -352,7 +352,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Cada um desses problemas é um retrabalho. Somados, representam a perda de **dezenas de milhares de reais** — e atrasos que ninguém previu.",
+        text: "Cada um desses problemas é um retrabalho. Somados, representam a perda de **dezenas de milhares de reais** e atrasos que ninguém previu.",
       },
       {
         type: "heading",
@@ -371,7 +371,7 @@ export const posts: BlogPost[] = [
       {
         type: "nextStep",
         label: "Próximo passo",
-        text: "No Projeto Arquitetônico e Engenharia da High Design, a compatibilização entre todas as disciplinas é parte integral do escopo — não um adicional. É assim que o projeto chega à obra sem armadilhas escondidas.",
+        text: "No Projeto Arquitetônico e Engenharia da High Design, a compatibilização entre todas as disciplinas é parte integral do escopo, e não um adicional. É assim que o projeto chega à obra sem armadilhas escondidas.",
         cta: { href: "/#servicos", label: "Conheça os serviços" },
       },
     ],
@@ -394,7 +394,7 @@ export const posts: BlogPost[] = [
         type: "paragraph",
         dropcap: true,
         leadIn: "Confiança ·",
-        text: "Contratar um arquiteto é uma decisão de confiança. Você está entregando a alguém o projeto onde as memórias mais importantes da sua vida vão acontecer — e, muitas vezes, o resultado de anos de poupança. O problema é que, na primeira reunião, tudo parece bom: portfólio bonito, conversa agradável, promessas animadoras. As diferenças reais aparecem nas perguntas que poucos clientes sabem fazer.",
+        text: "Contratar um arquiteto é uma decisão de confiança. Você está entregando a alguém o projeto onde as memórias mais importantes da sua vida vão acontecer e, muitas vezes, o resultado de anos de poupança. O problema é que, na primeira reunião, tudo parece bom: portfólio bonito, conversa agradável, promessas animadoras. As diferenças reais aparecem nas perguntas que poucos clientes sabem fazer.",
       },
       {
         type: "paragraph",
@@ -409,7 +409,7 @@ export const posts: BlogPost[] = [
           },
           {
             title: "\"O projeto inclui compatibilização entre as disciplinas?\"",
-            text: "Pergunte explicitamente. A compatibilização entre arquitetura, estrutura e instalações é o que evita retrabalhos caros na obra — e é justamente o que muitos escritórios omitem para baratear a proposta.",
+            text: "Pergunte explicitamente. A compatibilização entre arquitetura, estrutura e instalações é o que evita retrabalhos caros na obra, e é justamente o que muitos escritórios omitem para baratear a proposta.",
           },
           {
             title: "\"Como funciona o processo, etapa por etapa?\"",
@@ -417,11 +417,11 @@ export const posts: BlogPost[] = [
           },
           {
             title: "\"O que vocês entregam, exatamente, ao final?\"",
-            text: "Peça a lista de entregáveis. Um Projeto Executivo sério inclui cadernos de detalhamento — geral, ambientes, marcenaria, marmoraria, paginação de piso, esquadrias, luminotécnica, instalações. \"Plantas e renders\" não é a mesma coisa que um manual de execução.",
+            text: "Peça a lista de entregáveis. Um Projeto Executivo sério inclui cadernos de detalhamento: geral, ambientes, marcenaria, marmoraria, paginação de piso, esquadrias, luminotécnica, instalações. \"Plantas e renders\" não é a mesma coisa que um manual de execução.",
           },
           {
             title: "\"Vocês prometem preço ou prazo fechado agora?\"",
-            text: "Cuidado se a resposta for sim. Custo e prazo fechados antes de um levantamento técnico completo são promessas que costumam ser quebradas. Quem trabalha com responsabilidade evita o número fechado prematuro — e explica por quê.",
+            text: "Cuidado se a resposta for sim. Custo e prazo fechados antes de um levantamento técnico completo são promessas que costumam ser quebradas. Quem trabalha com responsabilidade evita o número fechado prematuro e explica por quê.",
           },
           {
             title: "\"Vocês acompanham a escolha de materiais e a obra?\"",
@@ -429,7 +429,7 @@ export const posts: BlogPost[] = [
           },
           {
             title: "\"Vocês me dizem 'não' quando preciso ouvir?\"",
-            text: "Talvez a mais reveladora. Um profissional que concorda com tudo não está te protegendo — está te deixando errar sozinho. Orientação firme significa alguém que conduz com segurança, aponta riscos e diz a verdade técnica, mesmo quando não é o que você queria ouvir.",
+            text: "Talvez a mais reveladora. Um profissional que concorda com tudo não está te protegendo, está te deixando errar sozinho. Orientação firme significa alguém que conduz com segurança, aponta riscos e diz a verdade técnica, mesmo quando não é o que você queria ouvir.",
           },
         ],
       },
@@ -440,7 +440,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Todas elas medem a mesma coisa: se o escritório **assume responsabilidade pelo que será construído**, ou apenas pelo que será desenhado. A arquitetura que te protege é aquela que pensa na obra real desde o primeiro traço — e que coloca o seu interesse à frente da venda fácil.",
+        text: "Todas elas medem a mesma coisa: se o escritório **assume responsabilidade pelo que será construído**, ou apenas pelo que será desenhado. A arquitetura que te protege é aquela que pensa na obra real desde o primeiro traço e que coloca o seu interesse à frente da venda fácil.",
       },
       {
         type: "pullquote",
@@ -450,7 +450,7 @@ export const posts: BlogPost[] = [
       {
         type: "nextStep",
         label: "Próximo passo",
-        text: "Na High Design, a primeira conversa é uma escuta genuína — sem compromisso. Conte sobre o seu projeto e descubra, na prática, como é ser guiado com método, clareza e acolhimento.",
+        text: "Na High Design, a primeira conversa é uma escuta genuína, sem compromisso. Conte sobre o seu projeto e descubra, na prática, como é ser guiado com método, clareza e acolhimento.",
         cta: { href: "/#contato", label: "Inicie sua conversa" },
       },
     ],

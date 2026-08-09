@@ -15,7 +15,7 @@ const jsonLd = {
   name: "High Design Arquitetura e Urbanismo",
   alternateName: "High Design ARQ.®",
   description:
-    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento — para que cada projeto vire obra construída.",
+    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento, para que cada projeto vire obra construída.",
   url: siteUrl,
   email: "contato@highdesign.arq.br",
   priceRange: "$$-$$$",

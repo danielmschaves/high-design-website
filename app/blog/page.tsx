@@ -8,11 +8,11 @@ import { getAllPosts } from "@/lib/blog";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br";
 
 export const metadata: Metadata = {
-  title: "Blog — High Design Arquitetura",
+  title: "Blog · High Design Arquitetura",
   description:
     "Conteúdo técnico e didático sobre arquitetura, viabilidade de terrenos, orçamento de obra e como escolher bem o escritório certo para o seu projeto.",
   openGraph: {
-    title: "Blog — High Design Arquitetura",
+    title: "Blog · High Design Arquitetura",
     description:
       "Conteúdo técnico e didático sobre arquitetura, viabilidade de terrenos, orçamento de obra e como escolher bem o escritório certo para o seu projeto.",
     url: `${siteUrl}/blog`,

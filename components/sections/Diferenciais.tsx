@@ -13,12 +13,12 @@ const cardFadeUp = {
 };
 
 const items = [
-  { num: "01", title: "Projetos concebidos para serem construídos",            desc: "Soluções que respeitam orçamento, terreno, normas e realidade do cliente — reduzindo erros, retrabalhos e desperdícios, com fidelidade ao conceito ao longo da obra." },
+  { num: "01", title: "Projetos concebidos para serem construídos",            desc: "Soluções que respeitam orçamento, terreno, normas e a realidade de quem contrata. Isso reduz erros, retrabalhos e desperdícios, e mantém o conceito fiel do papel até a obra." },
   { num: "02", title: "Método claro, organizado e didático",                   desc: "O cliente nunca caminha no escuro. Cada fase é explicada, cada decisão contextualizada e cada impacto antecipado com clareza." },
   { num: "03", title: "Funcional, elegante, atemporal e executável",           desc: "Os quatro pilares fundamentais de cada entrega, presentes do primeiro traço à última visita de obra." },
   { num: "04", title: "Acompanhamento próximo e orientação firme",             desc: "Agimos como uma bússola profissional: orientação estratégica, prioridades claras e suporte integral nas decisões mais sensíveis." },
   { num: "05", title: "Comunicação humana, empática e madura",                 desc: "Transparência sem distanciamento. Linguagem acessível, relação profissional e escuta genuína em cada interação." },
-  { num: "06", title: "Curadoria estética e técnica",                          desc: "Filtramos ideias, referências, soluções, materiais e orçamentos reais para cada projeto — com critério e sensibilidade." },
+  { num: "06", title: "Curadoria estética e técnica",                          desc: "Filtramos ideias, referências, soluções, materiais e orçamentos reais para cada projeto, sempre com critério e sensibilidade." },
   { num: "07", title: "Relacionamentos saudáveis e profissionais",            desc: "Processo respeitado com clientes, equipe, fornecedores e parceiros, em um ambiente organizado, colaborativo e maduro." },
   { num: "08", title: "Conhecimento técnico e sensibilidade humana",          desc: "Não entregamos só plantas e pranchas: entregamos ambientes com alma, onde técnica e humanidade coexistem em equilíbrio." },
 ];

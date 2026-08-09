@@ -27,7 +27,7 @@ export default function AuthorCard() {
         >
           Arquiteta e urbanista à frente da High Design. Conduz projetos
           residenciais e comerciais de médio a alto padrão com método, técnica e
-          acolhimento — do primeiro traço à obra.
+          acolhimento, do primeiro traço à obra.
         </p>
       </div>
     </div>

@@ -129,7 +129,7 @@ export default function Contato() {
 
             <motion.div variants={fadeUp}>
               <p className={labelClass}>Responsável técnica</p>
-              <p className="font-display text-[1.1rem] text-brand-white">Emanoella Goulart — CAU-BR</p>
+              <p className="font-display text-[1.1rem] text-brand-white">Emanoella Goulart, CAU-BR</p>
             </motion.div>
 
             <motion.div variants={fadeUp}>

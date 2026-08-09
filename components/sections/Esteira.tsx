@@ -20,7 +20,7 @@ const services: Service[] = [
       "Análise técnica, legal e ambiental do lote antes da compra. Investigamos o que não é visível ao olho leigo e entregamos um parecer objetivo: o que pode ser construído, sob quais condições e com quais implicações financeiras.",
     entregaveis: [
       "Reunião de briefing e visita técnica ao lote",
-      "Dossiê de Viabilidade — ficha técnica, análise topográfica, estudo solar",
+      "Dossiê de Viabilidade com ficha técnica, análise topográfica e estudo solar",
       "Restrições, condicionantes legais e ambientais mapeadas",
       "Veredito da arquiteta: Recomendado · com Ressalvas · Não Recomendado",
     ],
@@ -33,7 +33,7 @@ const services: Service[] = [
       "Para quem já tem o terreno e quer validar a viabilidade da construção antes de investir em projeto completo. Cruzamos suas aspirações com as normas do lote e o orçamento disponível, com clareza sobre o que é possível e viável.",
     entregaveis: [
       "Reunião de diagnóstico",
-      "Dossiê de Viabilidade Arquitetônica e Financeira — raio-x legal e ambiental",
+      "Dossiê de Viabilidade Arquitetônica e Financeira com raio-x legal e ambiental",
       "Estudo de Massa 3D e orçamento paramétrico (estrutura + acabamentos)",
       "Plantas e imagens 3D do Estudo Preliminar + reunião de direcionamento",
     ],
@@ -58,7 +58,7 @@ const services: Service[] = [
     nome: "Orçamento Detalhado de Obra",
     tagline: "Saiba exatamente quanto vai custar antes de construir.",
     descricao:
-      "Levantamento minucioso dos custos reais a partir de quantitativos extraídos do projeto executivo e cotações reais de mercado — não estimativas genéricas. Pode ser contratado para projetos da High Design ou de outros profissionais.",
+      "Levantamento minucioso dos custos reais a partir de quantitativos extraídos do projeto executivo e de cotações reais de mercado, e não de estimativas genéricas. Pode ser contratado para projetos da High Design ou de outros profissionais.",
     entregaveis: [
       "Planilha de levantamento de quantitativos",
       "Planilha orçamentária detalhada por etapa",
@@ -82,7 +82,7 @@ const services: Service[] = [
   {
     sigla: "IMÓVEL PRONTO",
     nome: "Aquisição ou Venda de Imóvel Pronto",
-    tagline: "Compre — ou venda — com informação técnica de verdade.",
+    tagline: "Compre ou venda com informação técnica de verdade.",
     descricao:
       "Para quem está adquirindo ou vendendo um imóvel já construído, em duas vertentes independentes. Na compra, uma vistoria técnica antes da assinatura revela patologias ocultas e orienta sobre direitos e prazos de garantia. Na venda, uma análise de mercado por inferência estatística define o preço justo, protegendo contra o subpreço e contra a precificação que trava o negócio.",
     entregaveis: [
@@ -95,7 +95,7 @@ const services: Service[] = [
   {
     sigla: "REFORMA",
     nome: "Projeto de Reforma e Transformação",
-    tagline: "Transforme o que já existe — com a segurança de uma obra nova.",
+    tagline: "Transforme o que já existe com a segurança de uma obra nova.",
     descricao:
       "Atende três modalidades conforme a complexidade: Transformação Completa com Ampliação (acréscimo de área, com aprovação na prefeitura e averbação na matrícula); Transformação Completa sem Ampliação (demolição e reconfiguração de ambientes, sem ampliar a área); e Transformação Simples (troca de bancada, revestimentos, pintura e marcenaria, sem mexer na estrutura).",
     entregaveis: [
@@ -133,7 +133,7 @@ export default function Esteira() {
               <em>à entrega das chaves</em>
             </h2>
             <p>
-              Sete serviços pensados para cada momento da sua jornada — com início, escopo e entrega bem definidos. Contrate de forma independente ou em sequência: quem percorre a esteira progressivamente acumula documentação, reduz retrabalho e decide com mais segurança.
+              Sete serviços pensados para cada momento da sua jornada, cada um com início, escopo e entrega bem definidos. Você contrata de forma independente ou em sequência: quem percorre a esteira progressivamente acumula documentação, reduz retrabalho e decide com mais segurança.
             </p>
           </div>
         </motion.div>

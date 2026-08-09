@@ -32,7 +32,7 @@ export async function generateMetadata({
   if (!post) return {};
   const url = `${siteUrl}/blog/${post.slug}`;
   return {
-    title: `${post.title} — High Design Arquitetura`,
+    title: `${post.title} · High Design Arquitetura`,
     description: post.description,
     alternates: { canonical: url },
     openGraph: {

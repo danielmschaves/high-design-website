@@ -45,7 +45,7 @@ describe("Contato", () => {
   it("renders the WhatsApp number and CAU-BR responsible", () => {
     render(<Contato />);
     expect(screen.getByText(/\(48\) 98446-4663/)).toBeInTheDocument();
-    expect(screen.getByText(/emanoella goulart — cau-br/i)).toBeInTheDocument();
+    expect(screen.getByText(/emanoella goulart, cau-br/i)).toBeInTheDocument();
   });
 
   it("updates form fields on user input", () => {

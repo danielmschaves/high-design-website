@@ -14,7 +14,7 @@ const fadeUp = {
 
 const pillars = [
   { code: "01 · FUN", label: "Funcional",   desc: "A arquitetura precisa servir ao dia a dia real de quem habita o espaço." },
-  { code: "02 · ELE", label: "Elegante",    desc: "A estética comunica identidade, cuidado e intenção — refinada e coerente." },
+  { code: "02 · ELE", label: "Elegante",    desc: "A estética comunica identidade, cuidado e intenção. Refinada e coerente, sem excessos." },
   { code: "03 · ATE", label: "Atemporal",   desc: "Um projeto bem concebido permanece relevante e belo ao longo dos anos." },
   { code: "04 · EXE", label: "Executável",  desc: "O projeto precisa virar obra: alinhado à realidade financeira do cliente, para ser construído com fidelidade e segurança." },
 ];
@@ -43,7 +43,7 @@ export default function Sobre() {
               <em>em espaços bem planejados</em>
             </h2>
             <p>
-              A High Design Arquitetura e Urbanismo é um escritório especializado em projetos residenciais e comerciais, dedicado a transformar histórias em espaços funcionais, elegantes, atemporais e executáveis — da escolha do terreno até a entrega das chaves.
+              A High Design Arquitetura e Urbanismo é um escritório especializado em projetos residenciais e comerciais. Nosso trabalho é dar forma a espaços funcionais, elegantes, atemporais e executáveis, acompanhando você da escolha do terreno até a entrega das chaves.
             </p>
           </div>
         </motion.div>
@@ -96,7 +96,7 @@ export default function Sobre() {
 
             <motion.p variants={fadeUp} className="text-stone-500 leading-[1.7] mb-9 max-w-[52ch]">
               Nosso princípio central é a{" "}
-              <strong className="text-brand-dark font-bold">exequibilidade</strong>: todo projeto nasce para ser construído. Nada é criado para ficar no papel. Cada solução é pensada para funcionar na prática — respeitando orçamento, terreno, necessidades e estilo de vida.
+              <strong className="text-brand-dark font-bold">exequibilidade</strong>: todo projeto nasce para ser construído. Nada é criado para ficar no papel. Cada solução é pensada para funcionar na prática, respeitando o seu orçamento, o terreno, as suas necessidades e o seu jeito de viver.
             </motion.p>
 
             {/* 2x2 pillars */}
@@ -138,9 +138,9 @@ export default function Sobre() {
             segurança onde há risco.&rdquo;
           </p>
           <p className="text-stone-500 leading-[1.8] mt-7 text-[14px]">
-            A construção civil no Brasil ainda opera, em grande parte, na informalidade —
-            projetos que nunca saem do papel, obras que param pela metade, retrabalhos que
-            consomem orçamentos inteiros. A High Design nasceu para fazer diferente.
+            A construção civil no Brasil ainda opera, em grande parte, na informalidade.
+            São projetos que nunca saem do papel, obras que param pela metade e retrabalhos
+            que consomem orçamentos inteiros. A High Design nasceu para fazer diferente.
           </p>
         </motion.blockquote>
       </div>

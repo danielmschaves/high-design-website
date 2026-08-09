@@ -15,7 +15,7 @@ const profiles = [
   {
     code: "R · Morar",
     title: "Cliente residencial",
-    desc: "Quem está construindo ou reformando a casa própria — muitas vezes a decisão mais importante e emocional de uma fase da vida. Valoriza estética, propósito, acolhimento e a certeza de ser guiado por alguém de confiança.",
+    desc: "Quem está construindo ou reformando a casa própria, muitas vezes a decisão mais importante e emocional de uma fase da vida. Valoriza estética, propósito, acolhimento e a certeza de ser guiado por alguém de confiança.",
   },
   {
     code: "C · Operar",
@@ -25,7 +25,7 @@ const profiles = [
   {
     code: "I · Rentabilizar",
     title: "Investidor imobiliário",
-    desc: "Constrói para vender, alugar ou compor patrimônio. Pensa em números — custo por metro quadrado, prazo de retorno, margem. Valoriza método, viabilidade financeira desde o início e previsibilidade acima de tudo.",
+    desc: "Constrói para vender, alugar ou compor patrimônio. Pensa em números: custo por metro quadrado, prazo de retorno, margem. Valoriza método, viabilidade financeira desde o início e previsibilidade acima de tudo.",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function ParaQuemE() {
           >
             Atendemos três perfis de cliente, classificados pelo objetivo principal do
             projeto: <strong className="text-brand-dark font-bold">morar, operar um negócio ou rentabilizar</strong>. Os perfis não são
-            exclusivos — um mesmo cliente pode combinar características de mais de um.
+            exclusivos, e é comum que um mesmo cliente se reconheça em mais de um deles.
           </motion.p>
         </motion.div>
 

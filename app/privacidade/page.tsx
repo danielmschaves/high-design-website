@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade — High Design ARQ.",
+  title: "Política de Privacidade · High Design ARQ.",
   description: "Como a High Design Arquitetura e Urbanismo coleta, usa e protege seus dados pessoais.",
 };
 

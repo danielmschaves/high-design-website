@@ -103,7 +103,7 @@ export default function Depoimentos() {
 
         {/* Disclaimer */}
         <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-stone-500 text-center mt-14 opacity-60">
-          * Conteúdo ilustrativo — depoimentos reais em breve
+          * Conteúdo ilustrativo. Depoimentos reais em breve
         </p>
       </div>
     </section>

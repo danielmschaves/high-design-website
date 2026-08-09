@@ -10,7 +10,7 @@ const jsonLd = {
   name: "High Design Arquitetura e Urbanismo",
   alternateName: "High Design ARQ.®",
   description:
-    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento — para que cada projeto vire obra construída.",
+    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento, para que cada projeto vire obra construída.",
   url: siteUrl,
   email: "contato@highdesign.arq.br",
   priceRange: "$$-$$$",
@@ -37,12 +37,12 @@ const jsonLd = {
 export const metadata: Metadata = {
   title: "High Design Arquitetura | Do primeiro traço à obra construída",
   description:
-    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento — para que cada projeto vire obra construída.",
+    "Escritório de arquitetura e urbanismo especializado em projetos residenciais e comerciais. Do terreno à entrega das chaves, com método, técnica e acolhimento, para que cada projeto vire obra construída.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "High Design Arquitetura | Do primeiro traço à obra construída",
     description:
-      "Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.",
+      "Transformamos histórias em espaços bem planejados, com método, técnica e acolhimento.",
     url: siteUrl,
     siteName: "High Design Arquitetura",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/assets/images/2b86d6b1ba077c8f4c9bc359c197dd8b.jpg",
         width: 1200,
         height: 630,
-        alt: "High Design Arquitetura — projeto residencial",
+        alt: "Projeto residencial assinado pela High Design Arquitetura",
       },
     ],
     locale: "pt_BR",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "High Design Arquitetura | Do primeiro traço à obra construída",
     description:
-      "Transformamos histórias em espaços bem planejados — com método, técnica e acolhimento.",
+      "Transformamos histórias em espaços bem planejados, com método, técnica e acolhimento.",
     images: ["/assets/images/2b86d6b1ba077c8f4c9bc359c197dd8b.jpg"],
   },
   robots: {

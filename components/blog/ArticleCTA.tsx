@@ -49,8 +49,8 @@ export default function ArticleCTA() {
           className="m-0 mt-5"
           style={{ color: "rgba(245,242,238,0.6)", maxWidth: "44ch", lineHeight: 1.6 }}
         >
-          A primeira conversa é uma escuta genuína, sem compromisso — com método,
-          clareza e acolhimento do começo ao fim.
+          A primeira conversa é uma escuta genuína, sem compromisso. Você sente na
+          prática o que é ter método, clareza e acolhimento do começo ao fim.
         </p>
       </div>
 
