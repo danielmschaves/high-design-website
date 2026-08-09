@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AuthorCard() {
   return (
     <div
@@ -19,7 +21,12 @@ export default function AuthorCard() {
           className="font-display font-bold text-brand-dark m-0 mb-2"
           style={{ fontSize: "1.2rem" }}
         >
-          Emanoella Goulart
+          <Link
+            href="/sobre"
+            className="no-underline text-brand-dark hover:text-brand-primary transition-colors duration-[420ms]"
+          >
+            Emanoella Goulart
+          </Link>
         </h4>
         <p
           className="font-display text-stone-500 m-0"
@@ -29,6 +36,12 @@ export default function AuthorCard() {
           residenciais e comerciais de médio a alto padrão com método, técnica e
           acolhimento — do primeiro traço à obra.
         </p>
+        <Link
+          href="/sobre"
+          className="inline-block mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-brand-accent no-underline border-b border-brand-accent pb-1 hover:text-brand-primary hover:border-brand-primary transition-colors duration-[420ms]"
+        >
+          Conheça Emanoella Goulart
+        </Link>
       </div>
     </div>
   );

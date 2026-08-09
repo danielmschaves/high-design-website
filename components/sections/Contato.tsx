@@ -87,7 +87,7 @@ export default function Contato() {
             className="hd-chapter"
             style={{ borderColor: "var(--color-stone-700)" }}
           >
-            <div className="num">08 · Contato</div>
+            <div className="num">09 · Contato</div>
             <div>
               <h2 className="text-brand-white">
                 Inicie sua

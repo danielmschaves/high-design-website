@@ -19,8 +19,11 @@ export default function Navbar() {
     { label: "Sobre",        href: "#sobre" },
     { label: "Por que a HD", href: "#diferenciais" },
     { label: "Serviços",     href: "#servicos" },
-    { label: "Portfólio", href: "#portfolio" },
-    { label: "Blog",      href: "/blog" },
+    { label: "Portfólio",    href: "#portfolio" },
+    // Real route, not an anchor — gives the author entity page a site-wide
+    // internal link from every page that renders the navbar.
+    { label: "Arquiteta",    href: "/sobre" },
+    { label: "Blog",         href: "/blog" },
   ];
 
   return (

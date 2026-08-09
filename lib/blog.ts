@@ -18,10 +18,17 @@ export interface BlogPost {
   description: string;
   category: BlogCategory;
   readingTime: string;
+  /** Human-readable date, rendered in the UI (e.g. "10 Jun 2026"). */
   date: string;
+  /** ISO 8601 publication date — required by BlogPosting JSON-LD and sitemap. */
+  publishedAt: string;
+  /** ISO 8601 last-substantive-edit date. Falls back to publishedAt. */
+  updatedAt?: string;
   kicker: string;
   excerpt: string;
   cover: string;
+  /** Topic terms for `Article.keywords`; also used to pick related posts. */
+  keywords: string[];
   body: BlogBlock[];
 }
 
@@ -34,6 +41,14 @@ export const posts: BlogPost[] = [
     category: "Antes de começar",
     readingTime: "~6 min",
     date: "10 Jun 2026",
+    publishedAt: "2026-06-10",
+    keywords: [
+      "projeto executável",
+      "viabilidade de obra",
+      "estudo de massa",
+      "orçamento de obra",
+      "por que projetos não viram obra",
+    ],
     kicker: "Projeto · Exequibilidade",
     cover: "/assets/images/04c863415f33702f810a01f9cf1549a8.jpg",
     excerpt:
@@ -123,6 +138,14 @@ export const posts: BlogPost[] = [
     category: "Antes de começar",
     readingTime: "~7 min",
     date: "02 Jun 2026",
+    publishedAt: "2026-06-02",
+    keywords: [
+      "viabilidade de terreno",
+      "comprar terreno",
+      "análise de lote",
+      "restrições ambientais",
+      "consultoria de terreno",
+    ],
     kicker: "Terreno · Viabilidade",
     cover: "/assets/images/2f1b802614bd75a610e756275d26d87e.jpg",
     excerpt:
@@ -224,6 +247,14 @@ export const posts: BlogPost[] = [
     category: "Orçamento e planejamento",
     readingTime: "~7 min",
     date: "26 Mai 2026",
+    publishedAt: "2026-05-26",
+    keywords: [
+      "quanto custa construir",
+      "custo de obra",
+      "CUB",
+      "orçamento detalhado de obra",
+      "planejamento financeiro de obra",
+    ],
     kicker: "Custo · CUB",
     cover: "/assets/images/3be025d3627c2467c8a208c9fa75d44d.jpg",
     excerpt:
@@ -305,6 +336,14 @@ export const posts: BlogPost[] = [
     category: "Autoridade técnica",
     readingTime: "~6 min",
     date: "19 Mai 2026",
+    publishedAt: "2026-05-19",
+    keywords: [
+      "compatibilização de projetos",
+      "projeto executivo",
+      "engenharia compatibilizada",
+      "retrabalho em obra",
+      "coordenação de projetos",
+    ],
     kicker: "Projeto · Engenharia",
     cover: "/assets/images/69a3d43734db3451996709d7ff87e6b7.jpg",
     excerpt:
@@ -385,6 +424,14 @@ export const posts: BlogPost[] = [
     category: "Antes de começar",
     readingTime: "~8 min",
     date: "12 Mai 2026",
+    publishedAt: "2026-05-12",
+    keywords: [
+      "como escolher um arquiteto",
+      "contratar arquiteto",
+      "escritório de arquitetura",
+      "responsabilidade técnica",
+      "perguntas para arquiteto",
+    ],
     kicker: "Contratação",
     cover: "/assets/images/cde5c7744460198965c27f696e6b055e.jpg",
     excerpt:
@@ -467,6 +514,44 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 
 export function getPostIndex(slug: string): number {
   return posts.findIndex((p) => p.slug === slug);
+}
+
+/** Flattens a post body to plain text — used for wordCount and articleBody. */
+export function getPostPlainText(post: BlogPost): string {
+  const parts: string[] = [post.excerpt];
+
+  for (const block of post.body) {
+    switch (block.type) {
+      case "heading":
+        parts.push(block.text);
+        break;
+      case "paragraph":
+        parts.push(block.text);
+        break;
+      case "list":
+        parts.push(...block.items);
+        break;
+      case "steps":
+        parts.push(...block.items.flatMap((i) => [i.title, i.text]));
+        break;
+      case "callout":
+        parts.push(block.label, ...block.items.flatMap((i) => [i.title, i.text]));
+        break;
+      case "pullquote":
+        parts.push(block.text);
+        break;
+      case "nextStep":
+        parts.push(block.text);
+        break;
+    }
+  }
+
+  // Strip the inline markdown emphasis markers used in the body copy.
+  return parts.join(" ").replace(/[*_]/g, "");
+}
+
+export function getPostWordCount(post: BlogPost): number {
+  return getPostPlainText(post).split(/\s+/).filter(Boolean).length;
 }
 
 export function getRelatedPosts(slug: string, n = 2): BlogPost[] {

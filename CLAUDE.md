@@ -72,13 +72,20 @@ Companion typeface: **JetBrains Mono** — loaded via `next/font/google` in `lib
 
 ```
 app/
-  layout.tsx        — metadata, SEO, OG tags, font variable on <html>
-  page.tsx          — composes the landing-page sections (order: Hero → Sobre → Diferenciais → ParaQuemE → Esteira → Processo → Portfolio → Blog → Depoimentos → Contato)
+  layout.tsx        — global metadata (title template, keywords, robots/googleBot,
+                      viewport/theme-color) + site-wide JSON-LD @graph
+  page.tsx          — composes the landing-page sections (order: Hero → Sobre → Diferenciais → ParaQuemE → Esteira → Processo → Portfolio → Blog → Depoimentos → Faq → Contato) + homepage WebPage/FAQPage schema
   globals.css       — imports tokens, Tailwind, responsive helpers, animations
   icon.png          — favicon (HD monogram)
+  opengraph-image.tsx — generated 1200×630 share card (next/og)
+  sitemap.ts        — /sitemap.xml, driven by lib/blog.ts
+  robots.ts         — /robots.txt; blocks indexing on Vercel preview deploys
+  manifest.ts       — /manifest.webmanifest
+  sobre/
+    page.tsx        — Emanoella Goulart entity page (ProfilePage schema)
   blog/
-    page.tsx        — blog index (lists posts via lib/blog.ts)
-    [slug]/page.tsx — individual article route (generateStaticParams + generateMetadata)
+    page.tsx        — blog index (lists posts via lib/blog.ts) + Blog/ItemList schema
+    [slug]/page.tsx — individual article route (generateStaticParams + generateMetadata) + BlogPosting schema
   privacidade/
     page.tsx        — privacy policy page (LGPD)
 
@@ -94,7 +101,8 @@ components/
     Portfolio.tsx   — chapter header (06) on light bg + filter chips + 12-col masonry with hover overlay
     Blog.tsx        — chapter header on cream bg + featured/recent post cards driven by lib/blog.ts
     Depoimentos.tsx — chapter header (07) on cream bg + 3 testimonial cards (sand stars, italic blockquote, mono attribution)
-    Contato.tsx     — chapter header (08) on dark bg + 4 info blocks (e-mail/WhatsApp/responsável/segmento) + Formspree form with monogram watermark
+    Faq.tsx         — chapter header (08) + 10-question accordion driven by lib/faq.ts. Answers stay mounted while collapsed — FAQPage schema requires the text in the served HTML.
+    Contato.tsx     — chapter header (09) on dark bg + 4 info blocks (e-mail/WhatsApp/responsável/segmento) + Formspree form with monogram watermark
     Footer.tsx      — 4-column grid on ink bg (logo+tagline / Navegação / Serviços / Contato) + mono bottom bar
   blog/
     BlogHeader.tsx     — masthead for the blog index/article pages
@@ -111,7 +119,10 @@ components/
 
 lib/
   fonts.ts          — Century Gothic Pro, all 4 weights
-  blog.ts           — typed blog content (BlogPost / BlogBlock) + helpers (getAllPosts, getPostBySlug, getRelatedPosts). Posts authored inline here.
+  blog.ts           — typed blog content (BlogPost / BlogBlock) + helpers (getAllPosts, getPostBySlug, getRelatedPosts, getPostWordCount). Posts authored inline here. Every post needs `publishedAt` (ISO) and `keywords` — both feed the sitemap and BlogPosting schema.
+  seo.ts            — SEO single source of truth: site URL, entity @ids, Organization/Person/WebSite/WebPage/Breadcrumb builders, keyword list
+  services.ts       — the 7 services, shared by Esteira.tsx, the /sobre page and the OfferCatalog schema
+  faq.ts            — FAQ copy + faqSchema(). Visible section and schema read from the same array, so they cannot drift.
 
 styles/
   tokens.css        — CSS custom properties for colours, spacing, radius, easing
@@ -146,6 +157,9 @@ public/assets/
 | `NEXT_PUBLIC_FORMSPREE_ID` | 8-character form ID from formspree.io (not the full URL). Without it, form fakes success in dev. |
 | `NEXT_PUBLIC_INSTAGRAM_URL` | Full Instagram profile URL (e.g. `https://instagram.com/highdesign.arq`). Footer Instagram link hidden until set. |
 | `NEXT_PUBLIC_LINKEDIN_URL` | Full LinkedIn company URL (e.g. `https://linkedin.com/company/highdesign`). Footer LinkedIn link hidden until set. |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console token (HTML-tag method, content value only). Optional — DNS verification needs no value. |
+
+Social URLs do double duty: when set they also populate `sameAs` on the Organization and Person schema, which is how Google connects the site to those profiles. `NEXT_PUBLIC_WHATSAPP_NUMBER` likewise becomes the E.164 `telephone` in the LocalBusiness markup.
 
 Set in Vercel dashboard for production. Locally, copy `.env.example` to `.env`.
 
@@ -159,6 +173,37 @@ Set in Vercel dashboard for production. Locally, copy `.env.example` to `.env`.
 - Docker and PRD files are excluded from Vercel deploy via `.vercelignore`
 
 ---
+
+## SEO conventions
+
+The site targets brand and founder queries — "High Design Arquitetura",
+"Emanoella Goulart" and variants. The strategy is entity-based: one
+`Organization` and one `Person` node, given stable `@id`s in `lib/seo.ts` and
+re-emitted on every route so Google merges the signals into a single entity
+rather than reading each page as an unrelated listing.
+
+Rules to keep intact when editing:
+
+- **Never set `alternates.canonical` in `app/layout.tsx`.** Metadata is
+  inherited, so a canonical there points every page at the homepage and drops
+  them from the index. Each route declares its own.
+- **Never change an existing `@id`** in `lib/seo.ts` once it has been indexed —
+  that splits one entity into two.
+- **`/sobre` is the Person's `mainEntityOfPage`.** If the route ever moves,
+  update `personSchema()` with it.
+- **Every new route needs**: its own canonical, an entry in `app/sitemap.ts`,
+  and a `BreadcrumbList`.
+- **Every new blog post needs** `publishedAt` (ISO) and `keywords` in
+  `lib/blog.ts`, or the sitemap date and `BlogPosting` schema will be wrong.
+- **Schema must only assert what the page shows.** FAQ answers stay mounted
+  while collapsed for exactly this reason. Do not add `Review` or
+  `AggregateRating` markup while `Depoimentos.tsx` holds placeholder
+  testimonials — fabricated review markup is a manual-action risk.
+- **No fabricated NAP data.** The Organization node deliberately has no
+  `address`; add one only when the real address exists.
+- Share images come from `app/opengraph-image.tsx` (1200×630). The editorial
+  photography in `public/assets/images/` is portrait and must not be used as an
+  OG image.
 
 ## Known issues / decisions
 
@@ -175,3 +220,27 @@ Set in Vercel dashboard for production. Locally, copy `.env.example` to `.env`.
 - Add Instagram handle and social links to Footer
 - Content review pass on mobile after first Vercel deploy
 - Consider enabling Next.js polling mode to fix hot reload on Docker + Windows
+
+### SEO follow-ups that need real data (cannot be written from the repo)
+
+These are the remaining high-impact items. Each one is blocked on information
+the codebase does not contain — none should be invented in code:
+
+1. **Google Business Profile** for the studio, plus a real street address added
+   to `organizationSchema()` as `address` and to the visible Contato section.
+   This is the single biggest lever for local queries and is what makes the
+   `ProfessionalService` markup eligible for a map pack.
+2. **Google Search Console**: verify the domain, set
+   `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`, submit `/sitemap.xml`.
+3. **Emanoella's CAU-BR registration number and CNPJ** — the footer currently
+   shows the literal placeholder `CNPJ · CAU-BR · Emanoella Goulart`. Real
+   values belong in the footer and in the Person node (`identifier`), and are
+   a strong credibility signal for a regulated profession.
+4. **A photograph of Emanoella** for `/sobre` and the `Person.image` property.
+   Person entities with a real photo are far more likely to get a knowledge
+   panel; the page currently uses the EG monogram.
+5. **Social profiles** (Instagram, LinkedIn) — set the env vars so `sameAs`
+   populates. `sameAs` is the main way Google reconciles a person across sites.
+6. **Biography detail**: university, graduation year, years of practice,
+   professional affiliations. These would extend `personSchema()`
+   (`alumniOf`, `memberOf`) and the `/sobre` copy.

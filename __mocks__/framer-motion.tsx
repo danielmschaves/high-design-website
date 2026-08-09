@@ -37,13 +37,22 @@ function createMotionComponent(tag: string) {
   return Component;
 }
 
-const TAGS = [
-  "a", "article", "aside", "blockquote", "button", "div", "footer", "form", "header",
-  "h1", "h2", "h3", "h4", "h5", "h6", "img", "input", "li", "main",
-  "nav", "ol", "p", "section", "span", "ul",
-];
+/**
+ * Any HTML tag, resolved on first access and cached — a fixed tag list meant
+ * that using a new element (motion.dd, motion.figure, …) failed at render time
+ * with an opaque "element type is invalid" error instead of just working.
+ */
+const motionCache = new Map<string, React.ComponentType<Record<string, unknown>>>();
 
-export const motion = Object.fromEntries(TAGS.map(tag => [tag, createMotionComponent(tag)]));
+export const motion: Record<string, React.ComponentType<Record<string, unknown>>> =
+  new Proxy({} as Record<string, React.ComponentType<Record<string, unknown>>>, {
+    get(_target, prop: string) {
+      if (!motionCache.has(prop)) {
+        motionCache.set(prop, createMotionComponent(prop) as React.ComponentType<Record<string, unknown>>);
+      }
+      return motionCache.get(prop);
+    },
+  });
 
 export function AnimatePresence({ children }: { children?: React.ReactNode }) {
   return <>{children}</>;

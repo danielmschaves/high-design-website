@@ -28,7 +28,12 @@ const nav = [
   { label: "Serviços", href: "/#servicos" },
   { label: "Portfólio", href: "/#portfolio" },
   { label: "Depoimentos", href: "/#depoimentos" },
+  { label: "Perguntas frequentes", href: "/#faq" },
   { label: "Blog", href: "/blog" },
+  // Crawlable links to the two standalone routes that previously had no
+  // site-wide entry point.
+  { label: "Emanoella Goulart", href: "/sobre" },
+  { label: "Política de privacidade", href: "/privacidade" },
 ];
 
 const servicos = [
@@ -100,8 +105,14 @@ export default function Footer() {
           </h5>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
             {servicos.map((s) => (
-              <li key={s} className="font-display text-[13px]">
-                {s}
+              <li key={s}>
+                <a
+                  href="/#servicos"
+                  className="font-display text-[13px] no-underline transition-colors duration-300 hover:text-brand-white"
+                  style={{ color: "rgba(245,242,238,0.55)" }}
+                >
+                  {s}
+                </a>
               </li>
             ))}
           </ul>
@@ -122,7 +133,15 @@ export default function Footer() {
                 contato@highdesign.arq.br
               </a>
             </li>
-            <li className="font-display text-[13px]">Emanoella Goulart</li>
+            <li>
+              <a
+                href="/sobre"
+                className="font-display text-[13px] no-underline transition-colors duration-300 hover:text-brand-white"
+                style={{ color: "rgba(245,242,238,0.55)" }}
+              >
+                Emanoella Goulart · Arquiteta e Urbanista
+              </a>
+            </li>
             {(instagramUrl || linkedinUrl) && (
               <li className="flex gap-4 mt-3">
                 {instagramUrl && (
