@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { services } from "@/lib/services";
 
@@ -125,6 +126,15 @@ export default function Esteira() {
                               </li>
                             ))}
                           </ul>
+
+                          {/* Link into the service's own page — gives each
+                              service a crawlable path off the homepage. */}
+                          <Link
+                            href={`/servicos/${s.slug}`}
+                            className="hd-btn hd-btn--link no-underline mt-7 inline-flex"
+                          >
+                            Ver detalhes de {s.sigla.toLowerCase()} <span className="arrow" />
+                          </Link>
                         </div>
                       </div>
                     </motion.div>

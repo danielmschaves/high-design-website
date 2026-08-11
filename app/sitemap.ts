@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/seo";
 import { getAllPosts } from "@/lib/blog";
+import { services } from "@/lib/services";
 
 /**
  * XML sitemap at /sitemap.xml, referenced from /robots.txt.
@@ -31,6 +32,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${siteUrl}/servicos`,
+      lastModified: lastContentUpdate,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    // Commercial-intent landing pages — the URLs that can rank for service
+    // queries the homepage never could.
+    ...services.map((s) => ({
+      url: `${siteUrl}/servicos/${s.slug}`,
+      lastModified: lastContentUpdate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     {
       url: `${siteUrl}/blog`,
       lastModified: lastContentUpdate,

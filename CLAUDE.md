@@ -83,6 +83,9 @@ app/
   manifest.ts       — /manifest.webmanifest
   sobre/
     page.tsx        — Emanoella Goulart entity page (ProfilePage schema)
+  servicos/
+    page.tsx        — services hub (CollectionPage + ItemList + OfferCatalog)
+    [slug]/page.tsx — one indexable page per service (Service schema), driven by lib/services.ts
   blog/
     page.tsx        — blog index (lists posts via lib/blog.ts) + Blog/ItemList schema
     [slug]/page.tsx — individual article route (generateStaticParams + generateMetadata) + BlogPosting schema
@@ -121,7 +124,8 @@ lib/
   fonts.ts          — Century Gothic Pro, all 4 weights
   blog.ts           — typed blog content (BlogPost / BlogBlock) + helpers (getAllPosts, getPostBySlug, getRelatedPosts, getPostWordCount). Posts authored inline here. Every post needs `publishedAt` (ISO) and `keywords` — both feed the sitemap and BlogPosting schema.
   seo.ts            — SEO single source of truth: site URL, entity @ids, Organization/Person/WebSite/WebPage/Breadcrumb builders, keyword list
-  services.ts       — the 7 services, shared by Esteira.tsx, the /sobre page and the OfferCatalog schema
+  services.ts       — the 7 services: copy, slug, metaDescription, relatedPosts, faqQuestions.
+                      Shared by Esteira.tsx, /servicos, /sobre, the Footer and the OfferCatalog schema.
   faq.ts            — FAQ copy + faqSchema(). Visible section and schema read from the same array, so they cannot drift.
 
 styles/
@@ -193,6 +197,12 @@ Rules to keep intact when editing:
   update `personSchema()` with it.
 - **Every new route needs**: its own canonical, an entry in `app/sitemap.ts`,
   and a `BreadcrumbList`.
+- **Only the homepage emits `FAQPage`.** Service pages render relevant FAQ text
+  as visible content but deliberately omit the schema — the same Q&A marked up
+  on several URLs is duplicate structured data.
+- **`faqQuestions` and `relatedPosts` in `lib/services.ts` are assigned
+  explicitly**, never matched by substring. A fuzzy matcher put one general FAQ
+  on all seven service pages; a test now enforces that no FAQ is assigned twice.
 - **Every new blog post needs** `publishedAt` (ISO) and `keywords` in
   `lib/blog.ts`, or the sitemap date and `BlogPosting` schema will be wrong.
 - **Schema must only assert what the page shows.** FAQ answers stay mounted
@@ -209,6 +219,10 @@ Rules to keep intact when editing:
 
 - **Hot reload on Docker + Windows**: file system events (inotify) don't propagate reliably from the Windows host to the Linux container. Changes may require `docker compose restart web` to take effect.
 - **`output: "standalone"`** was removed from `next.config.mjs` — Vercel manages its own output format.
+- **`public/assets/mockups/` and `public/assets/textures/`** (~36 MB, one 25 MB
+  PNG) are referenced by no component and are excluded from the deploy via
+  `.vercelignore`. They remain in git. Referencing one from a component means
+  removing its line there first.
 - **`next.config.mjs`** must stay `.mjs` — Next.js 14.2.29 does not support `next.config.ts`.
 
 ---

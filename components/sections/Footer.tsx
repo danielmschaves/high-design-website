@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { services } from "@/lib/services";
 
 function InstagramIcon() {
   return (
@@ -25,7 +26,7 @@ function LinkedInIcon() {
 const nav = [
   { label: "Sobre", href: "/#sobre" },
   { label: "Por que a HD", href: "/#diferenciais" },
-  { label: "Serviços", href: "/#servicos" },
+  { label: "Serviços", href: "/servicos" },
   { label: "Portfólio", href: "/#portfolio" },
   { label: "Depoimentos", href: "/#depoimentos" },
   { label: "Perguntas frequentes", href: "/#faq" },
@@ -36,15 +37,9 @@ const nav = [
   { label: "Política de privacidade", href: "/privacidade" },
 ];
 
-const servicos = [
-  "Consultoria de Terreno",
-  "Consultoria de Construção",
-  "Projeto de Arquitetura",
-  "Orçamento de Obra",
-  "Gestão de Obra",
-  "Aquisição de Imóvel Pronto",
-  "Reforma e Transformação",
-];
+// Reads from lib/services so the footer can never drift from the real
+// service names, and each entry links to its own indexable page.
+const servicos = services.map((s) => ({ label: s.nome, href: `/servicos/${s.slug}` }));
 
 export default function Footer() {
   const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
@@ -80,9 +75,9 @@ export default function Footer() {
 
         {/* Navegação */}
         <div>
-          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h2 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Navegação
-          </h5>
+          </h2>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
             {nav.map((l) => (
               <li key={l.href}>
@@ -100,18 +95,18 @@ export default function Footer() {
 
         {/* Serviços */}
         <div>
-          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h2 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Serviços
-          </h5>
+          </h2>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
             {servicos.map((s) => (
-              <li key={s}>
+              <li key={s.href}>
                 <a
-                  href="/#servicos"
+                  href={s.href}
                   className="font-display text-[13px] no-underline transition-colors duration-300 hover:text-brand-white"
                   style={{ color: "rgba(245,242,238,0.55)" }}
                 >
-                  {s}
+                  {s.label}
                 </a>
               </li>
             ))}
@@ -120,9 +115,9 @@ export default function Footer() {
 
         {/* Contato + Social */}
         <div>
-          <h5 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
+          <h2 className="text-[10px] tracking-[0.22em] uppercase text-brand-accent font-normal m-0 mb-5">
             Contato
-          </h5>
+          </h2>
           <ul className="list-none p-0 m-0 flex flex-col gap-2.5">
             <li>
               <a

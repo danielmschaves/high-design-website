@@ -286,23 +286,25 @@ export default function SobrePage() {
 
             <ol className="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 gap-[2px]">
               {services.map((s, i) => (
-                <li
-                  key={s.sigla}
-                  className="p-8 bg-paper border border-stone-300 transition-colors duration-[420ms] ease-brand hover:bg-brand-secondary"
-                >
-                  <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-brand-accent m-0">
-                    {String(i + 1).padStart(2, "0")} · {s.sigla}
-                  </p>
-                  <h3 className="mt-4 mb-2 font-display text-[1.05rem] font-bold text-brand-dark leading-[1.3]">
-                    {s.nome}
-                  </h3>
-                  <p className="m-0 text-[13.5px] text-stone-500 leading-[1.6]">{s.tagline}</p>
+                <li key={s.slug}>
+                  <Link
+                    href={`/servicos/${s.slug}`}
+                    className="group block h-full p-8 no-underline bg-paper border border-stone-300 transition-colors duration-[420ms] ease-brand hover:bg-brand-secondary"
+                  >
+                    <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-brand-accent m-0">
+                      {String(i + 1).padStart(2, "0")} · {s.sigla}
+                    </p>
+                    <h3 className="mt-4 mb-2 font-display text-[1.05rem] font-bold text-brand-dark group-hover:text-brand-primary transition-colors duration-[420ms] leading-[1.3]">
+                      {s.nome}
+                    </h3>
+                    <p className="m-0 text-[13.5px] text-stone-500 leading-[1.6]">{s.tagline}</p>
+                  </Link>
                 </li>
               ))}
             </ol>
 
             <div className="mt-10">
-              <Link href="/#servicos" className="hd-btn hd-btn--link no-underline">
+              <Link href="/servicos" className="hd-btn hd-btn--link no-underline">
                 Ver os entregáveis de cada serviço <span className="arrow" />
               </Link>
             </div>

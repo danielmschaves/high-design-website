@@ -151,10 +151,14 @@ export function organizationSchema() {
       itemListElement: services.map((s) => ({
         "@type": "Offer",
         itemOffered: {
+          // Same @id the service's own page emits, so the catalogue entry and
+          // the detail page resolve to one Service node rather than two.
+          "@id": `${siteUrl}/servicos/${s.slug}#service`,
           "@type": "Service",
           name: s.nome,
           description: s.descricao,
           serviceType: s.nome,
+          url: `${siteUrl}/servicos/${s.slug}`,
           provider: { "@id": ORG_ID },
           areaServed: { "@type": "State", name: "Santa Catarina" },
         },
