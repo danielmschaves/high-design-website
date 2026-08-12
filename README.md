@@ -62,7 +62,8 @@ npm run dev                 # http://localhost:3000
 | `npm run build` | Production build |
 | `npm start` | Serve the production build |
 | `npm test` | Run the Jest test suite |
-| `npm run test:ci` | Production build + Jest in CI mode |
+| `npm run test:ci` | Jest in CI mode (non-interactive) |
+| `npm run typecheck` | `tsc --noEmit` across app, tests, and mocks |
 
 ---
 
@@ -132,9 +133,31 @@ Specs live in `__tests__/`, one per section/component, using Jest + React Testin
 
 ---
 
+## Continuous integration
+
+[`.github/workflows/ci.yml`](./.github/workflows/ci.yml) runs a single `Verify` job on every pull request targeting `main`, on every push to `main`, and on merge-queue entries. It installs with `npm ci` on the Node version pinned in [`.nvmrc`](./.nvmrc) (the same major as the Docker dev container), then runs:
+
+1. `npm run typecheck` — `tsc --noEmit`, which also covers `__tests__/` and `__mocks__/` (`next build` does not)
+2. `npm run test:ci` — the Jest suite
+3. `npm run build` — the production build
+
+Runs for the same PR cancel each other when you push again; runs on `main` never cancel, so every deployed commit keeps its own result.
+
+Reproduce a CI run locally with:
+
+```bash
+npm ci && npm run typecheck && npm run test:ci && npm run build
+```
+
+### Making the check block merges
+
+The workflow reports status but does not enforce it until `main` is protected. In **Settings → Branches → Add branch ruleset** for `main`, enable *Require status checks to pass* and select **`Verify`**, plus *Require branches to be up to date before merging* so a branch is re-tested against the latest `main` before it lands.
+
+---
+
 ## Deployment
 
-Pushes to `main` deploy automatically on Vercel. Docker, test, and PRD files are excluded from the deploy bundle via `.vercelignore`. The `Reference/` design PDFs are gitignored and never committed.
+Pushes to `main` deploy automatically on Vercel. Docker, CI, test, and PRD files are excluded from the deploy bundle via `.vercelignore`. The `Reference/` design PDFs are gitignored and never committed.
 
 ---
 

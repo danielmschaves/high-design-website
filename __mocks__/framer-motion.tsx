@@ -31,7 +31,11 @@ function filterMotionProps(props: Record<string, unknown>): Record<string, unkno
 function createMotionComponent(tag: string) {
   const Component = React.forwardRef<Element, Record<string, unknown>>(
     ({ children, ...props }, ref) =>
-      React.createElement(tag, { ref, ...filterMotionProps(props) }, children)
+      React.createElement(
+        tag,
+        { ref, ...filterMotionProps(props) },
+        children as React.ReactNode
+      )
   );
   Component.displayName = `motion.${tag}`;
   return Component;

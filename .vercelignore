@@ -1,4 +1,5 @@
 Reference/
+.github/
 Dockerfile
 docker-compose.yml
 PRD.md
