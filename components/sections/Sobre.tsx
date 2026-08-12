@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const container = {
@@ -60,8 +61,9 @@ export default function Sobre() {
           >
             <Image
               src="/assets/images/7e4f69ecd7f5871fc2e98c759985d963.jpg"
-              alt="Projeto High Design"
+              alt="Sala de jantar de projeto residencial de alto padrão assinado pela High Design Arquitetura e Urbanismo"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
             {/* inner technical-frame */}
@@ -94,9 +96,20 @@ export default function Sobre() {
               <strong className="text-brand-dark font-bold">clareza, confiança e direção</strong>.
             </motion.p>
 
-            <motion.p variants={fadeUp} className="text-stone-500 leading-[1.7] mb-9 max-w-[52ch]">
+            <motion.p variants={fadeUp} className="text-stone-500 leading-[1.7] mb-5 max-w-[52ch]">
               Nosso princípio central é a{" "}
               <strong className="text-brand-dark font-bold">exequibilidade</strong>: todo projeto nasce para ser construído. Nada é criado para ficar no papel. Cada solução é pensada para funcionar na prática — respeitando orçamento, terreno, necessidades e estilo de vida.
+            </motion.p>
+
+            <motion.p variants={fadeUp} className="text-stone-500 leading-[1.7] mb-9 max-w-[52ch]">
+              À frente do escritório está{" "}
+              <Link
+                href="/sobre"
+                className="text-brand-dark font-bold no-underline border-b border-brand-accent pb-0.5 hover:text-brand-primary transition-colors duration-300"
+              >
+                Emanoella Goulart
+              </Link>
+              , arquiteta e urbanista responsável técnica por todos os projetos da High Design.
             </motion.p>
 
             {/* 2x2 pillars */}

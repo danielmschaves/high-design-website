@@ -13,10 +13,21 @@ import {
   getAllPosts,
   getPostBySlug,
   getPostIndex,
+  getPostWordCount,
   getRelatedPosts,
 } from "@/lib/blog";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br";
+import {
+  siteUrl,
+  abs,
+  graph,
+  jsonLdScript,
+  breadcrumbSchema,
+  ORG_ID,
+  ORG_SHORT_NAME,
+  PERSON_ID,
+  PERSON_NAME,
+  WEBSITE_ID,
+} from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -32,23 +43,34 @@ export async function generateMetadata({
   if (!post) return {};
   const url = `${siteUrl}/blog/${post.slug}`;
   return {
-    title: `${post.title} — High Design Arquitetura`,
+    // The layout's title template already appends the brand, so the raw title
+    // is passed here — appending it again would truncate in the SERP.
+    title: post.title,
     description: post.description,
+    keywords: post.keywords,
+    authors: [{ name: PERSON_NAME, url: abs("/sobre") }],
     alternates: { canonical: url },
     openGraph: {
       title: post.title,
       description: post.description,
       url,
-      siteName: "High Design Arquitetura",
+      siteName: ORG_SHORT_NAME,
       locale: "pt_BR",
       type: "article",
-      images: [{ url: post.cover, width: 1200, height: 630, alt: post.title }],
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt ?? post.publishedAt,
+      authors: [abs("/sobre")],
+      section: post.category,
+      tags: post.keywords,
+      // Cover art is portrait editorial photography, so the generated 1200×630
+      // card is used for sharing instead — see app/opengraph-image.tsx.
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [post.cover],
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -68,31 +90,60 @@ export default async function BlogPost({
   const nextPost = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
   const related = getRelatedPosts(slug, 2);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    image: `${siteUrl}${post.cover}`,
-    url: `${siteUrl}/blog/${post.slug}`,
-    author: {
-      "@type": "Person",
-      name: "Emanoella Goulart",
-      url: siteUrl,
+  const url = `${siteUrl}/blog/${post.slug}`;
+  const crumbs = [
+    { name: "Início", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ];
+
+  const pageGraph = graph([
+    {
+      "@type": "BlogPosting",
+      "@id": `${url}#article`,
+      // headline is capped at 110 chars by Google; longer values are ignored
+      // outright, so a long title is truncated rather than silently dropped.
+      headline: post.title.length > 110 ? `${post.title.slice(0, 107)}…` : post.title,
+      name: post.title,
+      description: post.description,
+      abstract: post.excerpt,
+      image: [abs(post.cover)],
+      url,
+      mainEntityOfPage: { "@id": `${url}#webpage` },
+      datePublished: post.publishedAt,
+      dateModified: post.updatedAt ?? post.publishedAt,
+      // Linking author by @id merges every article's authorship into the one
+      // Person entity, instead of creating a new author per post.
+      author: { "@id": PERSON_ID },
+      creator: { "@id": PERSON_ID },
+      publisher: { "@id": ORG_ID },
+      isPartOf: { "@id": `${siteUrl}/blog#blog` },
+      articleSection: post.category,
+      keywords: post.keywords,
+      wordCount: getPostWordCount(post),
+      timeRequired: `PT${post.readingTime.replace(/\D/g, "") || "6"}M`,
+      inLanguage: "pt-BR",
+      about: { "@id": ORG_ID },
     },
-    publisher: {
-      "@type": "Organization",
-      name: "High Design Arquitetura e Urbanismo",
-      url: siteUrl,
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: post.title,
+      description: post.description,
+      isPartOf: { "@id": WEBSITE_ID },
+      primaryImageOfPage: { "@type": "ImageObject", url: abs(post.cover) },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+      inLanguage: "pt-BR",
     },
-    inLanguage: "pt-BR",
-  };
+    breadcrumbSchema(crumbs, url),
+  ]);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(pageGraph) }}
       />
 
       <BlogHeader />
@@ -148,19 +199,28 @@ export default async function BlogPost({
             className="mx-auto flex items-center justify-center flex-wrap gap-x-7 gap-y-4 border-y border-stone-300"
             style={{ maxWidth: "880px", padding: "var(--space-5) 0" }}
           >
-            <div className="flex items-center gap-3">
+            {/* Byline links to the author's entity page — the internal link
+                that ties every article to the Emanoella Goulart entity. */}
+            <Link href="/sobre" className="flex items-center gap-3 no-underline group">
               <span className="hd-avatar" style={{ width: "44px", height: "44px", fontSize: "14px" }} aria-hidden>
                 EG
               </span>
               <span className="flex flex-col text-left">
-                <span className="text-[13px] text-brand-dark font-medium">Emanoella Goulart</span>
+                <span className="text-[13px] text-brand-dark font-medium group-hover:text-brand-primary transition-colors duration-[420ms]">
+                  {PERSON_NAME}
+                </span>
                 <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-stone-500 mt-[2px]">
                   Arquiteta · High Design
                 </span>
               </span>
-            </div>
+            </Link>
             <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-stone-300" aria-hidden />
-            <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">{post.date}</span>
+            <time
+              dateTime={post.publishedAt}
+              className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500"
+            >
+              {post.date}
+            </time>
             <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-stone-300" aria-hidden />
             <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-stone-500">
               {post.readingTime} de leitura

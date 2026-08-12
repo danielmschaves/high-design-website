@@ -4,30 +4,99 @@ import BlogHeader from "@/components/blog/BlogHeader";
 import BlogIndexList from "@/components/blog/BlogIndexList";
 import Footer from "@/components/sections/Footer";
 import { getAllPosts } from "@/lib/blog";
+import {
+  siteUrl,
+  abs,
+  graph,
+  jsonLdScript,
+  breadcrumbSchema,
+  webPageSchema,
+  ORG_ID,
+  ORG_SHORT_NAME,
+  PERSON_ID,
+  WEBSITE_ID,
+} from "@/lib/seo";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br";
+const blogUrl = `${siteUrl}/blog`;
+
+const description =
+  "Conteúdo técnico e didático sobre arquitetura, viabilidade de terrenos, orçamento de obra e como escolher bem o escritório certo para o seu projeto. Artigos assinados por Emanoella Goulart.";
 
 export const metadata: Metadata = {
-  title: "Blog — High Design Arquitetura",
-  description:
-    "Conteúdo técnico e didático sobre arquitetura, viabilidade de terrenos, orçamento de obra e como escolher bem o escritório certo para o seu projeto.",
+  title: "Blog",
+  description,
   openGraph: {
-    title: "Blog — High Design Arquitetura",
-    description:
-      "Conteúdo técnico e didático sobre arquitetura, viabilidade de terrenos, orçamento de obra e como escolher bem o escritório certo para o seu projeto.",
-    url: `${siteUrl}/blog`,
-    siteName: "High Design Arquitetura",
+    title: `Blog — ${ORG_SHORT_NAME}`,
+    description,
+    url: blogUrl,
+    siteName: ORG_SHORT_NAME,
     locale: "pt_BR",
     type: "website",
   },
-  alternates: { canonical: `${siteUrl}/blog` },
+  alternates: { canonical: blogUrl },
 };
+
+const crumbs = [
+  { name: "Início", path: "/" },
+  { name: "Blog", path: "/blog" },
+];
 
 export default function BlogIndex() {
   const posts = getAllPosts();
 
+  const pageGraph = graph([
+    webPageSchema({
+      url: blogUrl,
+      name: `Blog — ${ORG_SHORT_NAME}`,
+      description,
+      type: "CollectionPage",
+      crumbs,
+    }),
+    {
+      "@type": "Blog",
+      "@id": `${blogUrl}#blog`,
+      url: blogUrl,
+      name: `Blog — ${ORG_SHORT_NAME}`,
+      description,
+      inLanguage: "pt-BR",
+      publisher: { "@id": ORG_ID },
+      author: { "@id": PERSON_ID },
+      isPartOf: { "@id": WEBSITE_ID },
+      blogPost: posts.map((p) => ({
+        "@type": "BlogPosting",
+        "@id": `${siteUrl}/blog/${p.slug}#article`,
+        headline: p.title,
+        url: `${siteUrl}/blog/${p.slug}`,
+        datePublished: p.publishedAt,
+        dateModified: p.updatedAt ?? p.publishedAt,
+        image: [abs(p.cover)],
+        author: { "@id": PERSON_ID },
+      })),
+    },
+    // ItemList mirrors the visible reading order, which is what powers
+    // carousel-style results for a list page.
+    {
+      "@type": "ItemList",
+      "@id": `${blogUrl}#itemlist`,
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      numberOfItems: posts.length,
+      itemListElement: posts.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${siteUrl}/blog/${p.slug}`,
+        name: p.title,
+      })),
+    },
+    breadcrumbSchema(crumbs, blogUrl),
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(pageGraph) }}
+      />
+
       <BlogHeader />
 
       <main style={{ paddingTop: "96px" }}>

@@ -2,3 +2,11 @@ Reference/
 Dockerfile
 docker-compose.yml
 PRD.md
+
+# Design source assets, not referenced by any component (verified with a
+# repo-wide grep). Together they are ~36 MB — mockups/8.png alone is 25 MB —
+# and everything under public/ is publicly downloadable once deployed.
+# They stay in git; this only keeps them out of the deployment bundle.
+# If a component ever starts referencing them, delete the matching line.
+public/assets/mockups/
+public/assets/textures/
