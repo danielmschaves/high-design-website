@@ -50,7 +50,7 @@ describe("robots", () => {
     delete process.env.VERCEL_ENV;
   });
 
-  it("allows crawling and advertises the sitemap in production", () => {
+  it("allows crawling and advertises the sitemap on the real domain", () => {
     process.env.VERCEL_ENV = "production";
     const r = robots() as any;
     expect(r.sitemap).toBe(`${siteUrl}/sitemap.xml`);
@@ -58,8 +58,9 @@ describe("robots", () => {
   });
 
   /**
-   * Preview builds live on *.vercel.app. Letting them get indexed creates a
-   * duplicate of the whole site competing for the same brand terms.
+   * Preview builds live on per-commit *.vercel.app hosts. Letting them get
+   * indexed creates a duplicate of the whole site competing for the same
+   * brand terms.
    */
   it("blocks everything on preview deployments", () => {
     process.env.VERCEL_ENV = "preview";
@@ -71,6 +72,76 @@ describe("robots", () => {
   it("defaults to allowing crawlers when VERCEL_ENV is unset", () => {
     const r = robots() as any;
     expect(r.rules[0].allow).toBe("/");
+  });
+});
+
+/**
+ * While the site is served from its temporary *.vercel.app deployment URL, the
+ * entity @ids in lib/seo.ts are derived from that hostname. Letting it be
+ * indexed would burn the @ids against a host we are about to abandon, so the
+ * whole deployment must serve noindex until NEXT_PUBLIC_SITE_URL names the
+ * real domain.
+ *
+ * lib/seo.ts reads the env var at module load, so each case is exercised in an
+ * isolated module registry with the variable already set.
+ */
+describe("temporary-host indexing guard", () => {
+  const load = (url: string) => {
+    let mod: typeof import("../lib/seo");
+    let robotsFn: typeof import("../app/robots").default;
+    jest.isolateModules(() => {
+      process.env.NEXT_PUBLIC_SITE_URL = url;
+      mod = require("../lib/seo");
+      robotsFn = require("../app/robots").default;
+    });
+    return { seo: mod!, robots: robotsFn! };
+  };
+
+  const original = process.env.NEXT_PUBLIC_SITE_URL;
+  afterEach(() => {
+    if (original === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;
+    else process.env.NEXT_PUBLIC_SITE_URL = original;
+    delete process.env.VERCEL_ENV;
+  });
+
+  it("marks a *.vercel.app deployment URL as non-indexable", () => {
+    const { seo } = load("https://high-design-website.vercel.app/");
+    expect(seo.isTemporaryHost).toBe(true);
+    expect(seo.isIndexable).toBe(false);
+  });
+
+  it("marks the real domain as indexable", () => {
+    const { seo } = load("https://highdesign.arq.br");
+    expect(seo.isTemporaryHost).toBe(false);
+    expect(seo.isIndexable).toBe(true);
+  });
+
+  it("does not advertise a sitemap while on the temporary host", () => {
+    process.env.VERCEL_ENV = "production";
+    const { robots: r } = load("https://high-design-website.vercel.app");
+    const out = r() as any;
+    expect(out.sitemap).toBeUndefined();
+    expect(out.host).toBeUndefined();
+  });
+
+  /**
+   * Crawling stays allowed on the temporary host on purpose: a robots.txt
+   * Disallow would stop Googlebot fetching the page and therefore hide the
+   * noindex tag, which is what actually keeps the URL out of the index.
+   */
+  it("still allows crawling on the temporary host so noindex is readable", () => {
+    process.env.VERCEL_ENV = "production";
+    const { robots: r } = load("https://high-design-website.vercel.app");
+    expect((r() as any).rules[0].allow).toBe("/");
+    expect((r() as any).rules[0].disallow).toBeUndefined();
+  });
+
+  it("derives @ids from whichever host is configured", () => {
+    const temp = load("https://high-design-website.vercel.app");
+    expect(temp.seo.ORG_ID).toBe("https://high-design-website.vercel.app/#organization");
+
+    const real = load("https://highdesign.arq.br");
+    expect(real.seo.ORG_ID).toBe("https://highdesign.arq.br/#organization");
   });
 });
 

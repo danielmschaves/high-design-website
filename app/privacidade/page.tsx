@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { abs } from "@/lib/seo";
+import { abs, isIndexable } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
@@ -9,7 +9,11 @@ export const metadata: Metadata = {
   alternates: { canonical: abs("/privacidade") },
   // Indexable but explicitly excluded from rich previews — a legal page
   // outranking the homepage for a brand query is a real failure mode.
-  robots: { index: true, follow: true, "max-snippet": 0 },
+  // Must respect isIndexable: a per-page `index: true` overrides the layout's
+  // noindex, which would leak this page from the temporary host.
+  robots: isIndexable
+    ? { index: true, follow: true, "max-snippet": 0 }
+    : { index: false, follow: false },
 };
 
 export default function Privacidade() {

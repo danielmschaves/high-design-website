@@ -79,7 +79,7 @@ app/
   icon.png          — favicon (HD monogram)
   opengraph-image.tsx — generated 1200×630 share card (next/og)
   sitemap.ts        — /sitemap.xml, driven by lib/blog.ts + lib/services.ts
-  robots.ts         — /robots.txt; blocks indexing on Vercel preview deploys
+  robots.ts         — /robots.txt; blocks preview deploys, and omits the sitemap while on the temporary *.vercel.app host
   manifest.ts       — /manifest.webmanifest
   sobre/
     page.tsx        — Emanoella Goulart entity page (ProfilePage schema)
@@ -156,7 +156,7 @@ public/assets/
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL for OG metadata |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL. Drives canonicals, sitemap, OG URLs **and the schema.org entity `@id`s**. While it points at a `*.vercel.app` host the whole site serves `noindex` — see the SEO conventions section. |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Phone number with country code, no symbols (e.g. `5511999990000`). WhatsApp button hidden until set. |
 | `NEXT_PUBLIC_FORMSPREE_ID` | 8-character form ID from formspree.io (not the full URL). Without it, form fakes success in dev. |
 | `NEXT_PUBLIC_INSTAGRAM_URL` | Full Instagram profile URL (e.g. `https://instagram.com/highdesign.arq`). Footer Instagram link hidden until set. |
@@ -204,7 +204,15 @@ Rules to keep intact when editing:
   inherited, so a canonical there points every page at the homepage and drops
   them from the index. Each route declares its own.
 - **Never change an existing `@id`** in `lib/seo.ts` once it has been indexed —
-  that splits one entity into two.
+  that splits one entity into two. The `@id`s are derived from
+  `NEXT_PUBLIC_SITE_URL`, which is why the temporary deployment host must not
+  be indexed (below).
+- **`isIndexable` in `lib/seo.ts` gates indexing on the hostname.** Any
+  `*.vercel.app` value for `NEXT_PUBLIC_SITE_URL` makes every route serve
+  `noindex, nofollow` and drops the sitemap from `robots.txt`. Pointing the
+  variable at the real domain turns indexing on with no code change. A route
+  that sets its own `robots` metadata **must** respect this flag — a per-page
+  `index: true` overrides the layout (see `app/privacidade/page.tsx`).
 - **`/sobre` is the Person's `mainEntityOfPage`.** If the route ever moves,
   update `personSchema()` with it.
 - **Every new route needs**: its own canonical, an entry in `app/sitemap.ts`,

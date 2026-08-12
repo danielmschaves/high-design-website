@@ -13,6 +13,7 @@ import {
   ORG_DESCRIPTION,
   PERSON_NAME,
   SITE_KEYWORDS,
+  isIndexable,
 } from "@/lib/seo";
 import "./globals.css";
 
@@ -49,20 +50,29 @@ export const metadata: Metadata = {
     title,
     description: ORG_DESCRIPTION,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      // Let Google use full-length text snippets, large image previews and
-      // full video previews — the defaults are more conservative and cost
-      // click-through on brand queries.
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
-  },
+  // While the site is on its temporary *.vercel.app host, every page serves
+  // noindex — see the `isIndexable` note in lib/seo.ts. Pointing
+  // NEXT_PUBLIC_SITE_URL at the real domain flips this on automatically.
+  robots: isIndexable
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          // Let Google use full-length text snippets, large image previews and
+          // full video previews — the defaults are more conservative and cost
+          // click-through on brand queries.
+          "max-snippet": -1,
+          "max-image-preview": "large",
+          "max-video-preview": -1,
+        },
+      }
+    : {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
   // Phone/email autolinking rewrites our markup on iOS and can break layout;
   // the contact details are already real links.
   formatDetection: { telephone: false, email: false, address: false },
