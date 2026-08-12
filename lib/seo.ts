@@ -18,6 +18,36 @@ export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://highdesign.arq.br"
 ).replace(/\/$/, "");
 
+function hostOf(url: string): string {
+  try {
+    return new URL(url).hostname.toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * True while the site is served from its temporary *.vercel.app deployment
+ * URL, before the real domain is pointed at Vercel.
+ */
+export const isTemporaryHost = /(^|\.)vercel\.app$/.test(hostOf(siteUrl));
+
+/**
+ * Whether this deployment may be indexed.
+ *
+ * Everything in this file is derived from `siteUrl` — including the entity
+ * `@id`s, which must never change once Google has seen them. If the temporary
+ * deployment host were indexed, the Organization and Person entities would be
+ * minted against a hostname we are about to abandon, and moving to the real
+ * domain would split each one in two. That is the exact failure this whole
+ * module exists to prevent, so the temporary host is kept out of the index.
+ *
+ * This is deliberately derived rather than a separate flag: pointing
+ * NEXT_PUBLIC_SITE_URL at the real domain turns indexing on by itself, so
+ * there is nothing to remember to switch off later.
+ */
+export const isIndexable = !isTemporaryHost;
+
 export const ORG_NAME = "High Design Arquitetura e Urbanismo";
 export const ORG_SHORT_NAME = "High Design Arquitetura";
 export const ORG_LEGAL_SUFFIX = "High Design ARQ.®";
