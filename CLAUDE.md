@@ -174,7 +174,19 @@ Set in Vercel dashboard for production. Locally, copy `.env.example` to `.env`.
 - Local branch: `master` → remote branch: `main`
 - Push with: `git push origin HEAD:main`
 - `Reference/` folder is gitignored — contains large design PDFs, never commit
-- Docker and PRD files are excluded from Vercel deploy via `.vercelignore`
+- Docker, CI, and PRD files are excluded from Vercel deploy via `.vercelignore`
+
+### CI
+
+`.github/workflows/ci.yml` runs one `Verify` job on every PR into `main`, every push to `main`, and merge-queue entries: `npm ci` → `npm run typecheck` → `npm run test:ci` → `npm run build`, on the Node version in `.nvmrc` (20, matching the Docker dev container).
+
+Before pushing, run the same sequence locally — a red `Verify` blocks the merge once `main` is protected:
+
+```bash
+npm run typecheck && npm run test:ci && npm run build
+```
+
+`npm run typecheck` is the broadest check: `next build` skips `__tests__/` and `__mocks__/`, `tsc --noEmit` does not.
 
 ---
 
