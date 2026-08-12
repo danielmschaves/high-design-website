@@ -83,9 +83,11 @@ export default function Diferenciais() {
               <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-brand-accent">
                 {item.num}
               </span>
-              <h4 className="m-0 text-[1.1rem] font-normal text-brand-white leading-[1.25] tracking-[0.005em]">
+              {/* h3, not h4 — the section heading is the h2 above, and
+                  skipping a level breaks the document outline. */}
+              <h3 className="m-0 text-[1.1rem] font-normal text-brand-white leading-[1.25] tracking-[0.005em]">
                 {item.title}
-              </h4>
+              </h3>
               <p className="mt-auto mb-0 text-[13px] leading-[1.6]" style={{ color: "rgba(245,242,238,0.55)" }}>
                 {item.desc}
               </p>

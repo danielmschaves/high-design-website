@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { abs } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidade — High Design ARQ.",
-  description: "Como a High Design Arquitetura e Urbanismo coleta, usa e protege seus dados pessoais.",
+  title: "Política de Privacidade",
+  description:
+    "Como a High Design Arquitetura e Urbanismo coleta, usa e protege seus dados pessoais, nos termos da LGPD (Lei 13.709/2018).",
+  alternates: { canonical: abs("/privacidade") },
+  // Indexable but explicitly excluded from rich previews — a legal page
+  // outranking the homepage for a brand query is a real failure mode.
+  robots: { index: true, follow: true, "max-snippet": 0 },
 };
 
 export default function Privacidade() {

@@ -123,7 +123,10 @@ export default function Portfolio() {
             >
               <Image
                 src={img.src}
-                alt={`${img.ambiente} · ${img.tipo}`}
+                // Descriptive alt text: ambiente, área and segment read as a
+                // sentence for screen readers and give Google Images something
+                // more specific than "Sala de Estar · Residencial".
+                alt={`${img.ambiente} de ${img.area} em projeto ${img.tipo.toLowerCase()} da High Design Arquitetura — ${img.servico}`}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1440px) 33vw, 480px"
                 className="object-cover object-center transition-transform duration-[900ms] ease-brand group-hover:scale-105"
