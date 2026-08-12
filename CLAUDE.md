@@ -78,7 +78,7 @@ app/
   globals.css       — imports tokens, Tailwind, responsive helpers, animations
   icon.png          — favicon (HD monogram)
   opengraph-image.tsx — generated 1200×630 share card (next/og)
-  sitemap.ts        — /sitemap.xml, driven by lib/blog.ts
+  sitemap.ts        — /sitemap.xml, driven by lib/blog.ts + lib/services.ts
   robots.ts         — /robots.txt; blocks indexing on Vercel preview deploys
   manifest.ts       — /manifest.webmanifest
   sobre/
@@ -94,12 +94,12 @@ app/
 
 components/
   sections/
-    Navbar.tsx      — fixed, transparent → frosted glass on scroll, sand underline-on-hover, mobile menu. Nav links: Sobre · Por que a HD · Serviços · Portfólio · Blog. Contact reached via "Iniciar projeto" CTA (#contato) — no standalone Contato link.
+    Navbar.tsx      — fixed, transparent → frosted glass on scroll, sand underline-on-hover, mobile menu. Nav links: Sobre (#sobre) · Por que a HD (#diferenciais) · Serviços (/servicos) · Portfólio (#portfolio) · Arquiteta (/sobre) · Blog (/blog). Contact reached via "Iniciar projeto" CTA (#contato) — no standalone Contato link.
     Hero.tsx        — centered single-column with eyebrow/h1/lead/CTAs and 4-cell marquee bar (Método · Técnica · Obra · Contato)
     Sobre.tsx       — chapter header (01) + framed image + 2x2 brand-pillar grid + "Por que nascemos" centered pull-quote
     Diferenciais.tsx — chapter header (02) + 8-item grid on dark bg (2-col tablet / 4-col desktop) with monogram watermark
     ParaQuemE.tsx   — chapter eyebrow (03) on cream bg + 3 client-profile cards (residencial/comercial/investidor)
-    Esteira.tsx     — chapter header (04) "Serviços" + 7 horizontal expandable rows (single-open accordion); every panel standardised: tagline + descrição + "O que entregamos"
+    Esteira.tsx     — chapter header (04) "Serviços" + 7 horizontal expandable rows (single-open accordion) driven by lib/services.ts; every panel standardised: tagline + descrição + "O que entregamos" + link to /servicos/[slug]
     Processo.tsx    — chapter header (05) "Como funciona" on cream bg + 3 progressive advantages
     Portfolio.tsx   — chapter header (06) on light bg + filter chips + 12-col masonry with hover overlay
     Blog.tsx        — chapter header on cream bg + featured/recent post cards driven by lib/blog.ts

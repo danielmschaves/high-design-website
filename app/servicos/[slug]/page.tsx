@@ -15,7 +15,6 @@ import {
   webPageSchema,
   ORG_ID,
   ORG_NAME,
-  PERSON_ID,
   PERSON_NAME,
 } from "@/lib/seo";
 
@@ -104,8 +103,6 @@ export default async function ServicePage({
       serviceType: service.nome,
       url,
       provider: { "@id": ORG_ID },
-      // The architect is the named professional performing the work — a
-      // credibility signal for a regulated profession.
       areaServed: { "@type": "State", name: "Santa Catarina" },
       inLanguage: "pt-BR",
       hasOfferCatalog: {
